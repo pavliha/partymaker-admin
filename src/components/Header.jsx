@@ -34,7 +34,6 @@ const Header = ({ classes, className, user, isTransparent }) =>
     <Toolbar>
       <Link to="/"><Logo /></Link>
       <div className={classes.navigation}>
-        {user && <Link to="/rooms"><Button color="inherit">мои компани</Button></Link>}
       </div>
       {user
         ? <UserMenu user={user} />

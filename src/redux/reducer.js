@@ -7,6 +7,8 @@ import messages from './messages/reducer'
 import assets from './assets/reducers'
 import accounts from './accounts/reducers'
 import entertainments from './entertainments/reducer'
+import ui from './ui/reducer'
+
 
 export default combineReducers({
   auth,
@@ -17,4 +19,5 @@ export default combineReducers({
   assets,
   accounts,
   entertainments,
+  ui,
 })

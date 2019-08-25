@@ -19,7 +19,7 @@ const Logo = ({ classes }) =>
     <Typography variant="h6" color="inherit">
       Partymaker
     </Typography>
-    <Typography className={classes.city} color="inherit">Запорожье</Typography>
+    <Typography className={classes.city} color="inherit">Admin</Typography>
   </div>
 
 Logo.propTypes = {

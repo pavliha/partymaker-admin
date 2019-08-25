@@ -1,17 +1,16 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { AuthGate } from 'components'
-import IndexScene from './IndexScene'
 import AuthLayout from './@auth/AuthLayout'
-import RoomsLayout from './@rooms/RoomsLayout'
 import ProfileLayout from './@profile/ProfileLayout'
+import HomeLayout from './@home/HomeLayout'
 
 const Layout = () =>
   <Switch>
-    <Route exact path="/" component={IndexScene} />
     <Route path="/auth" component={AuthLayout} />
-    <AuthGate path="/rooms" component={RoomsLayout} />
     <AuthGate path="/profile" component={ProfileLayout} />
+    <AuthGate path="/home" component={HomeLayout} />
+    <Redirect to="/home" />
   </Switch>
 
 export default Layout

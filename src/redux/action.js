@@ -6,6 +6,7 @@ import messages from './messages/action'
 import assets from './assets/action'
 import accounts from './accounts/action'
 import entertainments from './entertainments/action'
+import ui from './ui/action'
 
 export default {
   auth,
@@ -16,4 +17,5 @@ export default {
   assets,
   accounts,
   entertainments,
+  ui,
 }

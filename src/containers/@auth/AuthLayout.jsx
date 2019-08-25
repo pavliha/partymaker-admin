@@ -3,18 +3,17 @@ import { object } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { Header } from 'components'
-import sparks from '../IndexScene/nightZP.png'
+import nightZp from 'assets/images/nightZP.png'
 import LoginScene from './@login/LoginScene'
 import LogoutScene from './@logout/LogoutScene'
 import RegisterScene from './@register/RegisterScene'
 import ActivateScene from './@activate/ActivateScene'
 import PasswordLayout from './@password/PasswordLayout'
 
-
 const styles = () => ({
   root: {
     height: '100vh',
-    background: `url(${sparks})`,
+    background: `url(${nightZp})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
