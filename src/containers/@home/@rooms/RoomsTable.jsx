@@ -11,8 +11,9 @@ const RoomsTable = ({ models, onEdit, onDelete }) =>
       <TableRow>
         <TableCell>Actions</TableCell>
         <TableCell align="center" width={70}>id</TableCell>
-        <TableCell minWidth="30vw">Title</TableCell>
+        <TableCell minWidth="15vw">Title</TableCell>
         <TableCell minWidth={200}>Place</TableCell>
+        <TableCell minWidth={200}>Invite token</TableCell>
         <TableCell minWidth={70}>Order id</TableCell>
       </TableRow>
     </TableHead>
@@ -23,6 +24,7 @@ const RoomsTable = ({ models, onEdit, onDelete }) =>
           <TableCell align="center">{model.id}</TableCell>
           <TableCell>{model.title}</TableCell>
           <TableCell>{model.place?.title}</TableCell>
+          <TableCell>{model.invite_token}</TableCell>
           <TableCell align="center">{model.order_id}</TableCell>
         </TableRow>
       ))}
