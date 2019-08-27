@@ -44,7 +44,7 @@ class ProfileScene extends Component {
         <Typography gutterBottom variant="h5">{user.name}</Typography>
         <Typography gutterBottom color="textSecondary">{user.email}</Typography>
         <Typography gutterBottom color="textSecondary">{user.phone}</Typography>
-        <div className={classes.actions}>
+        <div className={classes.redux}>
           <Link to="/profile/settings">
             <Button variant="contained" color="primary">
               Настройки

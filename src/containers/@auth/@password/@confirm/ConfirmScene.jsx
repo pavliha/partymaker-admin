@@ -2,7 +2,7 @@ import React from 'react'
 import { object, string, shape } from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Button, withStyles } from '@material-ui/core'
-import { AuthCard, AndDevider } from 'components'
+import { AuthCard, AuthDivider } from 'components'
 import { connect } from 'src/redux'
 
 const styles = {
@@ -12,13 +12,13 @@ const styles = {
   },
 }
 
-const ConfirmScene = ({ classes, email }) =>
+const ConfirmScene = ({ classes, redux: { email } }) =>
   <AuthCard
     images="forgot.jpg"
     title={`Спасибо! Проверьте почту ${email}. Мы отправили вам ссылку для сброса пароля.`}
     documentTitle="Подтверждение пароля - Partymaker"
   >
-    <AndDevider />
+    <AuthDivider />
     <div className={classes.link}>
       <Link to="/auth/login"><Button variant="raised" color="primary">Войти</Button></Link>
     </div>

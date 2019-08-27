@@ -15,7 +15,7 @@ const styles = {
   },
 }
 
-const AndDevider = ({ classes }) =>
+const AndDivider = ({ classes }) =>
   <div className={classes.root}>
     <div className={classes.takeAllSpace}>
       <hr />
@@ -26,8 +26,8 @@ const AndDevider = ({ classes }) =>
     </div>
   </div>
 
-AndDevider.propTypes = {
+AndDivider.propTypes = {
   classes: object.isRequired,
 }
 
-export default withStyles(styles)(AndDevider)
+export default withStyles(styles)(AndDivider)

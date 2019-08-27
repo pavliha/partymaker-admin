@@ -55,7 +55,7 @@ const RoomCard = ({ classes, room }) =>
       </Link>
       <Typography className={classes.subtitle}>{room.place?.title || 'Место еще не выбрано'}</Typography>
     </div>
-    <div className={classes.actions}>
+    <div className={classes.redux}>
       <Link to={`/rooms/${room.id}`}><Button>открыть</Button></Link>
     </div>
   </div>

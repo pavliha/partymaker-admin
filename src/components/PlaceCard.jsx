@@ -68,7 +68,7 @@ class PlaceCard extends Component {
           <Typography className={classes.title} onClick={this.iWantHere}>{place.title}</Typography>
           <Typography color="textSecondary">{place.working_hours}</Typography>
         </div>
-        <div className={classes.actions}>
+        <div className={classes.redux}>
           <div className={classes.secondaryActions}>
             <a target="_blank" href={place.website_url}><Button className={classes.secondaryButton}>САЙТ</Button></a>
             <a target="_blank" href={place.map_url}><Button className={classes.secondaryButton}>КАРТА</Button></a>

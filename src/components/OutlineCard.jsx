@@ -1,31 +1,31 @@
 import React from 'react'
-import { object, node, string } from 'prop-types'
-import { withStyles, Typography } from '@material-ui/core'
+import { object, string, node } from 'prop-types'
+import { Typography, withStyles } from '@material-ui/core'
 import classNames from 'classnames'
 
 const styles = {
   root: {
+    display: 'block',
     position: 'relative',
-    padding: 6,
-    borderRadius: 3,
-    border: 'solid 1px rgba(0, 0, 0, 0.12)',
+    padding: '24px',
+    borderRadius: 8,
+    border: '1px solid #dadce0',
   },
   title: {
     position: 'absolute',
-    top: -15,
     left: 15,
-    background: '#fff',
-    padding: 5,
-  }
+    top: 0,
+    padding: '0px 15px 15px',
+  },
 }
 
-const OutlineCard = ({ classes, className, title, children, style }) =>
-  <div className={classNames([classes.root, className])} style={style}>
-    {title && (
+const OutlineCard = ({ classes, className, title, children }) =>
+  <div className={classNames([classes.root, className])}>
+    {Boolean(title) && (
       <Typography
+        className={classes.title}
         color="textSecondary"
         variant="caption"
-        className={classes.title}
       >
         {title}
       </Typography>
@@ -36,9 +36,8 @@ const OutlineCard = ({ classes, className, title, children, style }) =>
 OutlineCard.propTypes = {
   classes: object.isRequired,
   className: string,
-  style: object,
   title: string,
-  children: node,
+  children: node.isRequired,
 }
 
 export default withStyles(styles)(OutlineCard)
