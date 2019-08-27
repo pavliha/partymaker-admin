@@ -16,6 +16,9 @@ export const SET_ENTERTAINMENT = 'SET_ENTERTAINMENT'
 export const SET_ENTERTAINMENTS = 'SET_ENTERTAINMENTS'
 export const REMOVE_ENTERTAINMENT = 'REMOVE_ENTERTAINMENT'
 
+export const DESTROY_ENTERTAINMENT = 'DESTROY_ENTERTAINMENT'
+export const DESTROY_ENTERTAINMENT_FULFILLED = 'DESTROY_ENTERTAINMENT_FULFILLED'
+
 /**
  * Async actions. Making API requests
  */
@@ -38,6 +41,12 @@ const create = form => ({
 const update = (entertainment_id, form) => ({
   type: UPDATE_ENTERTAINMENT,
   payload: entertainment.update(entertainment_id, form)
+})
+
+const destroy = (entertainment_id) => ({
+  type: DESTROY_ENTERTAINMENT,
+  payload: entertainment.destroy(entertainment_id),
+  meta: { entertainment_id }
 })
 
 /**
@@ -67,4 +76,5 @@ export default {
   set,
   setMany,
   remove,
+  destroy,
 }

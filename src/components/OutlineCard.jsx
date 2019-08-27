@@ -10,6 +10,7 @@ const styles = {
     padding: '24px',
     borderRadius: 8,
     border: '1px solid #dadce0',
+    overflow: 'auto'
   },
   title: {
     position: 'absolute',

@@ -22,7 +22,7 @@ class DeleteDialog extends Component {
       await onConfirm(id)
       this.close()
     } catch (error) {
-      this.setState({ error: error?.detail })
+      this.setState({ error: error?.message })
     } finally {
       this.setState({ isLoading: false })
     }

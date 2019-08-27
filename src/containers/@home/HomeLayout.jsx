@@ -4,9 +4,9 @@ import { object, bool, arrayOf, string, func, shape } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import RoomsScene from './@rooms/RoomsScene'
-import Header from 'components/Header'
-import SideMenu from 'components/SideMenu'
-import Navigation from 'components/Navigation'
+import EntertainmentsScene from './@entertainments/EntertainmentsScene'
+import PlacesScene from './@places/PlacesScene'
+import { Header, SideMenu, Navigation } from 'components'
 import { actions, connect, select } from 'src/redux'
 
 const styles = (theme) => ({
@@ -55,12 +55,12 @@ const HomeLayout = ({ classes, redux }) => (
       </Navigation>
       <main className={classes.content}>
         <Switch>
-          <Route path="/home/dashboard" component={RoomsScene} />
-          <Route path="/home/entertainments" component={RoomsScene} />
-          <Route path="/home/places" component={RoomsScene} />
-          <Route path="/home/rooms" component={RoomsScene} />
-          <Route path="/home/orders" component={RoomsScene} />
-          <Route path="/home/users" component={RoomsScene} />
+          <Route exact path="/home/dashboard" component={RoomsScene} />
+          <Route exact path="/home/entertainments" component={EntertainmentsScene} />
+          <Route exact path="/home/places" component={PlacesScene} />
+          <Route exact path="/home/rooms" component={RoomsScene} />
+          <Route exact path="/home/orders" component={RoomsScene} />
+          <Route exact path="/home/users" component={RoomsScene} />
           <Redirect to="/home/rooms" />
         </Switch>
       </main>

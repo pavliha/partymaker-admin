@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect/lib/index'
 
 const all = (places) => {
-  return places
+  return Object.values(places)
 }
 
 export default createSelector(

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { func, number, shape, arrayOf } from 'prop-types'
 import roomShape from 'shapes/room'
 import { withStyles } from '@material-ui/core'
-import { ContentCard, FormDialog, DeleteDialog, NewButton, OutlineCard } from 'components'
+import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
 import RoomsForm from './RoomsForm'
 import RoomsTable from './RoomsTable'
 import { actions, select, connect } from 'src/redux'
@@ -48,15 +48,13 @@ class RoomsScene extends Component {
         title="Rooms"
         action={<NewButton title="New room" onOpen={this.openFormDialog} />}
       >
-        <OutlineCard>
-          <RoomsTable
-            total={total}
-            models={rooms}
-            onLoad={loadRooms}
-            onDelete={this.openDeleteDialog}
-            onEdit={this.openFormDialog}
-          />
-        </OutlineCard>
+        <RoomsTable
+          total={total}
+          models={rooms}
+          onLoad={loadRooms}
+          onDelete={this.openDeleteDialog}
+          onEdit={this.openFormDialog}
+        />
 
         <DeleteDialog
           id={room?.id}

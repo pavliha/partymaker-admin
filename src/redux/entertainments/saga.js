@@ -3,7 +3,8 @@ import {
   CREATE_ENTERTAINMENT_FULFILLED,
   LOAD_ENTERTAINMENT_FULFILLED,
   UPDATE_ENTERTAINMENT_FULFILLED,
-  LOAD_ENTERTAINMENTS_FULFILLED
+  LOAD_ENTERTAINMENTS_FULFILLED,
+  DESTROY_ENTERTAINMENT_FULFILLED,
 } from './action'
 import actions from 'src/redux/action'
 
@@ -15,11 +16,17 @@ function* setEntertainment({ payload: entertainment }) {
   yield put(actions.entertainments.set(entertainment))
 }
 
+function* removeEntertainment({ meta: { entertainment_id } }) {
+  yield put(actions.entertainments.remove(entertainment_id))
+}
+
 export default function* saga() {
   yield all([
     takeEvery(LOAD_ENTERTAINMENTS_FULFILLED, setEntertainments),
     takeEvery(LOAD_ENTERTAINMENT_FULFILLED, setEntertainment),
     takeEvery(CREATE_ENTERTAINMENT_FULFILLED, setEntertainment),
-    takeEvery(UPDATE_ENTERTAINMENT_FULFILLED, setEntertainment)
+    takeEvery(UPDATE_ENTERTAINMENT_FULFILLED, setEntertainment),
+    takeEvery(DESTROY_ENTERTAINMENT_FULFILLED, removeEntertainment)
+
   ])
 }

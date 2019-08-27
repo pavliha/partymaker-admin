@@ -1,6 +1,6 @@
 import React from 'react'
 import { array, func, number } from 'prop-types'
-import { TablePagination } from 'components'
+import { OutlineCard, TablePagination } from 'components'
 
 export default (Component) => {
 
@@ -47,10 +47,9 @@ export default (Component) => {
 
       return (
         <React.Fragment>
-          <Component
-            {...rest}
-            models={this.paginated(models)}
-          />
+          <OutlineCard>
+            <Component{...rest} models={this.paginated(models)} />
+          </OutlineCard>
           <TablePagination
             limit={limit}
             offset={offset}
