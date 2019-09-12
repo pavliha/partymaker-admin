@@ -1,6 +1,6 @@
 import React from 'react'
 import { array, func, number, string } from 'prop-types'
-import { OutlineCard, TablePagination } from 'components'
+import { TablePagination } from 'components'
 import arrayMove from 'array-move'
 
 export default (Component) => {
@@ -63,7 +63,7 @@ export default (Component) => {
 
       return (
         <React.Fragment>
-          <OutlineCard className={className}>
+          <div style={{ overflow: 'auto' }}>
             <Component
               {...rest}
               table={{
@@ -71,7 +71,7 @@ export default (Component) => {
                 handleSort: this.handleSort,
               }}
             />
-          </OutlineCard>
+          </div>
           <TablePagination
             limit={limit}
             offset={offset}

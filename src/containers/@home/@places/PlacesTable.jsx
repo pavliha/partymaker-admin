@@ -12,7 +12,7 @@ const PlacesTable = ({ onEdit, onDelete, onActivate, table: { models } }) =>
       <TableRow>
         <TableCell>Actions</TableCell>
         <TableCell minWidth={70}>Picture</TableCell>
-        <TableCell width={70}>id</TableCell>
+        <TableCell align="center" width={70}>id</TableCell>
         <TableCell minWidth="15vw">Title</TableCell>
         <TableCell minWidth="10vw">Entertainment</TableCell>
         <TableCell minWidth={150}>Price</TableCell>

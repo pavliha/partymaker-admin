@@ -9,7 +9,7 @@ const EntertainmentsTable = ({ onEdit, onDelete, onActivate, table: { models, ha
     <TableHead>
       <TableRow>
         <TableCell>Actions</TableCell>
-        <TableCell width={70}>id</TableCell>
+        <TableCell align="center" width={70}>id</TableCell>
         <TableCell minWidth="30vw">Title</TableCell>
         <TableCell minWidth={70}>Created at</TableCell>
         <TableCell minWidth={70}>Updated at</TableCell>
