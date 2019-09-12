@@ -11,4 +11,5 @@ export default shape({
   working_hours: string.isRequired,
   created_at: string.isRequired,
   updated_at: string.isRequired,
+  entertainment_id: number.isRequired,
 })

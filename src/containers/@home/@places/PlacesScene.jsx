@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await */
 import React, { Component } from 'react'
-import { func, number, shape, arrayOf } from 'prop-types'
+import { func, number, shape, arrayOf, object } from 'prop-types'
 import placeshape from 'shapes/place'
 import { withStyles } from '@material-ui/core'
 import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
@@ -10,6 +10,9 @@ import { actions, select, connect } from 'src/redux'
 
 const styles = {
   root: {},
+  table: {
+    paddingTop: 5,
+  }
 }
 
 class PlacesScene extends Component {
@@ -39,8 +42,13 @@ class PlacesScene extends Component {
     return action
   }
 
+  toggleActive = (model) => {
+    const { redux: { updatePlace } } = this.props
+    return updatePlace(model.id, { is_active: !model.is_active })
+  }
+
   render() {
-    const { redux: { places, total, loadPlaces, deletePlace } } = this.props
+    const { classes, redux: { places, total, loadPlaces, deletePlace } } = this.props
     const { isPlaceDialogOpen, isDeleteDialogOpen, place } = this.state
 
     return (
@@ -49,11 +57,13 @@ class PlacesScene extends Component {
         action={<NewButton title="New place" onOpen={this.openFormDialog} />}
       >
         <PlacesTable
+          className={classes.table}
           total={total}
           models={places}
           onLoad={loadPlaces}
           onDelete={this.openDeleteDialog}
           onEdit={this.openFormDialog}
+          onActivate={this.toggleActive}
         />
         <DeleteDialog
           id={place?.id}
@@ -81,6 +91,7 @@ class PlacesScene extends Component {
 }
 
 PlacesScene.propTypes = {
+  classes: object.isRequired,
   redux: shape({
     places: arrayOf(placeshape),
     total: number,

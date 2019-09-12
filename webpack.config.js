@@ -16,7 +16,7 @@ module.exports = () => ({
 
   devServer: {
     hot: true,
-    port: 3000,
+    port: process.env.PORT || 2000,
     historyApiFallback: true,
     disableHostCheck: true,
   },
@@ -78,8 +78,7 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/, exclude: /node_modules/,
-        use: ['babel-loader'],
+        test: /\.jsx?$/, exclude: /node_modules/, use: ['babel-loader'],
       },
       {
         test: /\.css$/,

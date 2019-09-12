@@ -21,6 +21,10 @@ const entertainment = {
   destroy(entertainment_id) {
     return Http.delete(`entertainments/${entertainment_id}`)
   },
+
+  sort(sorted_ids) {
+    return Http.post(`entertainments/sort`, { sorted_ids })
+  }
 }
 
 export default entertainment

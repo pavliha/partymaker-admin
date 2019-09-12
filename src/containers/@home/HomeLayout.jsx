@@ -3,11 +3,12 @@ import userShape from 'shapes/user'
 import { object, bool, arrayOf, string, func, shape } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { actions, connect, select } from 'src/redux'
+import { Header, SideMenu, Navigation } from 'components'
 import RoomsScene from './@rooms/RoomsScene'
 import EntertainmentsScene from './@entertainments/EntertainmentsScene'
 import PlacesScene from './@places/PlacesScene'
-import { Header, SideMenu, Navigation } from 'components'
-import { actions, connect, select } from 'src/redux'
+import DashboardScene from './@dashboard/DashboardScene'
 
 const styles = (theme) => ({
   root: {
@@ -55,13 +56,13 @@ const HomeLayout = ({ classes, redux }) => (
       </Navigation>
       <main className={classes.content}>
         <Switch>
-          <Route exact path="/home/dashboard" component={RoomsScene} />
+          <Route exact path="/home/dashboard" component={DashboardScene} />
           <Route exact path="/home/entertainments" component={EntertainmentsScene} />
           <Route exact path="/home/places" component={PlacesScene} />
           <Route exact path="/home/rooms" component={RoomsScene} />
           <Route exact path="/home/orders" component={RoomsScene} />
           <Route exact path="/home/users" component={RoomsScene} />
-          <Redirect to="/home/rooms" />
+          <Redirect to="/home/dashboard" />
         </Switch>
       </main>
     </div>

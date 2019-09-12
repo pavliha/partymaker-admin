@@ -1,15 +1,18 @@
 /* eslint-disable no-return-await */
 import React, { Component } from 'react'
-import { func, number, shape, arrayOf } from 'prop-types'
+import { func, number, shape, arrayOf, object } from 'prop-types'
 import entertainmentShape from 'shapes/entertainment'
 import { withStyles } from '@material-ui/core'
 import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
+import { actions, select, connect } from 'src/redux'
 import EntertainmentForm from './EntertainmentForm'
 import EntertainmentsTable from './EntertainmentsTable'
-import { actions, select, connect } from 'src/redux'
 
 const styles = {
   root: {},
+  table: {
+    paddingTop: 5,
+  }
 }
 
 class EntertainmentsScene extends Component {
@@ -35,12 +38,21 @@ class EntertainmentsScene extends Component {
     const { redux: { updateEntertainment, createEntertainment } } = this.props
     const action = await (id ? updateEntertainment(id, form) : createEntertainment(form))
     this.closeEntertainmentDialog()
-
     return action
   }
 
+  toggleActive = (model) => {
+    const { redux: { updateEntertainment } } = this.props
+    return updateEntertainment(model.id, { is_active: !model.is_active })
+  }
+
+  sortRows = (sorted_ids) => {
+    const { redux: { sortEntertainments } } = this.props
+    return sortEntertainments(sorted_ids)
+  }
+
   render() {
-    const { redux: { entertainments, total, loadEntertainments, deleteEntertainment } } = this.props
+    const { classes, redux: { entertainments, total, loadEntertainments, deleteEntertainment } } = this.props
     const { isEntertainmentDialogOpen, isDeleteDialogOpen, entertainment } = this.state
 
     return (
@@ -50,10 +62,13 @@ class EntertainmentsScene extends Component {
       >
         <EntertainmentsTable
           total={total}
+          className={classes.table}
           models={entertainments}
           onLoad={loadEntertainments}
           onDelete={this.openDeleteDialog}
           onEdit={this.openFormDialog}
+          onActivate={this.toggleActive}
+          onSort={this.sortRows}
         />
 
         <DeleteDialog
@@ -82,6 +97,7 @@ class EntertainmentsScene extends Component {
 }
 
 EntertainmentsScene.propTypes = {
+  classes: object.isRequired,
   redux: shape({
     entertainments: arrayOf(entertainmentShape),
     total: number,
@@ -98,7 +114,8 @@ const redux = (state) => ({
   loadEntertainments: actions.entertainments.loadMany,
   createEntertainment: actions.entertainments.create,
   updateEntertainment: actions.entertainments.update,
-  deleteEntertainment: actions.entertainments.destroy
+  deleteEntertainment: actions.entertainments.destroy,
+  sortEntertainments: actions.entertainments.sort,
 })
 
 export default withStyles(styles)(connect(redux)(EntertainmentsScene))

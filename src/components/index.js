@@ -47,6 +47,8 @@ export TableActionsCell from './TableActionsCell'
 export TablePagination from './TablePagination'
 export SearchRow from './SearchRow'
 export TableCell from './TableCell'
+export TableBody from './TableBody'
+export TableRow from './TableRow'
 export withTable from './withTable'
 
 // Buttons

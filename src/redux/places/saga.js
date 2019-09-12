@@ -12,6 +12,7 @@ import {
 
 const defineRelationsFrom = (models) => ([
   [models.place, actions.places.setMany],
+  [models.entertainment, actions.entertainments.setMany],
 ])
 
 function* setPlaces({ payload: { data: rooms } }) {

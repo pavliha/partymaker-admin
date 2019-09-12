@@ -4,6 +4,8 @@ import { IconButton, withStyles } from '@material-ui/core'
 import { TableCell } from 'components'
 import EditIcon from 'mdi-react/EditIcon'
 import DeleteIcon from 'mdi-react/DeleteIcon'
+import VisibilityIcon from 'mdi-react/VisibilityIcon'
+import VisibilityOffIcon from 'mdi-react/VisibilityOffIcon'
 
 const styles = {
   actions: {
@@ -12,6 +14,10 @@ const styles = {
 }
 
 class TableActionsCell extends Component {
+
+  state = {
+    isLoading: false
+  }
 
   edit = () => {
     const { model, onEdit } = this.props
@@ -23,11 +29,19 @@ class TableActionsCell extends Component {
     onDelete(model)
   }
 
+  activate = async () => {
+    const { model, onActivate } = this.props
+    this.setState({ isLoading: true })
+    await onActivate(model)
+    this.setState({ isLoading: false })
+  }
+
   render() {
-    const { classes, align } = this.props
+    const { classes, align, model: { is_active } } = this.props
+    const { isLoading } = this.state
 
     return (
-      <TableCell width={110} align={align} classes={classes.root}>
+      <TableCell width={140} align={align} classes={classes.root}>
         <div className={classes.actions}>
           <IconButton onClick={this.edit}>
             <EditIcon />
@@ -35,6 +49,11 @@ class TableActionsCell extends Component {
           <IconButton onClick={this.remove}>
             <DeleteIcon />
           </IconButton>
+          {typeof is_active !== 'undefined' && (
+            <IconButton disabled={isLoading} onClick={this.activate}>
+              {is_active ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </IconButton>
+          )}
         </div>
       </TableCell>
     )
@@ -47,6 +66,7 @@ TableActionsCell.propTypes = {
   model: object.isRequired,
   onDelete: func.isRequired,
   onEdit: func.isRequired,
+  onActivate: func,
 }
 
 export default withStyles(styles)(TableActionsCell)

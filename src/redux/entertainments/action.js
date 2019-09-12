@@ -2,22 +2,18 @@ import entertainment from 'api/entertainment'
 
 export const LOAD_ENTERTAINMENTS = 'LOAD_ENTERTAINMENTS'
 export const LOAD_ENTERTAINMENTS_FULFILLED = 'LOAD_ENTERTAINMENTS_FULFILLED'
-
 export const LOAD_ENTERTAINMENT = 'LOAD_ENTERTAINMENT'
 export const LOAD_ENTERTAINMENT_FULFILLED = 'LOAD_ENTERTAINMENT_FULFILLED'
-
 export const CREATE_ENTERTAINMENT = 'CREATE_ENTERTAINMENT'
 export const CREATE_ENTERTAINMENT_FULFILLED = 'CREATE_ENTERTAINMENT_FULFILLED'
-
 export const UPDATE_ENTERTAINMENT = 'UPDATE_ENTERTAINMENT'
 export const UPDATE_ENTERTAINMENT_FULFILLED = 'UPDATE_ENTERTAINMENT_FULFILLED'
-
+export const DESTROY_ENTERTAINMENT = 'DESTROY_ENTERTAINMENT'
+export const DESTROY_ENTERTAINMENT_FULFILLED = 'DESTROY_ENTERTAINMENT_FULFILLED'
+export const SORT_ENTERTAINMENTS = 'SORT_ENTERTAINMENTS'
 export const SET_ENTERTAINMENT = 'SET_ENTERTAINMENT'
 export const SET_ENTERTAINMENTS = 'SET_ENTERTAINMENTS'
 export const REMOVE_ENTERTAINMENT = 'REMOVE_ENTERTAINMENT'
-
-export const DESTROY_ENTERTAINMENT = 'DESTROY_ENTERTAINMENT'
-export const DESTROY_ENTERTAINMENT_FULFILLED = 'DESTROY_ENTERTAINMENT_FULFILLED'
 
 /**
  * Async actions. Making API requests
@@ -49,6 +45,12 @@ const destroy = (entertainment_id) => ({
   meta: { entertainment_id }
 })
 
+const sort = (sorted_ids) => ({
+  type: SORT_ENTERTAINMENTS,
+  payload: entertainment.sort(sorted_ids),
+  meta: { sorted_ids }
+})
+
 /**
  * Sync actions. Updating store
  */
@@ -74,6 +76,7 @@ export default {
   create,
   update,
   set,
+  sort,
   setMany,
   remove,
   destroy,

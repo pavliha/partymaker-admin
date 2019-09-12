@@ -1,46 +1,47 @@
-import React, { Component } from 'react'
-import { func, arrayOf } from 'prop-types'
+import React from 'react'
+import { arrayOf, func, shape } from 'prop-types'
 import entertainmentShape from 'shapes/entertainment'
-import { Table, TableBody, TableHead, TableRow } from '@material-ui/core'
-import ActionsCell from 'components/TableActionsCell'
-import { TableCell, withTable } from 'components'
+import { Table, TableHead } from '@material-ui/core'
+import { TableActionsCell, TableBody, TableRow, TableCell, withTable } from 'components'
 
-class ShortTable extends Component {
+const EntertainmentsTable = ({ onEdit, onDelete, onActivate, table: { models, handleSort } }) =>
+  <Table padding="none" size="small">
+    <TableHead>
+      <TableRow>
+        <TableCell>Actions</TableCell>
+        <TableCell width={70}>id</TableCell>
+        <TableCell minWidth="30vw">Title</TableCell>
+        <TableCell minWidth={70}>Created at</TableCell>
+        <TableCell minWidth={70}>Updated at</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody onSortEnd={handleSort}>
+      {models.map((model, index) => (
+        <TableRow sortable index={index} key={model.id}>
+          <TableActionsCell
+            align="center"
+            model={model}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            onActivate={onActivate}
+          />
+          <TableCell align="center">{model.id}</TableCell>
+          <TableCell sortHandle>{model.title}</TableCell>
+          <TableCell>{model.created_at}</TableCell>
+          <TableCell>{model.updated_at}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
 
-  render() {
-    const { onEdit, onDelete, models } = this.props
-
-    return (
-      <Table padding="none" size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Actions</TableCell>
-            <TableCell width={70}>id</TableCell>
-            <TableCell minWidth="30vw">Title</TableCell>
-            <TableCell minWidth={70}>Created at</TableCell>
-            <TableCell minWidth={70}>Updated at</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {models.map((model) => (
-            <TableRow key={model.id}>
-              <ActionsCell align="center" model={model} onEdit={onEdit} onDelete={onDelete} />
-              <TableCell align="center">{model.id}</TableCell>
-              <TableCell>{model.title}</TableCell>
-              <TableCell>{model.created_at}</TableCell>
-              <TableCell>{model.updated_at}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    )
-  }
-}
-
-ShortTable.propTypes = {
-  models: arrayOf(entertainmentShape).isRequired,
+EntertainmentsTable.propTypes = {
   onEdit: func.isRequired,
   onDelete: func.isRequired,
+  onActivate: func.isRequired,
+  table: shape({
+    models: arrayOf(entertainmentShape).isRequired,
+    handleSort: func.isRequired,
+  })
 }
 
-export default withTable(ShortTable)
+export default withTable(EntertainmentsTable)
