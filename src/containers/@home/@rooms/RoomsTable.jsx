@@ -1,11 +1,11 @@
 import React from 'react'
-import { arrayOf, func } from 'prop-types'
+import { arrayOf, func, shape } from 'prop-types'
 import roomShape from 'shapes/room'
 import { Table, TableBody, TableHead, TableRow } from '@material-ui/core'
 import ActionsCell from 'components/TableActionsCell'
 import { TableCell, withTable } from 'components'
 
-const RoomsTable = ({ models, onEdit, onDelete }) =>
+const RoomsTable = ({ table: { models }, onEdit, onDelete }) =>
   <Table padding="none" size="small">
     <TableHead>
       <TableRow>
@@ -14,7 +14,6 @@ const RoomsTable = ({ models, onEdit, onDelete }) =>
         <TableCell minWidth="15vw">Title</TableCell>
         <TableCell minWidth={200}>Place</TableCell>
         <TableCell minWidth={200}>Invite token</TableCell>
-        <TableCell minWidth={70}>Order id</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -32,9 +31,11 @@ const RoomsTable = ({ models, onEdit, onDelete }) =>
   </Table>
 
 RoomsTable.propTypes = {
-  models: arrayOf(roomShape).isRequired,
   onEdit: func.isRequired,
   onDelete: func.isRequired,
+  table: shape({
+    models: arrayOf(roomShape).isRequired,
+  })
 }
 
 export default withTable(RoomsTable)

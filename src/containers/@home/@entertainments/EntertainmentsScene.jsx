@@ -52,8 +52,9 @@ class EntertainmentsScene extends Component {
   }
 
   render() {
-    const { classes, redux: { entertainments, total, loadEntertainments, deleteEntertainment } } = this.props
+    const { classes, redux } = this.props
     const { isEntertainmentDialogOpen, isDeleteDialogOpen, entertainment } = this.state
+    const { entertainments, total, loadEntertainments, deleteEntertainment } = redux
 
     return (
       <ContentCard

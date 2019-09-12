@@ -42,7 +42,7 @@ class DeleteDialog extends Component {
       >
         <DialogTitle id="alert-dialog-title">Are you sure you want to delete "{title}"?</DialogTitle>
         <DialogContent>
-          <DialogContentText color={error ? 'error' : 'default'} id="alert-dialog-description">
+          <DialogContentText color={error ? 'error' : 'inherit'} id="alert-dialog-description">
             {error || `This will completely remove "${title}" from our database`}
           </DialogContentText>
         </DialogContent>
