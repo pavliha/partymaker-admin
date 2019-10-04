@@ -7,20 +7,30 @@ import {
   DESTROY_ENTERTAINMENT_FULFILLED,
 } from './action'
 import actions from 'src/redux/action'
+import { normalize, putRelationsToStore } from 'utils/index'
 
-function* setEntertainments({ payload: entertainments }) {
-  yield put(actions.entertainments.setMany(entertainments))
+const defineRelationsFrom = (models) => ([
+  [models.entertainment, actions.entertainments.setMany],
+  [models.places, actions.places.setMany],
+])
+
+function * setEntertainments({ payload }) {
+  const models = normalize(payload, 'entertainment')
+  const relations = defineRelationsFrom(models)
+  yield putRelationsToStore(models, relations)
 }
 
-function* setEntertainment({ payload: entertainment }) {
-  yield put(actions.entertainments.set(entertainment))
+function * setEntertainment({ payload }) {
+  const models = normalize(payload, 'entertainment')
+  const relations = defineRelationsFrom(models)
+  yield putRelationsToStore(models, relations)
 }
 
-function* removeEntertainment({ meta: { entertainment_id } }) {
+function * removeEntertainment({ meta: { entertainment_id } }) {
   yield put(actions.entertainments.remove(entertainment_id))
 }
 
-export default function* saga() {
+export default function * saga() {
   yield all([
     takeEvery(LOAD_ENTERTAINMENTS_FULFILLED, setEntertainments),
     takeEvery(LOAD_ENTERTAINMENT_FULFILLED, setEntertainment),

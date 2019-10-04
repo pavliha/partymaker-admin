@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { object, string, node, shape } from 'prop-types'
+import React from 'react'
+import { node, object, shape, string } from 'prop-types'
 import { SvgIcon, withStyles } from '@material-ui/core'
 import { Link, withRouter } from 'react-router-dom'
 import classNames from 'classnames'
@@ -31,25 +31,17 @@ const styles = (theme) => ({
   },
 })
 
-class MenuItem extends Component {
-
-  render() {
-    const { location, classes, icon: Icon, url, children } = this.props
-
-    return (
-      <Link
-        component="div"
-        to={`/home${url}`}
-        className={classNames({
-          [classes.root]: true,
-          [classes.selected]: location.pathname === `/home${url}`,
-        })}>
-        <SvgIcon className={classes.icon}><Icon /></SvgIcon>
-        {children}
-      </Link>
-    )
-  }
-}
+const MenuItem = ({ location, classes, icon: Icon, url, children }) =>
+  <Link
+    component="div"
+    to={`/home${url}`}
+    className={classNames({
+      [classes.root]: true,
+      [classes.selected]: location.pathname === `/home${url}`,
+    })}>
+    <SvgIcon className={classes.icon}><Icon /></SvgIcon>
+    {children}
+  </Link>
 
 MenuItem.propTypes = {
   classes: object.isRequired,

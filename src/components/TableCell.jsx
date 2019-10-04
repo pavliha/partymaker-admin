@@ -23,6 +23,7 @@ const TableCell = ({ classes, sortHandle, align, border, width, maxWidth, minWid
       style={{
         minWidth: width || minWidth,
         width,
+        paddingLeft: 5,
         cursor: sortHandle ? 'move' : 'default',
         textAlign: align,
         justifyContent: align,

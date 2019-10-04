@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect, } from 'formik'
+import { connect } from 'formik'
 import { string, object, bool, shape } from 'prop-types'
-import { withStyles } from '@material-ui/styles'
-import { Button, Typography } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Button, withStyles } from '@material-ui/core'
 
 const styles = {
   root: {
@@ -18,36 +16,26 @@ const styles = {
   }
 }
 
-const AuthCardActions = ({ formik, classes, textButton, linkTo, textLink }) => {
-  return (
-    <div className={classes.root}>
-      <Button
-        disabled={formik.isSubmitting}
-        className={classes.button}
-        type="submit"
-        size="large"
-        variant="outlined"
-        color="primary"
-      >
-        {formik.isSubmitting ? 'Загрузка...' : textButton}
-      </Button>
-      {linkTo && (
-        <Link to={linkTo}>
-          <Typography color="inherit">{textLink}</Typography>
-        </Link>
-      )}
-    </div>
-  )
-}
+const AuthCardActions = ({ formik, classes, textButton }) =>
+  <div className={classes.root}>
+    <Button
+      disabled={formik.isSubmitting}
+      className={classes.button}
+      type="submit"
+      size="large"
+      variant="outlined"
+      color="primary"
+    >
+      {formik.isSubmitting ? 'Загрузка...' : textButton}
+    </Button>
+  </div>
 
 AuthCardActions.propTypes = {
+  classes: object.isRequired,
+  textButton: string.isRequired,
   formik: shape({
     isSubmitting: bool.isRequired
   }),
-  classes: object.isRequired,
-  textButton: string.isRequired,
-  linkTo: string,
-  textLink: string,
 }
 
 export default withStyles(styles)(connect(AuthCardActions))

@@ -15,8 +15,18 @@ const styles = {
 
 class TableActionsCell extends Component {
 
+  isMounted = false
+
   state = {
     isLoading: false
+  }
+
+  componentDidMount() {
+    this.isMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false
   }
 
   edit = () => {
@@ -33,19 +43,21 @@ class TableActionsCell extends Component {
     const { model, onActivate } = this.props
     this.setState({ isLoading: true })
     await onActivate(model)
-    this.setState({ isLoading: false })
+    if (this.isMounted) this.setState({ isLoading: false })
   }
 
   render() {
-    const { classes, align, model: { is_active } } = this.props
+    const { classes, align, onEdit, model: { is_active } } = this.props
     const { isLoading } = this.state
 
     return (
       <TableCell width={140} align={align} classes={classes.root}>
         <div className={classes.actions}>
-          <IconButton onClick={this.edit}>
-            <EditIcon />
-          </IconButton>
+          {onEdit && (
+            <IconButton onClick={this.edit}>
+              <EditIcon />
+            </IconButton>
+          )}
           <IconButton onClick={this.remove}>
             <DeleteIcon />
           </IconButton>

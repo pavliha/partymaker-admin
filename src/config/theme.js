@@ -13,4 +13,21 @@ export default {
       main: '#D6000A',
     },
   },
+
+  overrides: {
+    MuiTableCell: {
+      root: {
+        '&$paddingNone': {
+          '&last-child': {
+            padding: 'inherit'
+          }
+        }
+      },
+      paddingNone: {
+        '&last-child': {
+          padding: 'inherit'
+        }
+      }
+    }
+  }
 }

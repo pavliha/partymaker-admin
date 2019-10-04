@@ -45,9 +45,7 @@ export default (Component) => {
 
     sortModels = (models) => {
       const { sorted_ids } = this.state
-      return sorted_ids
-        ? sorted_ids.map(id => models.find(m => m.id === id))
-        : models
+      return sorted_ids ? sorted_ids.map(id => models.find(m => m.id === id)) : models
     }
 
     handleSort = ({ newIndex, oldIndex }) => {

@@ -1,17 +1,16 @@
 import React from 'react'
-import { object, func, bool } from 'prop-types'
-import placeshape from 'shapes/place'
-import { Button, DialogActions, withStyles } from '@material-ui/core'
-import formik from './formik'
-import { Field, Form } from 'formik'
-import { TextField, ServerMessage } from 'components/formik'
-import { Label, OutlineCard } from 'components'
+import { object, func, bool, shape } from 'prop-types'
+import placeShape from 'shapes/place'
+import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
+import { Form } from 'formik'
+import { Label, OutlineCard, ServerMessage, Field } from 'components'
+import * as Yup from 'yup'
 
 const styles = {
   root: {},
 }
 
-const PlaceForm = ({ classes, model, isSubmitting, onCancel }) => (
+const PlaceForm = ({ classes, model, formik: { isSubmitting }, onCancel }) => (
   <Form className={classes.root}>
     <OutlineCard>
       <Label title="Title">
@@ -49,7 +48,7 @@ const PlaceForm = ({ classes, model, isSubmitting, onCancel }) => (
       <Label title="Map url">
         <Field
           name="map_url"
-          placeholder="https://www.google.com/maps/place/Klub+%22Blok-Post%22+Peyntbol,Lazertag,TIR,Arenda+besedok./@47.7976408,35.167646,15z/data=!4m2!3m1!1s0x0:0xd3cabe72da827682?sa=X&ved=2ahUKEwjKjq-YyPrjAhWtwqYKHePkAQQQ_BIwCnoECAoQCA"
+          placeholder="https://www.google.com/maps/plok./@4ta=!AQQQ_BIwCnoECAoQCA"
           margin="dense"
           component={TextField}
         />
@@ -96,13 +95,35 @@ const PlaceForm = ({ classes, model, isSubmitting, onCancel }) => (
 
 PlaceForm.propTypes = {
   classes: object.isRequired,
-  model: placeshape,
+  model: placeShape,
   onCancel: func.isRequired,
-  isSubmitting: bool.isRequired,
+  formik: shape({
+    isSubmitting: bool.isRequired,
+  })
 }
 
 PlaceForm.formikProps = {
   onSubmit: func.isRequired,
 }
 
-export default withStyles(styles)(formik(PlaceForm))
+PlaceForm.validationSchema = Yup.object().shape({
+  title: Yup.string().required(),
+  picture_url: Yup.string().required(),
+  price: Yup.string().required(),
+  phone: Yup.string().required(),
+  map_url: Yup.string().required(),
+  website_url: Yup.string().required(),
+  working_hours: Yup.string().required(),
+})
+
+PlaceForm.mapPropsToValues = ({ model }) => ({
+  title: model?.title || '',
+  picture_url: model?.picture_url,
+  price: model?.price,
+  phone: model?.phone,
+  map_url: model?.map_url,
+  website_url: model?.website_url,
+  working_hours: model?.working_hours
+})
+
+export default withStyles(styles)(PlaceForm)

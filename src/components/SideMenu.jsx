@@ -1,7 +1,6 @@
 import React from 'react'
 import { string } from 'prop-types'
 import MenuItem from './MenuItem'
-import ViewDashboardIcon from 'mdi-react/ViewDashboardIcon'
 import AirballoonIcon from 'mdi-react/AirballoonIcon'
 import AccountGroup from 'mdi-react/AccountGroupIcon'
 import MapIcon from 'mdi-react/MapMarkerIcon'
@@ -11,8 +10,6 @@ import CartIcon from 'mdi-react/CartIcon'
 
 const SideMenu = ({ className }) =>
   <nav className={className}>
-    <MenuItem url="/dashboard" icon={ViewDashboardIcon}>Dashboard</MenuItem>
-    <MenuSeparator />
     <MenuItem url="/entertainments" icon={AirballoonIcon}>Entertainments</MenuItem>
     <MenuItem url="/places" icon={MapIcon}>Places</MenuItem>
     <MenuItem url="/rooms" icon={AccountGroup}>Rooms</MenuItem>

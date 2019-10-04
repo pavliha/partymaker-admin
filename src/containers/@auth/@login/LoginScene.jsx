@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import { AuthCard } from 'components'
+import { AuthCard, Form, LoginForm } from 'components'
 import { Helmet } from 'react-helmet'
-import LoginForm from './LoginForm'
 import { func, shape } from 'prop-types'
 import Storage from 'services/Storage'
 import { actions, connect } from 'src/redux'
 
 class LoginScene extends Component {
 
-  login = async (credentials) => {
+  login = async (form) => {
     const { redux, history } = this.props
-    const action = await redux.login(credentials)
+    const action = await redux.login(form)
     const previous_user_location = Storage.get('previous_user_location')
-    history.push(previous_user_location || '/rooms')
+    history.push(previous_user_location || '/home')
     return action
   }
 
@@ -20,9 +19,9 @@ class LoginScene extends Component {
     return (
       <AuthCard title="ВОЙТИ">
         <Helmet>
-          <title>Вход в аккаунт - Partymaker</title>
+          <title>Вход в аккаунт - Partymaker Admin</title>
         </Helmet>
-        <LoginForm onSubmit={this.login} />
+        <Form component={LoginForm} onSubmit={this.login} />
       </AuthCard>
     )
   }

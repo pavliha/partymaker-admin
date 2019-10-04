@@ -1,17 +1,16 @@
 import React from 'react'
-import { object, func, bool } from 'prop-types'
+import { object, func, bool, shape } from 'prop-types'
 import entertainmentShape from 'shapes/entertainment'
-import { Button, DialogActions, withStyles } from '@material-ui/core'
-import formik from './formik'
-import { Field, Form } from 'formik'
-import { TextField, ServerMessage } from 'components/formik'
-import { Label, OutlineCard } from 'components'
+import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
+import { Form } from 'formik'
+import { Field, Label, OutlineCard, ServerMessage } from 'components'
+import * as Yup from 'yup'
 
 const styles = {
   root: {},
 }
 
-const EntertainmentsForm = ({ classes, model, isSubmitting, onCancel }) => (
+const EntertainmentForm = ({ classes, model, formik: { isSubmitting }, onCancel }) => (
   <Form className={classes.root}>
     <OutlineCard>
       <Label title="Title">
@@ -47,15 +46,21 @@ const EntertainmentsForm = ({ classes, model, isSubmitting, onCancel }) => (
   </Form>
 )
 
-EntertainmentsForm.propTypes = {
+EntertainmentForm.propTypes = {
   classes: object.isRequired,
   model: entertainmentShape,
   onCancel: func.isRequired,
-  isSubmitting: bool.isRequired,
+  formik: shape({
+    isSubmitting: bool.isRequired,
+  })
 }
 
-EntertainmentsForm.formikProps = {
-  onSubmit: func.isRequired,
-}
+EntertainmentForm.validationSchema = Yup.object().shape({
+  title: Yup.string().required('Please enter name'),
+})
 
-export default withStyles(styles)(formik(EntertainmentsForm))
+EntertainmentForm.mapPropsToValues = ({ model }) => ({
+  title: model?.title || '',
+})
+
+export default withStyles(styles)(EntertainmentForm)

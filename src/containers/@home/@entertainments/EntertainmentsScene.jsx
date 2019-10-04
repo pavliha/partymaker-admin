@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { func, number, shape, arrayOf, object } from 'prop-types'
 import entertainmentShape from 'shapes/entertainment'
 import { withStyles } from '@material-ui/core'
-import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
+import { ContentCard, FormDialog, DeleteDialog, NewButton, Form } from 'components'
 import { actions, select, connect } from 'src/redux'
 import EntertainmentForm from './EntertainmentForm'
 import EntertainmentsTable from './EntertainmentsTable'
@@ -85,10 +85,11 @@ class EntertainmentsScene extends Component {
           isOpen={isEntertainmentDialogOpen}
           onClose={this.closeEntertainmentDialog} isEdit={!!entertainment}
         >
-          <EntertainmentForm
+          <Form
             model={entertainment}
-            onCancel={this.closeEntertainmentDialog}
+            component={EntertainmentForm}
             onSubmit={this.updateOrCreateEntertainment}
+            onCancel={this.closeEntertainmentDialog}
           />
         </FormDialog>
 

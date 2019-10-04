@@ -11,7 +11,7 @@ const EntertainmentsTable = ({ onEdit, onDelete, onActivate, table: { models, ha
         <TableCell>Actions</TableCell>
         <TableCell align="center" width={70}>id</TableCell>
         <TableCell minWidth="30vw">Title</TableCell>
-        <TableCell minWidth={70}>Created at</TableCell>
+        <TableCell minWidth={40}>Places count</TableCell>
         <TableCell minWidth={70}>Updated at</TableCell>
       </TableRow>
     </TableHead>
@@ -27,7 +27,7 @@ const EntertainmentsTable = ({ onEdit, onDelete, onActivate, table: { models, ha
           />
           <TableCell align="center">{model.id}</TableCell>
           <TableCell sortHandle>{model.title}</TableCell>
-          <TableCell>{model.created_at}</TableCell>
+          <TableCell align="center">{model.places?.length}</TableCell>
           <TableCell>{model.updated_at}</TableCell>
         </TableRow>
       ))}

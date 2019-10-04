@@ -7,6 +7,7 @@ import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
 import PlaceForm from './PlaceForm'
 import PlacesTable from './PlacesTable'
 import { actions, select, connect } from 'src/redux'
+import Form from 'components/Form'
 
 const styles = {
   root: {},
@@ -78,8 +79,9 @@ class PlacesScene extends Component {
           isOpen={isPlaceDialogOpen}
           onClose={this.closePlaceDialog} isEdit={!!place}
         >
-          <PlaceForm
+          <Form
             model={place}
+            component={PlaceForm}
             onCancel={this.closePlaceDialog}
             onSubmit={this.updateOrCreatePlace}
           />
