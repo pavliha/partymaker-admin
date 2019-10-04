@@ -42,30 +42,6 @@ const PlaceForm = ({ classes, redux: { place, loadPlace }, onCancel, formik: { i
             component={TextField}
           />
         </Label>
-        <Label title="Phone">
-          <Field
-            name="phone"
-            placeholder="+380683188524"
-            margin="dense"
-            component={TextField}
-          />
-        </Label>
-        <Label title="Map url">
-          <Field
-            name="map_url"
-            placeholder="https://www.google.com/maps/plok./@4ta=!AQQQ_BIwCnoECAoQCA"
-            margin="dense"
-            component={TextField}
-          />
-        </Label>
-        <Label title="Website url">
-          <Field
-            name="website_url"
-            placeholder="http://www.laser-tag.zp.ua/"
-            margin="dense"
-            component={TextField}
-          />
-        </Label>
         <Label title="Working hours">
           <Field
             name="working_hours"
