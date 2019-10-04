@@ -1,4 +1,5 @@
-import { number, shape, string } from 'prop-types'
+import { arrayOf, number, shape, string } from 'prop-types'
+import photoShape from './photo'
 
 export default shape({
   id: number.isRequired,
@@ -9,4 +10,5 @@ export default shape({
   created_at: string.isRequired,
   updated_at: string.isRequired,
   entertainment_id: number.isRequired,
+  photos: arrayOf(photoShape)
 })

@@ -75,7 +75,7 @@ class PlacesScene extends Component {
         />
 
         <FormDialog
-          title={`${place ? 'Edit place:' : 'New place'}  ${place?.title || ''}`}
+          title={`${place ? 'Edit index:' : 'New index'}  ${place?.title || ''}`}
           isOpen={isPlaceDialogOpen}
           onClose={this.closePlaceDialog} isEdit={!!place}
         >

@@ -1,4 +1,5 @@
 import place from 'api/place'
+import photos from './photos/action'
 
 export const LOAD_PLACE = 'LOAD_PLACE'
 export const LOAD_PLACE_FULFILLED = 'LOAD_PLACE_FULFILLED'
@@ -69,6 +70,7 @@ const remove = place_id => ({
 })
 
 export default {
+  photos,
   load,
   loadMany,
   create,

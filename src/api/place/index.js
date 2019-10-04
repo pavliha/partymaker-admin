@@ -1,6 +1,10 @@
 import Http from 'services/Http'
 
+import photos from './photos'
+
 const place = {
+
+  photos,
 
   loadMany() {
     return Http.get(`/places`)
