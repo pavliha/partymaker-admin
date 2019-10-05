@@ -1,16 +1,17 @@
 /* eslint-disable no-return-await */
 import React, { Component } from 'react'
 import { func, number, shape, arrayOf, object } from 'prop-types'
-import placeshape from 'shapes/place'
+import placeShape from 'shapes/place'
 import { withStyles } from '@material-ui/core'
 import { ContentCard, FormDialog, DeleteDialog, NewButton } from 'components'
-import PlaceForm from './PlaceForm'
-import PlacesTable from './PlacesTable'
 import { actions, select, connect } from 'src/redux'
-import Form from 'components/Form'
+import PlacesTable from './PlacesTable'
+import Place from './Place'
 
 const styles = {
+
   root: {},
+
   table: {
     paddingTop: 5,
   }
@@ -34,14 +35,6 @@ class PlacesScene extends Component {
 
   closeDeleteDialog = () =>
     this.setState({ isDeleteDialogOpen: false, place: null })
-
-  updateOrCreatePlace = async ({ id, form }) => {
-    const { redux: { updatePlace, createPlace } } = this.props
-    const action = await (id ? updatePlace(id, form) : createPlace(form))
-    this.closePlaceDialog()
-
-    return action
-  }
 
   toggleActive = (model) => {
     const { redux: { updatePlace } } = this.props
@@ -75,18 +68,16 @@ class PlacesScene extends Component {
         />
 
         <FormDialog
-          title={`${place ? 'Edit index:' : 'New index'}  ${place?.title || ''}`}
+          title={`${place ? 'Edit place:' : 'New place'}  ${place?.title || ''}`}
           isOpen={isPlaceDialogOpen}
-          onClose={this.closePlaceDialog} isEdit={!!place}
+          onClose={this.closePlaceDialog}
+          isEdit={!!place}
         >
-          <Form
-            model={place}
-            component={PlaceForm}
-            onCancel={this.closePlaceDialog}
-            onSubmit={this.updateOrCreatePlace}
+          <Place
+            place_id={place?.id}
+            onClose={this.closePlaceDialog}
           />
         </FormDialog>
-
       </ContentCard>
     )
   }
@@ -95,10 +86,9 @@ class PlacesScene extends Component {
 PlacesScene.propTypes = {
   classes: object.isRequired,
   redux: shape({
-    places: arrayOf(placeshape),
+    places: arrayOf(placeShape),
     total: number,
     loadPlaces: func.isRequired,
-    createPlace: func.isRequired,
     updatePlace: func.isRequired,
     deletePlace: func.isRequired,
   }).isRequired,
@@ -108,7 +98,6 @@ const redux = (state) => ({
   places: select.places.all(state),
   total: state.places.status.total,
   loadPlaces: actions.places.loadMany,
-  createPlace: actions.places.create,
   updatePlace: actions.places.update,
   deletePlace: actions.places.destroy
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { object, func, number } from 'prop-types'
+import { object, func, number, string } from 'prop-types'
 import { IconButton, withStyles } from '@material-ui/core'
 import CloseIcon from 'mdi-react/CloseIcon'
 
@@ -11,17 +11,19 @@ const styles = {
   },
 }
 
-const CloseButton = ({ classes, size, onClick }) =>
+const CloseButton = ({ classes, className, size, color, onClick }) =>
   <div>
-    <IconButton onClick={onClick}>
-      <CloseIcon className={classes.icon} style={{ width: size, height: size }} />
+    <IconButton className={className} onClick={onClick}>
+      <CloseIcon className={classes.icon} style={{ color: color, width: size, height: size }} />
     </IconButton>
   </div>
 
 CloseButton.propTypes = {
   classes: object.isRequired,
+  className: string,
   size: number,
   onClick: func,
+  color: string,
 }
 
 export default withStyles(styles)(CloseButton)

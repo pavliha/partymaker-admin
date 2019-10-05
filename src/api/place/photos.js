@@ -1,10 +1,6 @@
 import Http from 'services/Http'
 
-import photos from './photos'
-
-const place = {
-
-  photos,
+const photos = {
 
   loadMany(place_id) {
     return Http.get(`/places/${place_id}/photos`)
@@ -27,4 +23,4 @@ const place = {
   },
 }
 
-export default place
+export default photos

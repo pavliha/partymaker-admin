@@ -2,6 +2,7 @@ import { all, takeEvery, put, fork } from 'redux-saga/effects'
 import actions from 'src/redux/action'
 import { normalize, putRelationsToStore } from 'utils'
 import photos from './photos/saga'
+import contacts from './contacts/saga'
 
 import {
   CREATE_PLACE_FULFILLED,
@@ -14,11 +15,12 @@ import {
 const defineRelationsFrom = (models) => ([
   [models.place, actions.places.setMany],
   [models.entertainment, actions.entertainments.setMany],
-  [models.photos, actions.places.photos.setMany]
+  [models.photos, actions.places.photos.setMany],
+  [models.contacts, actions.places.contacts.setMany]
 ])
 
-function * setPlaces({ payload: { data: rooms } }) {
-  const models = normalize(rooms, 'place')
+function * setPlaces({ payload: { data } }) {
+  const models = normalize(data, 'place')
   const relations = defineRelationsFrom(models)
   yield putRelationsToStore(models, relations)
 }
@@ -35,6 +37,7 @@ function * removePlace({ meta: { place_id } }) {
 
 export default function * saga() {
   yield all([
+    fork(contacts),
     fork(photos),
     takeEvery(LOAD_PLACES_FULFILLED, setPlaces),
     takeEvery(LOAD_PLACE_FULFILLED, setPlace),

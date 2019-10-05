@@ -43,10 +43,10 @@ const update = (photo_id, form) => ({
   payload: photo.update(photo_id, form)
 })
 
-const destroy = (photo_id) => ({
+const destroy = (place_id, photo_id) => ({
   type: DESTROY_PHOTO,
-  payload: photo.destroy(photo_id),
-  meta: { photo_id }
+  payload: photo.destroy(place_id, photo_id),
+  meta: { place_id, photo_id }
 })
 
 /**

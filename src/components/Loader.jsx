@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { func, node, object, string, any } from 'prop-types'
+import { func, node, object, string, any, bool } from 'prop-types'
 import { Typography, withStyles } from '@material-ui/core'
 import { Loading } from 'components'
 import ErrorIcon from 'mdi-react/ErrorIcon'
@@ -37,13 +37,16 @@ class Loader extends Component {
   }
 
   async componentDidMount() {
-    const { load, params, onError, onLoad } = this.props
+    const { load, params, onError, onLoad, cancel } = this.props
+    if (cancel) return
+
     try {
       this.setState({ error: null })
       const result = await load(params)
       this.setState({ isLoaded: true })
       onLoad(result)
     } catch (error) {
+      console.error(error)
       this.setState({ error })
       onError(error)
     }
@@ -87,17 +90,14 @@ class Loader extends Component {
       )
     }
 
-    if (isLoaded) {
-      return children
-    }
-
-    return null
+    return children
   }
 }
 
 Loader.propTypes = {
   classes: object.isRequired,
   className: string,
+  cancel: bool,
   params: any,
   load: func.isRequired,
   children: node,

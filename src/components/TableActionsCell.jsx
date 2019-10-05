@@ -51,7 +51,7 @@ class TableActionsCell extends Component {
     const { isLoading } = this.state
 
     return (
-      <TableCell width={140} align={align} classes={classes.root}>
+      <TableCell width={onEdit ? 140 : 50} align={align} classes={classes.root}>
         <div className={classes.actions}>
           {onEdit && (
             <IconButton onClick={this.edit}>
@@ -77,7 +77,7 @@ TableActionsCell.propTypes = {
   classes: object.isRequired,
   model: object.isRequired,
   onDelete: func.isRequired,
-  onEdit: func.isRequired,
+  onEdit: func,
   onActivate: func,
 }
 

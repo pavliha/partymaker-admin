@@ -1,5 +1,6 @@
 import place from 'api/place'
 import photos from './photos/action'
+import contacts from './contacts/action'
 
 export const LOAD_PLACE = 'LOAD_PLACE'
 export const LOAD_PLACE_FULFILLED = 'LOAD_PLACE_FULFILLED'
@@ -24,7 +25,7 @@ export const REMOVE_PLACE = 'REMOVE_PLACE'
  * Async actions. Making API requests
  */
 
-const load = (place_id) => ({
+const load = place_id => ({
   type: LOAD_PLACE,
   payload: place.load(place_id)
 })
@@ -44,7 +45,7 @@ const update = (place_id, form) => ({
   payload: place.update(place_id, form)
 })
 
-const destroy = (place_id) => ({
+const destroy = place_id => ({
   type: DESTROY_PLACE,
   payload: place.destroy(place_id),
   meta: { place_id }
@@ -70,6 +71,7 @@ const remove = place_id => ({
 })
 
 export default {
+  contacts,
   photos,
   load,
   loadMany,

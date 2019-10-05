@@ -1,10 +1,13 @@
 import Http from 'services/Http'
 
 import photos from './photos'
+import contacts from './contacts'
 
 const place = {
 
   photos,
+
+  contacts,
 
   loadMany() {
     return Http.get(`/places`)
