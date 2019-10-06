@@ -3,7 +3,7 @@ import { object, func, bool, shape } from 'prop-types'
 import placeShape from 'shapes/place'
 import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
 import { Form } from 'formik'
-import { Label, ServerMessage, Field, UploadField } from 'components'
+import { Label, ServerMessage, Field, UploadField, EntertainmentsField } from 'components'
 import * as Yup from 'yup'
 
 const styles = {
@@ -47,6 +47,14 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
         component={TextField}
       />
     </Label>
+    <Label title="Entertainment">
+      <Field
+        name="entertainment_id"
+        placeholder="Пейнтбол"
+        margin="dense"
+        component={EntertainmentsField}
+      />
+    </Label>
     <ServerMessage name="message" />
     <ServerMessage color="error" name="non_field_errors" />
 
@@ -83,13 +91,15 @@ PlaceForm.validationSchema = Yup.object().shape({
   picture_url: Yup.string().required(),
   price: Yup.string().required(),
   working_hours: Yup.string().required(),
+  entertainment_id: Yup.number().required()
 })
 
 PlaceForm.mapPropsToValues = ({ model }) => ({
   title: model?.title || '',
   picture_url: model?.picture_url || '',
   price: model?.price || '',
-  working_hours: model?.working_hours || ''
+  working_hours: model?.working_hours || '',
+  entertainment_id: model?.entertainment_id || ''
 })
 
 export default withStyles(styles)(PlaceForm)
