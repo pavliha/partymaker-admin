@@ -8,7 +8,6 @@ const styles = {
   root: {},
   paperWidthSm: {
     minWidth: 550,
-    maxWidth: '100%',
     borderRadius: 10,
   },
   paperScrollPaper: {
