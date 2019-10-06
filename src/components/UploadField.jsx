@@ -4,8 +4,8 @@ import { basename } from 'path'
 import { object, string, func, bool } from 'prop-types'
 import { TextField, withStyles } from '@material-ui/core'
 import { transformValidationApi } from 'utils'
-import UploadFieldAdornment from './UploadFieldAdornment'
 import classNames from 'classnames'
+import UploadFieldAdornment from './UploadFieldAdornment'
 
 const styles = {
   root: {
@@ -70,7 +70,6 @@ class UploadField extends Component {
 
   upload = async (callback) => {
     const { name, onChange } = this.props
-
     try {
       const asset = await callback()
       this.setState({ url: '' })
