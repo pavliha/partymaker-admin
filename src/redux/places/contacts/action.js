@@ -38,9 +38,9 @@ const create = (place_id, form) => ({
   payload: contact.create(place_id, form)
 })
 
-const update = (contact_id, form) => ({
+const update = (place_id, contact_id, form) => ({
   type: UPDATE_CONTACT,
-  payload: contact.update(contact_id, form)
+  payload: contact.update(place_id, contact_id, form)
 })
 
 const destroy = (contact_id) => ({

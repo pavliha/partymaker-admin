@@ -25,6 +25,7 @@ class PhotoForm extends Component {
     const { submitForm, setFieldValue } = this.props.formik
     setFieldValue(name, value)
     setTimeout(submitForm)
+    setTimeout(() => setFieldValue(name, ''), 200)
   }
 
   render() {

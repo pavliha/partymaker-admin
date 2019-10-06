@@ -104,8 +104,8 @@ const redux = (state, { place_id }) => ({
   updatePlace: actions.places.update,
   createPhoto: form => actions.places.photos.create(place_id, form),
   destroyPhoto: photo => actions.places.photos.destroy(place_id, photo.id),
-  createContacts: actions.places.contacts.create,
-  updateContacts: actions.places.contacts.update,
+  createContacts: form => actions.places.contacts.create(place_id, form),
+  updateContacts: (contact_id, form) => actions.places.contacts.update(place_id, contact_id, form),
 })
 
 export default withStyles(styles)(connect(redux)(Place))

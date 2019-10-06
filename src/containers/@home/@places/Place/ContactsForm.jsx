@@ -1,6 +1,5 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
-import contactsShape from 'shapes/contacts'
 import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
 import { Form } from 'formik'
 import { Label, ServerMessage, Field } from 'components'
@@ -13,7 +12,7 @@ const styles = {
   },
 }
 
-const ContactsForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
+const ContactsForm = ({ classes, onCancel, formik: { isSubmitting }, }) => (
   <Form className={classes.root}>
     <Label title="Phone number">
       <Field
@@ -56,11 +55,11 @@ const ContactsForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) =
         component={TextField}
       />
     </Label>
-    <Label title="Instragram url">
+    <Label title="Instagram url">
       <Field
         type="url"
-        name="instragram_url"
-        placeholder="Instragram url"
+        name="instagram_url"
+        placeholder="Instagram url"
         margin="dense"
         component={TextField}
       />
@@ -82,7 +81,7 @@ const ContactsForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) =
         variant="outlined"
         color="primary"
       >
-        {model ? 'Update' : 'Create'}
+        {isSubmitting ? 'Saving...' : 'Save'}
       </Button>
     </DialogActions>
   </Form>
@@ -91,7 +90,6 @@ const ContactsForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) =
 ContactsForm.propTypes = {
   classes: object.isRequired,
   onCancel: func.isRequired,
-  model: contactsShape,
   formik: shape({
     isSubmitting: bool.isRequired,
   }),

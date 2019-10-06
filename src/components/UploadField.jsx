@@ -33,6 +33,14 @@ class UploadField extends Component {
     url: '',
   }
 
+  static getDerivedStateFromProps(nextProps) {
+    if (!nextProps.value) {
+      return {
+        url: '',
+      }
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ url: e.target.value })
     this.setError(null)
@@ -40,6 +48,7 @@ class UploadField extends Component {
 
   setError = (error) => {
     const { onError } = this.props
+    if (!error) return onError(null)
     const { file, url } = transformValidationApi(error)
     onError(file || url)
   }
