@@ -94,6 +94,8 @@ Place.propTypes = {
     loadPlace: func,
     createPhoto: func,
     destroyPhoto: func,
+    createContacts: func,
+    updateContacts: func,
   })
 }
 

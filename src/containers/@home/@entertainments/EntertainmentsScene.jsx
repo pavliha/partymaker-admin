@@ -34,8 +34,9 @@ class EntertainmentsScene extends Component {
   closeDeleteDialog = () =>
     this.setState({ isDeleteDialogOpen: false, entertainment: null })
 
-  updateOrCreateEntertainment = async ({ id, form }) => {
+  updateOrCreateEntertainment = async (form) => {
     const { redux: { updateEntertainment, createEntertainment } } = this.props
+    const id = this.state.entertainment?.id
     const action = await (id ? updateEntertainment(id, form) : createEntertainment(form))
     this.closeEntertainmentDialog()
     return action

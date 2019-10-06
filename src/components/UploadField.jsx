@@ -33,18 +33,21 @@ class UploadField extends Component {
     url: '',
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (!nextProps.value) {
-      return {
-        url: '',
-      }
-    }
-  }
+  findSomePicture = (clipboardItems) =>
+    Array.from(clipboardItems).find(item => item.type.includes('image'))
 
   handleChange = (e) => {
     this.setState({ url: e.target.value })
     this.setError(null)
   }
+
+  handlePaste = async ({ clipboardData }) => {
+    const file = this.findSomePicture(clipboardData.files)
+    if (file) await this.uploadFile(file)
+  }
+
+  handleFileInput = e =>
+    this.uploadFile(e.target.files[0])
 
   setError = (error) => {
     const { onError } = this.props
@@ -59,8 +62,8 @@ class UploadField extends Component {
   watchProgress = (progress) =>
     this.setState({ loading: progress === 100 ? 0 : progress })
 
-  uploadFile = async e =>
-    this.upload(() => api.asset.create(e.target.files[0], this.watchProgress))
+  uploadFile = async file =>
+    this.upload(() => api.asset.create(file, this.watchProgress))
 
   uploadLink = async () =>
     this.upload(() => api.asset.url.create(this.state.url))
@@ -70,7 +73,7 @@ class UploadField extends Component {
 
     try {
       const asset = await callback()
-      this.setState({ url: asset.url })
+      this.setState({ url: '' })
       onChange(name, asset.url)
     } catch (error) {
       this.setError(error)
@@ -104,6 +107,7 @@ class UploadField extends Component {
             helperText={helperText}
             error={error}
             onChange={this.handleChange}
+            onPaste={this.handlePaste}
             InputProps={{
               endAdornment: (
                 <UploadFieldAdornment
@@ -125,7 +129,7 @@ class UploadField extends Component {
           id="upload"
           multiple
           type="file"
-          onChange={this.uploadFile}
+          onChange={this.handleFileInput}
         />
       </div>
     )
