@@ -44,6 +44,7 @@ class PlacesScene extends Component {
   render() {
     const { classes, redux: { places, total, loadPlaces, deletePlace } } = this.props
     const { isPlaceDialogOpen, isDeleteDialogOpen, place } = this.state
+    console.log(places)
 
     return (
       <ContentCard

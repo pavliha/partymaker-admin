@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { func, object, shape } from 'prop-types'
-import { Typography, withStyles, IconButton } from '@material-ui/core'
+import { Typography, withStyles } from '@material-ui/core'
 import { UploadField } from 'components'
-import PlusIcon from 'mdi-react/PlusIcon'
 
 const styles = {
   root: {
@@ -35,7 +34,6 @@ class PhotoForm extends Component {
           error={!!errors.url}
           value={values.url}
           onChange={this.submit}
-          component={({ onClick }) => <IconButton onClick={onClick}><PlusIcon /></IconButton>}
         />
       </div>
     )

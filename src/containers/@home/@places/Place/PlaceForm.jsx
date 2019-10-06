@@ -3,7 +3,7 @@ import { object, func, bool, shape } from 'prop-types'
 import placeShape from 'shapes/place'
 import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
 import { Form } from 'formik'
-import { Label, ServerMessage, Field } from 'components'
+import { Label, ServerMessage, Field, UploadField } from 'components'
 import * as Yup from 'yup'
 
 const styles = {
@@ -28,7 +28,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
         name="picture_url"
         placeholder="http://example.com/picture.jpeg"
         margin="dense"
-        component={TextField}
+        component={UploadField}
       />
     </Label>
     <Label title="Price">
