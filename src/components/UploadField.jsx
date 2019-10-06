@@ -5,6 +5,7 @@ import { object, string, func, bool } from 'prop-types'
 import { TextField, withStyles } from '@material-ui/core'
 import { transformValidationApi } from 'utils'
 import UploadFieldAdornment from './UploadFieldAdornment'
+import classNames from 'classnames'
 
 const styles = {
   root: {
@@ -80,11 +81,11 @@ class UploadField extends Component {
   }
 
   render() {
-    const { classes, label, helperText, value, error, ...props } = this.props
+    const { classes, className, label, helperText, value, error, ...props } = this.props
     const { url, loading } = this.state
 
     return (
-      <div className={classes.root}>
+      <div className={classNames([classes.root, className])}>
         <div className={classes.field}>
           <TextField
             {...props}
@@ -98,7 +99,7 @@ class UploadField extends Component {
               endAdornment: (
                 <UploadFieldAdornment
                   loading={loading}
-                  asset={value}
+                  trash={!!value}
                   url={url}
                   onAdd={this.clickFileInput}
                   onUpload={this.uploadLink}
@@ -124,6 +125,7 @@ class UploadField extends Component {
 
 UploadField.propTypes = {
   classes: object.isRequired,
+  className: string,
   value: string,
   name: string.isRequired,
   label: string,

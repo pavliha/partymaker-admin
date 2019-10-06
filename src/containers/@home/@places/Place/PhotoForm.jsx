@@ -7,10 +7,15 @@ const styles = {
   root: {
     alignItems: 'center',
     display: 'flex',
+    marginBottom: 20,
   },
 
   title: {
-    marginRight: 10,
+    marginRight: 50,
+  },
+
+  field: {
+    flex: 1,
   }
 }
 
@@ -23,16 +28,19 @@ class PhotoForm extends Component {
   }
 
   render() {
-    const { classes, formik: { errors, values } } = this.props
+    const { classes, formik: { errors, values, setFieldError } } = this.props
     return (
       <div className={classes.root}>
         <Typography variant="h6" className={classes.title}>Photos</Typography>
         <UploadField
+          placeholder="paste url to upload"
+          className={classes.field}
           name="url"
           fullWidth
           helperText={errors.url}
           error={!!errors.url}
           value={values.url}
+          onError={error => setFieldError(name, error)}
           onChange={this.submit}
         />
       </div>

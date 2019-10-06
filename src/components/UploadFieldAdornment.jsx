@@ -1,7 +1,6 @@
 import React from 'react'
-import { object, func, string, number } from 'prop-types'
+import { object, func, string, number, bool } from 'prop-types'
 import { CircularProgress, IconButton, withStyles } from '@material-ui/core'
-import assetShape from 'shapes/asset'
 import PlusIcon from 'mdi-react/PlusIcon'
 import UploadIcon from 'mdi-react/UploadIcon'
 import ErrorIcon from 'mdi-react/ErrorIcon'
@@ -16,7 +15,7 @@ const styles = {
   }
 }
 
-const UploadFieldAdornment = ({ classes, error, url, loading, asset, onUpload, onDestroy, onAdd }) => {
+const UploadFieldAdornment = ({ classes, error, url, loading, trash, onUpload, onDestroy, onAdd }) => {
 
   if (error) {
     return <IconButton className={classes.iconButton} onClick={onUpload}><ErrorIcon /></IconButton>
@@ -26,7 +25,7 @@ const UploadFieldAdornment = ({ classes, error, url, loading, asset, onUpload, o
     return <CircularProgress className={classes.progress} variant="determinate" value={loading} />
   }
 
-  if (asset) {
+  if (trash) {
     return <IconButton className={classes.iconButton} onClick={onDestroy}><TrashIcon /></IconButton>
   }
 
@@ -42,7 +41,7 @@ UploadFieldAdornment.propTypes = {
   error: string,
   loading: number,
   url: string,
-  asset: assetShape,
+  trash: bool,
   onUpload: func,
   onDestroy: func,
   onAdd: func,

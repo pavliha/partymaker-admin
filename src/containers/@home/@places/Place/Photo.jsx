@@ -7,13 +7,13 @@ import { CloseButton } from 'components'
 const styles = {
   root: {
     position: 'relative',
-    borderRadius: 10,
     height: 100,
     padding: 5,
     overflow: 'hidden'
   },
 
   picture: {
+    borderRadius: 10,
     height: '100%',
   },
 
