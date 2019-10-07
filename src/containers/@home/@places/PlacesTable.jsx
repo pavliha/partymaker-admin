@@ -28,7 +28,7 @@ const PlacesTable = ({ onEdit, onDelete, onActivate, table: { models } }) =>
             onActivate={onActivate}
           />
           <TableCell>
-            <img alt={model.title} src={model.picture_url} width={70} height={50} />
+            <img style={{ marginTop: 5 }} alt={model.title} src={model.picture_url} width={70} height={50} />
           </TableCell>
           <TableCell align="center">{model.id}</TableCell>
           <TableCell>{model.title}</TableCell>
