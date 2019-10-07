@@ -7,7 +7,7 @@ import CloseIcon from 'mdi-react/CloseIcon'
 const styles = {
   root: {},
   paperWidthSm: {
-    minWidth: 550,
+    minWidth: 850,
     borderRadius: 10,
   },
   paperScrollPaper: {

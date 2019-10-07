@@ -4,6 +4,7 @@ import placeShape from 'shapes/place'
 import { Typography, withStyles } from '@material-ui/core'
 import { OutlineCard, Loader, Form } from 'components'
 import { select, connect, actions } from 'src/redux'
+import { stateToHTML } from 'draft-js-export-html'
 import ContactsForm from './ContactsForm'
 import PlaceForm from './PlaceForm'
 import PhotoForm from './PhotoForm'
@@ -26,8 +27,9 @@ const styles = {
 
 class Place extends Component {
 
-  submitPlace = async (form) => {
+  submitPlace = async (values) => {
     const { redux: { place, updatePlace, createPlace } } = this.props
+    const form = { ...values, description: stateToHTML(values.description.getCurrentContent()) }
     return place ? updatePlace(place.id, form) : createPlace(form)
   }
 
@@ -39,6 +41,7 @@ class Place extends Component {
 
   render() {
     const { classes, place_id, redux: { place, loadPlace, createPhoto, destroyPhoto }, onClose } = this.props
+    console.log(place)
 
     return (
       <Loader load={loadPlace} cancel={!place_id}>

@@ -9,7 +9,7 @@ const current = (place_id) => (places, entertainments, photos, contacts) => {
     ...place,
     entertainment: entertainments[place.entertainment_id],
     photos: photos.filter(p => Number(p.place_id) === place.id),
-    contacts: contacts[place.contacts_id],
+    contacts: contacts.find(c => Number(c.place_id) === place.id),
   }
 }
 
@@ -18,6 +18,6 @@ export default (state, place_id) =>
     state => state.places.entities,
     state => state.entertainments.entities,
     state => Object.values(state.places.photos.entities),
-    state => state.places.contacts.entities,
+    state => Object.values(state.places.contacts.entities),
     current(Number(place_id)),
   )(state)

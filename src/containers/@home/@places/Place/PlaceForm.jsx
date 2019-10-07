@@ -3,8 +3,12 @@ import { object, func, bool, shape } from 'prop-types'
 import placeShape from 'shapes/place'
 import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
 import { Form } from 'formik'
-import { Label, ServerMessage, Field, UploadField, EntertainmentsField } from 'components'
+import { Label, ServerMessage, Field, UploadField, EntertainmentsField, EditorField } from 'components'
 import * as Yup from 'yup'
+import { EditorState } from 'draft-js'
+import { stateFromHTML } from 'draft-js-import-html'
+
+const { createWithContent, createEmpty } = EditorState
 
 const styles = {
   root: {},
@@ -55,6 +59,15 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
         component={EntertainmentsField}
       />
     </Label>
+
+    <Label title="Description">
+      <Field
+        name="description"
+        placeholder="Please type description here .."
+        margin="dense"
+        component={EditorField}
+      />
+    </Label>
     <ServerMessage name="message" />
     <ServerMessage color="error" name="non_field_errors" />
 
@@ -91,7 +104,8 @@ PlaceForm.validationSchema = Yup.object().shape({
   picture_url: Yup.string().required(),
   price: Yup.string().required(),
   working_hours: Yup.string().required(),
-  entertainment_id: Yup.number().required()
+  entertainment_id: Yup.number().required(),
+  description: Yup.object()
 })
 
 PlaceForm.mapPropsToValues = ({ model }) => ({
@@ -99,7 +113,8 @@ PlaceForm.mapPropsToValues = ({ model }) => ({
   picture_url: model?.picture_url || '',
   price: model?.price || '',
   working_hours: model?.working_hours || '',
-  entertainment_id: model?.entertainment_id || ''
+  entertainment_id: model?.entertainment_id || '',
+  description: model?.description ? createWithContent(stateFromHTML(model?.description)) : createEmpty()
 })
 
 export default withStyles(styles)(PlaceForm)
