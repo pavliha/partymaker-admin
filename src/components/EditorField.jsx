@@ -34,19 +34,14 @@ class EditorField extends Component {
     return (
       <FormControl className={classes.root}>
         <FormLabel className={classes.label} component="legend">{label}</FormLabel>
-        <div className={classes.border}>
-          <div className={classes.input}>
-            <Editor
-              toolbarHidden
-              editorState={value}
-              toolbarClassName="toolbarClassName"
-              wrapperClassName="wrapperClassName"
-              editorClassName="editorClassName"
-              onEditorStateChange={this.onEditorStateChange}
-            />
-          </div>
-          {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
-        </div>
+        <Editor
+          editorState={value}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={this.onEditorStateChange}
+        />
+        {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
       </FormControl>
     )
   }

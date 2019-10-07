@@ -27,10 +27,17 @@ const styles = {
 
 class Place extends Component {
 
+  createPlace = async form => {
+    const { onClose, redux: { createPlace } } = this.props
+    const action = await createPlace(form)
+    onClose()
+    return action
+  }
+
   submitPlace = async (values) => {
-    const { redux: { place, updatePlace, createPlace } } = this.props
+    const { redux: { place, updatePlace } } = this.props
     const form = { ...values, description: stateToHTML(values.description.getCurrentContent()) }
-    return place ? updatePlace(place.id, form) : createPlace(form)
+    return place ? updatePlace(place.id, form) : this.createPlace(form)
   }
 
   submitContacts = (form) => {
