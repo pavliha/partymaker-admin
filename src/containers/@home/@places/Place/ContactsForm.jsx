@@ -46,6 +46,14 @@ const ContactsForm = ({ classes, onCancel, formik: { isSubmitting }, }) => (
         component={TextField}
       />
     </Label>
+    <Label title="Directions">
+      <Field
+        name="directions"
+        placeholder="Directions"
+        margin="dense"
+        component={TextField}
+      />
+    </Label>
     <Label title="Email">
       <Field
         type="email"
@@ -99,6 +107,7 @@ ContactsForm.validationSchema = Yup.object().shape({
   website_url: Yup.string(),
   map_url: Yup.string(),
   address: Yup.string(),
+  directions: Yup.string(),
   email: Yup.string().email(),
   instagram_url: Yup.string(),
 })
@@ -108,6 +117,7 @@ ContactsForm.mapPropsToValues = ({ model }) => ({
   website_url: model?.website_url || '',
   map_url: model?.map_url || '',
   address: model?.address || '',
+  directions: model?.directions || '',
   email: model?.email || '',
   instagram_url: model?.instagram_url || ''
 })
