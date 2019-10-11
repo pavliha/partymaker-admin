@@ -8,12 +8,13 @@ const styles = {
   root: {
     position: 'relative',
     height: 100,
-    padding: 5,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderRadius: 10,
+    margin: 5,
   },
 
   picture: {
-    borderRadius: 10,
     height: '100%',
   },
 
@@ -48,7 +49,7 @@ class Photo extends Component {
     return (
       <div className={classes.root}>
         <img
-          alt={photo.url}
+          alt="broken"
           src={photo.url}
           className={classes.picture}
         />

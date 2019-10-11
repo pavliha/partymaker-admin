@@ -7,10 +7,9 @@ import { FormControl, FormHelperText, FormLabel, withStyles } from '@material-ui
 const styles = () => ({
   root: {
     flex: 1,
+    width: 613,
     overflow: 'hidden',
-    paddingLeft: 5,
     display: 'inherit',
-    borderRadius: 8,
     border: ' 1px solid rgba(0,0,0,0.1)',
   },
 

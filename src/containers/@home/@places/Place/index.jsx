@@ -5,6 +5,7 @@ import { Typography, withStyles } from '@material-ui/core'
 import { OutlineCard, Loader, Form } from 'components'
 import { select, connect, actions } from 'src/redux'
 import { stateToHTML } from 'draft-js-export-html'
+import clean from 'clean-object'
 import ContactsForm from './ContactsForm'
 import PlaceForm from './PlaceForm'
 import PhotoForm from './PhotoForm'
@@ -36,7 +37,7 @@ class Place extends Component {
 
   submitPlace = async (values) => {
     const { redux: { place, updatePlace } } = this.props
-    const form = { ...values, description: stateToHTML(values.description.getCurrentContent()) }
+    const form = clean({ ...values, description: stateToHTML(values.description.getCurrentContent()) })
     return place ? updatePlace(place.id, form) : this.createPlace(form)
   }
 

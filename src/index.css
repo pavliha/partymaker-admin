@@ -61,3 +61,12 @@ a {
     flex-direction: column;
     min-height: 100%;
 }
+
+.rdw-editor-toolbar {
+    border: none;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+.rdw-editor-main {
+    padding: 0 5px;
+}

@@ -15,6 +15,9 @@ const styles = {
   actions: {
     marginTop: 25,
   },
+  players: {
+    display: 'flex'
+  }
 }
 
 const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
@@ -51,6 +54,34 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
         component={TextField}
       />
     </Label>
+
+    <Label title="Age">
+      <Field
+        name="age"
+        placeholder="age"
+        margin="dense"
+        component={TextField}
+      />
+    </Label>
+
+    <Label title="Players count" classes={{ control: classes.players }}>
+      <Field
+        name="players_min"
+        type="number"
+        placeholder="from"
+        margin="dense"
+        component={TextField}
+      />
+      <span style={{ width: 10 }} />
+      <Field
+        name="players_max"
+        type="number"
+        placeholder="to"
+        margin="dense"
+        component={TextField}
+      />
+    </Label>
+
     <Label title="Entertainment">
       <Field
         name="entertainment_id"
@@ -101,10 +132,13 @@ PlaceForm.propTypes = {
 }
 PlaceForm.validationSchema = Yup.object().shape({
   title: Yup.string().required(),
-  picture_url: Yup.string().required(),
-  price: Yup.string().required(),
-  working_hours: Yup.string().required(),
-  entertainment_id: Yup.number().required(),
+  picture_url: Yup.string(),
+  price: Yup.string(),
+  age: Yup.number(),
+  players_min: Yup.number().nullable(),
+  players_max: Yup.number().nullable(),
+  working_hours: Yup.string(),
+  entertainment_id: Yup.number().required().nullable(),
   description: Yup.object()
 })
 
@@ -112,8 +146,11 @@ PlaceForm.mapPropsToValues = ({ model }) => ({
   title: model?.title || '',
   picture_url: model?.picture_url || '',
   price: model?.price || '',
+  age: model?.age || '',
+  players_min: model?.players_min || null,
+  players_max: model?.players_max || null,
   working_hours: model?.working_hours || '',
-  entertainment_id: model?.entertainment_id || '',
+  entertainment_id: model?.entertainment_id || null,
   description: model?.description ? createWithContent(stateFromHTML(model?.description)) : createEmpty()
 })
 

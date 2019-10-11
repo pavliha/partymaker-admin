@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(methodOverride())
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 2000
 
 app.use('/', express.static(`${__dirname}/dist`, options))
 app.use('*', express.static(`${__dirname}/dist`, options))

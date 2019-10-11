@@ -11,7 +11,7 @@ const styles = {
   },
 
   title: {
-    marginRight: 50,
+    width: 150,
   },
 
   field: {
