@@ -130,11 +130,12 @@ PlaceForm.propTypes = {
     isSubmitting: bool.isRequired,
   }),
 }
+
 PlaceForm.validationSchema = Yup.object().shape({
   title: Yup.string().required(),
   picture_url: Yup.string(),
   price: Yup.string(),
-  age: Yup.number(),
+  age: Yup.number().nullable(),
   players_min: Yup.number().nullable(),
   players_max: Yup.number().nullable(),
   working_hours: Yup.string(),

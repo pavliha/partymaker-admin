@@ -13,8 +13,6 @@ const PlacesTable = ({ onEdit, onDelete, onActivate, table: { models } }) =>
         <TableCell align="center" width={70}>id</TableCell>
         <TableCell minWidth="15vw">Title</TableCell>
         <TableCell minWidth="10vw">Entertainment</TableCell>
-        <TableCell minWidth={150}>Price</TableCell>
-        <TableCell minWidth={200}>Working hours</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
@@ -33,8 +31,6 @@ const PlacesTable = ({ onEdit, onDelete, onActivate, table: { models } }) =>
           <TableCell align="center">{model.id}</TableCell>
           <TableCell>{model.title}</TableCell>
           <TableCell>{model.entertainment?.title}</TableCell>
-          <TableCell>{model.price}</TableCell>
-          <TableCell>{model.working_hours}</TableCell>
         </TableRow>
       ))}
     </TableBody>
