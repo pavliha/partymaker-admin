@@ -1,4 +1,4 @@
-import Asset from 'api/asset'
+import Asset from 'api/uploads'
 
 export const LOAD_ASSETS = 'LOAD_ASSETS'
 export const LOAD_ASSETS_FULFILLED = 'LOAD_ASSETS_FULFILLED'

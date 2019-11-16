@@ -1,7 +1,7 @@
 import api from 'api'
 import React, { Component } from 'react'
 import { basename } from 'path'
-import { object, string, func, bool } from 'prop-types'
+import { object, string, func, bool, oneOf } from 'prop-types'
 import { TextField, withStyles } from '@material-ui/core'
 import { transformValidationApi } from 'utils'
 import classNames from 'classnames'
@@ -62,11 +62,20 @@ class UploadField extends Component {
   watchProgress = (progress) =>
     this.setState({ loading: progress === 100 ? 0 : progress })
 
-  uploadFile = async file =>
-    this.upload(() => api.asset.create(file, this.watchProgress))
+  uploadFile = async file => {
+    const { type } = this.props
+    const uploadFile = api.uploads.picture.file.create
+    return this.upload(() => uploadFile({ file, type }, this.watchProgress))
+  }
 
-  uploadLink = async () =>
-    this.upload(() => api.asset.url.create(this.state.url))
+  uploadLink = async () => {
+    const params = {
+      url: this.state.url,
+      type: this.props.type
+    }
+    const uploadUrl = api.uploads.picture.url.create
+    return this.upload(() => uploadUrl(params))
+  }
 
   upload = async (callback) => {
     const { name, onChange } = this.props
@@ -82,7 +91,7 @@ class UploadField extends Component {
   destroyAsset = async () => {
     const { name, value, onChange } = this.props
     try {
-      await api.asset.url.destroy(basename(value))
+      await api.uploads.destroy(basename(value))
       this.setState({ url: '' })
       onChange(name, '')
     } catch (error) {
@@ -137,6 +146,7 @@ class UploadField extends Component {
 
 UploadField.propTypes = {
   classes: object.isRequired,
+  type: oneOf(['thumbnail', 'slide']),
   className: string,
   value: string,
   name: string.isRequired,
