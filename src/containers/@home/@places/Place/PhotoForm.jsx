@@ -34,6 +34,7 @@ class PhotoForm extends Component {
       <div className={classes.root}>
         <Typography variant="h6" className={classes.title}>Photos</Typography>
         <UploadField
+          type="slide"
           placeholder="paste url to upload"
           className={classes.field}
           name="url"

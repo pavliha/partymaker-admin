@@ -80,9 +80,9 @@ class UploadField extends Component {
   upload = async (callback) => {
     const { name, onChange } = this.props
     try {
-      const asset = await callback()
+      const { url } = await callback()
       this.setState({ url: '' })
-      onChange(name, asset.url)
+      onChange(name, url)
     } catch (error) {
       this.setError(error)
     }

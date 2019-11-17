@@ -35,6 +35,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
         name="picture_url"
         placeholder="http://example.com/picture.jpeg"
         margin="dense"
+        type="thumbnail"
         component={UploadField}
       />
     </Label>
