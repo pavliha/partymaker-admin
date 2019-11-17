@@ -1,57 +1,59 @@
 import React from 'react'
 import userShape from 'shapes/user'
-import { object, bool, arrayOf, string, func, shape } from 'prop-types'
+import { object, shape } from 'prop-types'
 import { withStyles } from '@material-ui/core'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { actions, connect, select } from 'src/redux'
-import { Header, SideMenu } from 'components'
-import RoomsScene from './@rooms/RoomsScene'
+import { connect, select } from 'src/redux'
+import { Navigation, SideMenu, UserMenu } from 'components'
 import EntertainmentsScene from './@entertainments/EntertainmentsScene'
 import PlacesScene from './@places/PlacesScene'
 
 const styles = (theme) => ({
-  root: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
+
+  root: {},
+
   container: {
     flexGrow: 1,
     display: 'flex',
     height: '100%',
   },
+
   menu: {
     paddingTop: 20,
+    flexGrow: 1,
     width: 320,
     [theme.breakpoints.up('md')]: {
       width: 270,
     },
     zIndex: 0,
   },
+
   content: {
-    height: '100%',
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    overflowY: 'auto',
+    width: 'calc(100% - 270px)',
+    flex: 1,
+    paddingTop: 60,
+  },
+
+  userMenu: {
+    position: 'absolute',
+    right: 15,
+    top: 5,
   },
 })
 
-const HomeLayout = ({ classes, redux }) => (
+const HomeLayout = ({ classes, redux: { user } }) => (
   <div className={classes.root}>
-    <Header user={redux.user} onMenu={redux.openMenuDrawer} />
+    <div className={classes.userMenu}>
+      <UserMenu user={user} />
+    </div>
     <div className={classes.container}>
-      <SideMenu
-        user={redux.user}
-        expanded={redux.expanded}
-        className={classes.menu}
-        onExpand={redux.expandSideMenu}
-      />
+      <Navigation>
+        <SideMenu user={user} className={classes.menu} />
+      </Navigation>
       <main className={classes.content}>
         <Switch>
           <Route exact path="/home/entertainments" component={EntertainmentsScene} />
           <Route exact path="/home/places" component={PlacesScene} />
-          <Route exact path="/home/rooms" component={RoomsScene} />
           <Redirect to="/home/entertainments" />
         </Switch>
       </main>
@@ -62,22 +64,12 @@ const HomeLayout = ({ classes, redux }) => (
 HomeLayout.propTypes = {
   classes: object.isRequired,
   redux: shape({
-    expanded: arrayOf(string).isRequired,
-    isDrawerOpen: bool.isRequired,
     user: userShape.isRequired,
-    openMenuDrawer: func.isRequired,
-    closeMenuDrawer: func.isRequired,
-    expandSideMenu: func.isRequired,
   }).isRequired,
 }
 
 const redux = (state) => ({
-  expanded: state.ui.sideMenu.expanded,
-  isDrawerOpen: state.ui.sideMenu.isDrawerOpen,
   user: select.auth.user(state),
-  expandSideMenu: actions.ui.sideMenu.expand,
-  openMenuDrawer: actions.ui.sideMenu.openDrawer,
-  closeMenuDrawer: actions.ui.sideMenu.closeDrawer
 })
 
 export default withStyles(styles)(connect(redux)(HomeLayout))

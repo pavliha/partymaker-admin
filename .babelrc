@@ -9,7 +9,6 @@
         "decoratorsBeforeExport": true
       }
     ],
-    "@loadable/babel-plugin",
     "react-hot-loader/babel",
     "transform-class-properties",
     "@babel/plugin-syntax-dynamic-import",

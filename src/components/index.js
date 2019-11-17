@@ -1,7 +1,6 @@
 // General
 export Label from './Label'
 export Loading from './Loading'
-export Header from './Header'
 export SideMenu from './SideMenu'
 export OnlineIndicator from './OnlineIndicator'
 export AuthCard from './AuthCard'
@@ -30,3 +29,5 @@ export CloseButton from './CloseButton'
 export DropdownField from './DropdownField'
 export EntertainmentsField from './EntertainmentsField'
 export EditorField from './EditorField'
+export Navigation from './Navigation'
+export UserMenu from './UserMenu'
