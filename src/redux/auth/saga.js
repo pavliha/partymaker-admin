@@ -6,9 +6,6 @@ import Storage from 'services/Storage'
 import {
   LOGIN_USER_FULFILLED,
   REGISTER_USER_FULFILLED,
-  LOGIN_GOOGLE_USER_FULFILLED,
-  LOGIN_FACEBOOK_USER_FULFILLED,
-  ACTIVATE_USER_FULFILLED
 } from './action'
 
 function* setAuthUser({ payload: { token } }) {
@@ -23,8 +20,5 @@ export default function* saga() {
     takeEvery(REGISTER_USER_FULFILLED, setAuthUser),
     takeEvery(LOGIN_USER_FULFILLED, setAuthUser),
     takeEvery(REGISTER_USER_FULFILLED, setAuthUser),
-    takeEvery(LOGIN_GOOGLE_USER_FULFILLED, setAuthUser),
-    takeEvery(LOGIN_FACEBOOK_USER_FULFILLED, setAuthUser),
-    takeEvery(ACTIVATE_USER_FULFILLED, setAuthUser,),
   ])
 }
