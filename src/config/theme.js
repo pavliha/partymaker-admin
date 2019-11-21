@@ -9,6 +9,11 @@ export default {
       main: '#9306BC',
       dark: '#9306BC',
     },
+
+    secondary: {
+      main: '#282828',
+    },
+
     error: {
       main: '#D6000A',
     },

@@ -16,7 +16,7 @@ const styles = {
 
 const Logo = ({ classes }) =>
   <div className={classes.root}>
-    <Typography variant="h6" color="inherit">
+    <Typography variant="h6" color="primary">
       Partymaker
     </Typography>
     <Typography className={classes.city} color="inherit">Admin</Typography>

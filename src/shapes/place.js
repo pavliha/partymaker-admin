@@ -1,7 +1,7 @@
 import { arrayOf, number, shape, string } from 'prop-types'
 import photoShape from './photo'
 
-export default shape({
+const placeShape = shape({
   id: number.isRequired,
   title: string.isRequired,
   picture_url: string,
@@ -12,3 +12,5 @@ export default shape({
   entertainment_id: number.isRequired,
   photos: arrayOf(photoShape)
 })
+
+export default placeShape

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { func, node, object, string, any, bool } from 'prop-types'
+import { func, node, object, any, bool } from 'prop-types'
 import { Typography, withStyles } from '@material-ui/core'
 import { Loading } from 'components'
 import ErrorIcon from 'mdi-react/ErrorIcon'
@@ -9,7 +9,7 @@ const styles = theme => ({
 
   root: {},
 
-  loading: {
+  container: {
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
@@ -34,7 +34,6 @@ class Loader extends Component {
 
   state = {
     isLoading: false,
-    isLoaded: false,
     error: null,
   }
 
@@ -46,7 +45,6 @@ class Loader extends Component {
   async shouldComponentUpdate(next) {
     const prev = this.props
     if (isEqual(prev.params, next.params)) return
-
     await this.load(next.params)
   }
 
@@ -58,21 +56,21 @@ class Loader extends Component {
     try {
       this.setState({ error: null, isLoading: true })
       const result = await load(params)
-      this.setState({ isLoaded: true, isLoading: false })
+      this.setState({ isLoading: false })
       onLoad(result)
     } catch (error) {
-      this.setState({ error })
+      this.setState({ error, isLoading: false })
       onError(error)
     }
   }
 
   render() {
-    const { classes, children, className } = this.props
-    const { isLoaded, isLoading, error } = this.state
+    const { classes, children } = this.props
+    const { isLoading, error } = this.state
 
     if (error) {
       return (
-        <div className={classes.loading}>
+        <div className={classes.container}>
           <div className={classes.errorContainer}>
             <ErrorIcon className={classes.error} />
             <Typography color="textSecondary">{error.message}</Typography>
@@ -84,16 +82,8 @@ class Loader extends Component {
 
     if (isLoading) {
       return (
-        <div className={classes.loading}>
+        <div className={classes.container}>
           <Loading />
-        </div>
-      )
-    }
-
-    if (isLoaded && className) {
-      return (
-        <div className={className}>
-          {children}
         </div>
       )
     }
@@ -105,7 +95,6 @@ class Loader extends Component {
 Loader.propTypes = {
   classes: object.isRequired,
   cancel: bool,
-  className: string,
   params: any,
   load: func.isRequired,
   children: node,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { bool, func, number, string } from 'prop-types'
+import { shape, func, number, string } from 'prop-types'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core'
 
 class DeleteDialog extends Component {
@@ -12,14 +12,14 @@ class DeleteDialog extends Component {
   close = () => {
     const { onClose } = this.props
     this.setState({ isLoading: false, error: null })
-    onClose()
+    onClose(null)
   }
 
   confirm = async () => {
-    const { id, onConfirm } = this.props
+    const { model, onConfirm } = this.props
     try {
       this.setState({ isLoading: true })
-      await onConfirm(id)
+      await onConfirm(model)
       this.close()
     } catch (error) {
       this.setState({ error: error?.message })
@@ -29,26 +29,21 @@ class DeleteDialog extends Component {
   }
 
   render() {
-    const { title, isOpen } = this.props
+    const { model } = this.props
     const { error, isLoading } = this.state
-    if (!isOpen) return null
+    if (!model) return null
 
     return (
-      <Dialog
-        open={isOpen}
-        onClose={this.close}
-        aria-labelledby="delete-company-dialog"
-        aria-describedby="delete-company-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">Are you sure you want to delete "{title}"?</DialogTitle>
+      <Dialog open={!!model} onClose={this.close}>
+        <DialogTitle id="alert-dialog-title">Вы действительно хотите удалить "{model.title}"?</DialogTitle>
         <DialogContent>
           <DialogContentText color={error ? 'error' : 'inherit'} id="alert-dialog-description">
-            {error || `This will completely remove "${title}" from our database`}
+            {error || `Это безвозвратно удалит "${model.title}" из нашей базы данных`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={this.close} color="secondary">
-            Cancel
+            Отменить
           </Button>
           {!error && (
             <Button
@@ -58,7 +53,7 @@ class DeleteDialog extends Component {
               color="primary"
               autoFocus
             >
-              {isLoading ? 'loading...' : 'Delete'}
+              {isLoading ? 'Загрузка...' : 'Удалить'}
             </Button>
           )}
         </DialogActions>
@@ -68,9 +63,7 @@ class DeleteDialog extends Component {
 }
 
 DeleteDialog.propTypes = {
-  isOpen: bool.isRequired,
-  id: number,
-  title: string,
+  model: shape({ id: number, title: string }).isRequired,
   onClose: func.isRequired,
   onConfirm: func.isRequired,
 }

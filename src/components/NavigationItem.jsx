@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom'
 import classNames from 'classnames'
 
 const styles = (theme) => ({
+
   root: {
     font: '400 14px/20px Roboto,RobotoDraft,Helvetica,Arial,sans-serif',
     borderRadius: '0 50px 50px 0',
@@ -21,6 +22,7 @@ const styles = (theme) => ({
       transition: 'background 15ms',
     },
   },
+
   icon: {
     marginRight: 16,
   },
@@ -31,7 +33,7 @@ const styles = (theme) => ({
   },
 })
 
-const MenuItem = ({ location, classes, icon: Icon, url, children }) =>
+const NavigationItem = ({ location, classes, icon: Icon, url, children }) =>
   <Link
     component="div"
     to={`/home${url}`}
@@ -43,7 +45,7 @@ const MenuItem = ({ location, classes, icon: Icon, url, children }) =>
     {children}
   </Link>
 
-MenuItem.propTypes = {
+NavigationItem.propTypes = {
   classes: object.isRequired,
   location: shape({ pathname: string }).isRequired,
   url: string.isRequired,
@@ -51,4 +53,4 @@ MenuItem.propTypes = {
   icon: object.isRequired,
 }
 
-export default withStyles(styles)(withRouter(MenuItem))
+export default withStyles(styles)(withRouter(NavigationItem))

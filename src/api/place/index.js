@@ -2,6 +2,13 @@ import Http from 'services/Http'
 
 import photos from './photos'
 import contacts from './contacts'
+import clean from 'clean-object'
+import { stateToHTML } from 'draft-js-export-html'
+
+const createForm = (values) => clean({
+  ...values,
+  description: stateToHTML(values.description.getCurrentContent())
+})
 
 const place = {
 
@@ -18,11 +25,11 @@ const place = {
   },
 
   create(form) {
-    return Http.post(`/places`, form)
+    return Http.post(`/places`, createForm(form))
   },
 
   update(place_id, form) {
-    return Http.put(`/places/${place_id}`, form)
+    return Http.put(`/places/${place_id}`, createForm(form))
   },
 
   destroy(place_id) {

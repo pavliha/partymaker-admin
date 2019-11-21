@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import userShape from 'shapes/user'
-import { object } from 'prop-types'
+import { object, string } from 'prop-types'
 import { IconButton, withStyles, MenuItem, Menu, Typography } from '@material-ui/core'
 import AccountIcon from 'mdi-react/AccountCircleIcon'
+import classNames from 'classnames'
 
 const styles = {
 
@@ -25,7 +26,7 @@ const styles = {
   },
 }
 
-class UserMenu extends Component {
+class Account extends Component {
 
   state = {
     anchorEl: null,
@@ -44,13 +45,13 @@ class UserMenu extends Component {
   }
 
   render() {
-    const { classes, user } = this.props
+    const { classes, user, className } = this.props
     const { anchorEl } = this.state
 
     if (!user) return null
 
     return (
-      <div className={classes.root}>
+      <div className={classNames([classes.root, className])}>
         <IconButton
           color="inherit"
           aria-owns={anchorEl ? 'user-menu' : undefined}
@@ -75,9 +76,10 @@ class UserMenu extends Component {
   }
 }
 
-UserMenu.propTypes = {
+Account.propTypes = {
   classes: object.isRequired,
+  className: string,
   user: userShape.isRequired,
 }
 
-export default withStyles(styles)(UserMenu)
+export default withStyles(styles)(Account)
