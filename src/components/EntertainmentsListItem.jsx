@@ -10,14 +10,14 @@ import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
-    borderTop: '1px solid rgba(0,0,0,0.1)',
-    marginBottom: 15,
+    paddingTop: 15,
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
+    paddingBottom: 9,
   },
 
   expand: {
     display: 'flex',
     paddingBottom: 5,
-    paddingTop: 15,
     paddingLeft: 15,
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
