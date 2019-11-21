@@ -1,9 +1,12 @@
 import React from 'react'
-import { object, func, string, arrayOf } from 'prop-types'
+import { object, func, node } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { Typography } from '@material-ui/core'
-import { PlacesList } from 'components'
-import placeShape from 'shapes/place'
+import { Typography, IconButton } from '@material-ui/core'
+import CloseIcon from 'mdi-react/CloseIcon'
+import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
+import EditIcon from 'mdi-react/EditIcon'
+import { entertainmentShape } from 'shapes'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -17,14 +20,14 @@ const styles = theme => ({
     paddingTop: 15,
     paddingLeft: 15,
     alignItems: 'center',
-    justifyContent: 'space-between',
     [theme.breakpoints.up('md')]: {
       paddingLeft: 10,
     }
   },
 
   title: {
-    cursor: 'pointer',
+    marginLeft: 5,
+    marginRight: 5,
     fontSize: 18,
     fontFamily: 'Google Sans, Arial, sans-serif',
     [theme.breakpoints.up('md')]: {
@@ -32,42 +35,54 @@ const styles = theme => ({
     },
   },
 
-  places: {
-    display: 'flex',
-    overflow: 'auto',
-    justifyContent: 'center',
-    padding: '0 10px',
-    [theme.breakpoints.up('xs')]: {
-      justifyContent: 'flex-start',
-      padding: 0,
-    }
-  }
+  icon: {
+    width: 18,
+    height: 18,
+  },
 
+  iconButton: {
+    padding: 5,
+  },
 })
 
-const EntertainmentsListItem = ({ classes, title, places, onSelect, onDelete }) =>
+const EntertainmentsListItem = ({ classes, entertainment, children, onEdit, onDelete }) =>
   <div className={classes.root}>
     <div className={classes.expand}>
-      <Typography component="div" className={classes.title}>
-        {title}
+      <IconButton
+        className={classes.iconButton}
+        color="secondary"
+        onClick={() => onDelete(entertainment)}
+      >
+        <CloseIcon className={classes.icon} />
+      </IconButton>
+      <IconButton
+        className={classes.iconButton}
+        color="secondary"
+        onClick={() => onEdit(entertainment)}
+      >
+        <EditIcon className={classes.icon} />
+      </IconButton>
+      <Typography
+        component="div"
+        className={classes.title}
+      >
+        {entertainment.title}
       </Typography>
+      <Link to="/home/places/create">
+        <IconButton className={classes.iconButton} color="secondary">
+          <AddCircleOutlineIcon className={classes.icon} />
+        </IconButton>
+      </Link>
     </div>
-    {places && (
-      <PlacesList
-        className={classes.places}
-        places={places}
-        onSelect={onSelect}
-        onDelete={onDelete}
-      />
-    )}
+    {children}
   </div>
 
 EntertainmentsListItem.propTypes = {
   classes: object.isRequired,
-  title: string,
-  places: arrayOf(placeShape),
-  onSelect: func,
+  entertainment: entertainmentShape,
+  children: node,
   onDelete: func,
+  onEdit: func,
 }
 
 export default withStyles(styles)(EntertainmentsListItem)

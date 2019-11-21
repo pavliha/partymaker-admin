@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react'
-import { object, func, bool } from 'prop-types'
+import React from 'react'
+import { bool, func, object } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { Typography, IconButton } from '@material-ui/core'
+import { IconButton, Typography } from '@material-ui/core'
 import placeShape from 'shapes/place'
 import { Thumbnail } from 'components'
 import classNames from 'classnames'
 import { appendFileNameSuffix } from 'utils'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -89,58 +90,45 @@ const styles = theme => ({
   }
 })
 
-class PlaceListItem extends PureComponent {
+const PlaceListItem = ({ classes, place, inline, onDelete }) => {
+  const rootStyle = classNames({ [classes.root]: true, [classes.inline]: inline })
+  const pictureStyle = classNames({ [classes.picture]: true, [classes.inlinePicture]: inline })
+  const containerStyle = classNames({ [classes.container]: true, [classes.inlineContainer]: inline })
 
-  select = () => {
-    const { place, onSelect } = this.props
-    onSelect(place)
-  }
-
-  remove = () => {
-    const { place, onDelete } = this.props
-    onDelete(place)
-  }
-
-  render() {
-    const { classes, place, inline } = this.props
-
-    const rootStyle = classNames({ [classes.root]: true, [classes.inline]: inline })
-    const pictureStyle = classNames({ [classes.picture]: true, [classes.inlinePicture]: inline })
-    const containerStyle = classNames({ [classes.container]: true, [classes.inlineContainer]: inline })
-
-    return (
-      <div className={rootStyle} onClick={this.select}>
-        <IconButton
-          color="secondary"
-          className={classes.deleteIconButton}
-          onClick={this.remove}
-        >
-          <CloseCircleIcon className={classes.deleteIcon} />
-        </IconButton>
-        <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
-        <div className={containerStyle}>
-          <Typography className={classes.title}>{place?.title}</Typography>
-          <Typography className={classes.subtitle} color="textSecondary">{place?.price}</Typography>
-          {inline && <Typography className={classes.subtitle} color="textSecondary">
-            {place?.contacts?.directions}
-          </Typography>
-          }
-        </div>
+  return (
+    <Link
+      component="div"
+      to={`/home/places/${place.id}`}
+      className={rootStyle}
+    >
+      <IconButton
+        color="secondary"
+        className={classes.deleteIconButton}
+        onClick={() => onDelete(place)}
+      >
+        <CloseCircleIcon className={classes.deleteIcon} />
+      </IconButton>
+      <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
+      <div className={containerStyle}>
+        <Typography className={classes.title}>{place?.title}</Typography>
+        <Typography className={classes.subtitle} color="textSecondary">{place?.price}</Typography>
+        {inline && <Typography className={classes.subtitle} color="textSecondary">
+          {place?.contacts?.directions}
+        </Typography>
+        }
       </div>
-    )
-  }
+    </Link>
+  )
 }
 
 PlaceListItem.propTypes = {
   classes: object.isRequired,
   place: placeShape.isRequired,
   inline: bool,
-  onSelect: func,
   onDelete: func,
 }
 
 PlaceListItem.defaultProps = {
-  onSelect: () => {},
   onDelete: () => {},
 }
 

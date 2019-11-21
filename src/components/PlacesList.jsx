@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrayOf, func, object, string } from 'prop-types'
+import { arrayOf, object, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import placeShape from 'shapes/place'
 import { DeleteDialog, PlaceListItem } from 'components'
@@ -10,7 +10,7 @@ const styles = () => ({
   root: {},
 })
 
-const PlacesList = ({ classes, className, places, onSelect, redux }) => {
+const PlacesList = ({ classes, className, places, redux }) => {
   const [place, setPlace] = useState(null)
 
   return (
@@ -19,7 +19,6 @@ const PlacesList = ({ classes, className, places, onSelect, redux }) => {
         <PlaceListItem
           key={place.id}
           place={place}
-          onSelect={onSelect}
           onDelete={setPlace}
         />
       )}
@@ -37,7 +36,6 @@ PlacesList.propTypes = {
   classes: object.isRequired,
   className: string,
   places: arrayOf(placeShape).isRequired,
-  onSelect: func,
   redux: object.isRequired,
 }
 
