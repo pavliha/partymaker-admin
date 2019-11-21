@@ -27,6 +27,7 @@ const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy }) => {
     <div className={classes.root}>
       {entertainments.map(entertainment => (
         <EntertainmentsListItem
+          key={entertainment.id}
           entertainment={entertainment}
           onDelete={setEntertainment}
           onEdit={onEdit}

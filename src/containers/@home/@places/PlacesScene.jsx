@@ -13,7 +13,7 @@ const styles = {
 }
 
 const PlacesScene = ({ classes, redux }) => {
-  const [isFormDialogOpen, setFormDialogOpen] = useState(null)
+  const [isFormDialogOpen, setFormDialogOpen] = useState(false)
   const [entertainment, setEntertainment] = useState(null)
 
   return (

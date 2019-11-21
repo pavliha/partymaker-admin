@@ -63,7 +63,7 @@ class DeleteDialog extends Component {
 }
 
 DeleteDialog.propTypes = {
-  model: shape({ id: number, title: string }).isRequired,
+  model: shape({ id: number, title: string }),
   onClose: func.isRequired,
   onConfirm: func.isRequired,
 }
