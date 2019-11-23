@@ -1,22 +1,22 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
 import placeShape from 'shapes/place'
-import { Button, DialogActions, withStyles, TextField, Typography } from '@material-ui/core'
+import * as Yup from 'yup'
+import { EditorState } from 'draft-js'
+import { stateFromHTML } from 'draft-js-import-html'
+import { Button, DialogActions, withStyles, TextField, Typography, InputAdornment } from '@material-ui/core'
 import { Form } from 'formik'
 import {
   ServerMessage,
   Field,
-  UploadField,
   EntertainmentsField,
+  UploadField,
   EditorField,
   NumberField,
   PhotosField,
-  PricesField
+  PricesField,
+  AdditionalServicesField,
 } from 'components'
-import * as Yup from 'yup'
-import { EditorState } from 'draft-js'
-import { stateFromHTML } from 'draft-js-import-html'
-import InputAdornment from '@material-ui/core/InputAdornment'
 
 const styles = {
 
@@ -157,6 +157,10 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       multiline
       component={TextField}
     />
+    <Typography className={classes.subtitle}>Дополнительные услуги</Typography>
+    <div className={classes.card}>
+      <Field name="additional_services" component={AdditionalServicesField} />
+    </div>
     <Typography className={classes.subtitle}>Описание</Typography>
     <div className={classes.card}>
       <Field
@@ -217,6 +221,7 @@ PlaceForm.mapPropsToValues = ({ model }) => ({
   working_hours: model?.working_hours || '',
   entertainment_id: model?.entertainment_id || null,
   prices: model?.prices || [],
+  additional_services: model?.additional_services || [],
   description: model?.description
     ? EditorState.createWithContent(stateFromHTML(model?.description))
     : EditorState.createEmpty()
