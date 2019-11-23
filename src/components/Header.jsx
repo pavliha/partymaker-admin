@@ -1,6 +1,7 @@
 import React from 'react'
-import { object, node } from 'prop-types'
-import { Typography, withStyles } from '@material-ui/core'
+import { object, node, string, func } from 'prop-types'
+import { Typography, withStyles, IconButton } from '@material-ui/core'
+import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
 
 const styles = {
   root: {
@@ -9,20 +10,39 @@ const styles = {
     alignItems: 'center',
   },
 
+  iconButton: {
+    marginRight: 10,
+  },
+
   title: {
     marginRight: 10,
   }
 }
 
-const Header = ({ classes, action }) =>
+const Header = ({ classes, title, action, onBack }) =>
   <header className={classes.root}>
-    <Typography variant="h4" className={classes.title}>Заведения</Typography>
+    {onBack && (
+      <IconButton
+        className={classes.iconButton}
+        color="secondary"
+        onClick={onBack}
+      >
+        <ArrowLeftIcon />
+      </IconButton>
+    )}
+    <Typography
+      variant={onBack ? 'h5' : 'h4'}
+      className={classes.title}
+    >{title}
+    </Typography>
     {action}
   </header>
 
 Header.propTypes = {
   classes: object.isRequired,
   action: node,
+  title: string,
+  onBack: func,
 }
 
 export default withStyles(styles)(Header)

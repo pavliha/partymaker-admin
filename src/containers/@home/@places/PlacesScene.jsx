@@ -16,9 +16,19 @@ const PlacesScene = ({ classes, redux }) => {
   const [isFormDialogOpen, setFormDialogOpen] = useState(false)
   const [entertainment, setEntertainment] = useState(null)
 
+  const openEditor = (entertainment) => {
+    setEntertainment(entertainment)
+    setFormDialogOpen(true)
+  }
+  const closeEditor = () => {
+    setEntertainment(null)
+    setFormDialogOpen(false)
+  }
+
   return (
     <div className={classes.root}>
       <Header
+        title="Заведения"
         action={(
           <IconButton color="secondary" onClick={() => setFormDialogOpen(true)}>
             <AddCircleOutlineIcon />
@@ -28,20 +38,14 @@ const PlacesScene = ({ classes, redux }) => {
       <EntertainmentsLoader>
         <EntertainmentsList
           entertainments={redux.entertainments}
-          onEdit={entertainment => {
-            setEntertainment(entertainment)
-            setFormDialogOpen(true)
-          }}
+          onEdit={openEditor}
           onDestroy={redux.destroyEntertainment}
         />
       </EntertainmentsLoader>
       <FormDialog
         isOpen={isFormDialogOpen}
         title={entertainment?.title}
-        onClose={() => {
-          setEntertainment(null)
-          setFormDialogOpen(false)
-        }}
+        onClose={closeEditor}
       >
         <Form
           model={entertainment}

@@ -32,6 +32,8 @@ const styles = theme => ({
 
 class Loader extends Component {
 
+  isMounted = false
+
   state = {
     isLoading: false,
     error: null,
@@ -40,6 +42,15 @@ class Loader extends Component {
   async componentDidMount() {
     const { params } = this.props
     await this.load(params)
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false
+  }
+
+  safeSetState(state) {
+    if (!this.isMounted) return
+    this.setState(state)
   }
 
   async shouldComponentUpdate(next) {
@@ -54,12 +65,12 @@ class Loader extends Component {
     if (cancel) return
 
     try {
-      this.setState({ error: null, isLoading: true })
+      this.safeSetState({ error: null, isLoading: true })
       const result = await load(params)
-      this.setState({ isLoading: false })
+      this.safeSetState({ isLoading: false })
       onLoad(result)
     } catch (error) {
-      this.setState({ error, isLoading: false })
+      this.safeSetState({ error, isLoading: false })
       onError(error)
     }
   }
