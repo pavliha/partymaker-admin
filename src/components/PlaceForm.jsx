@@ -38,6 +38,14 @@ const styles = {
     marginBottom: 5,
   },
 
+  aboutPriceField: {
+    marginBottom: 20,
+    '& fieldset': {
+      border: '1px rgba(0,0,0,0.1) solid',
+      borderRadius: 5,
+    }
+  },
+
   actions: {
     marginTop: 25,
   },
@@ -128,17 +136,28 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       <ServerMessage name="message" />
       <ServerMessage color="error" name="non_field_errors" />
     </div>
+    <Typography className={classes.subtitle}>Фотографии</Typography>
     <div className={classes.card}>
-      <Typography className={classes.subtitle}>Фотографии</Typography>
       <Field
         placeholder="Вставьте фото для загрузки"
         name="photos"
         component={PhotosField}
       />
     </div>
+    <Typography className={classes.subtitle}>Цены</Typography>
     <div className={classes.card}>
       <Field name="prices" component={PricesField} />
     </div>
+    <Field
+      className={classes.aboutPriceField}
+      name="about_prices"
+      rows={2}
+      label="Подробнее о ценах"
+      variant="outlined"
+      multiline
+      component={TextField}
+    />
+    <Typography className={classes.subtitle}>Описание</Typography>
     <div className={classes.card}>
       <Field
         name="description"
