@@ -168,6 +168,60 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
     <div className={classes.card}>
       <Field name="additional_services" component={AdditionalServicesField} />
     </div>
+    <Typography className={classes.subtitle}>Контакты</Typography>
+    <div className={classes.card}>
+      <Field
+        label="Номер телефона"
+        name="phone"
+        placeholder="+380683188515"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Веб-сайт"
+        name="website_url"
+        placeholder="http://example.com"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Карта"
+        name="map_url"
+        placeholder="map url"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Адрес"
+        name="address"
+        placeholder="Address"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Как добраться"
+        name="directions"
+        placeholder="Directions"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Email"
+        type="email"
+        name="email"
+        placeholder="Email"
+        margin="dense"
+        component={TextField}
+      />
+      <Field
+        label="Инстаграм"
+        type="url"
+        name="instagram_url"
+        placeholder="Instagram url"
+        margin="dense"
+        component={TextField}
+      />
+    </div>
     <Typography className={classes.subtitle}>Описание</Typography>
     <Field
       name="description"
@@ -204,14 +258,34 @@ PlaceForm.propTypes = {
 }
 
 PlaceForm.validationSchema = Yup.object().shape({
+  // General
   title: Yup.string().required(),
   picture_url: Yup.string(),
   price: Yup.string(),
-  age: Yup.string().nullable(),
-  players_min: Yup.number().nullable(),
-  players_max: Yup.number().nullable(),
   working_hours: Yup.string(),
   entertainment_id: Yup.number().required().nullable(),
+  // Requirements
+  min_order_amount: Yup.string().nullable(),
+  age_min: Yup.number().nullable(),
+  age_max: Yup.number().nullable(),
+  players_min: Yup.number().nullable(),
+  players_max: Yup.number().nullable(),
+  // Photos
+  photos: Yup.array(),
+  // Prices
+  prices: Yup.array(),
+  about_prices: Yup.string(),
+  // Services
+  additional_services: Yup.array(),
+  // Contacts
+  phone: Yup.string().required(),
+  website_url: Yup.string(),
+  map_url: Yup.string(),
+  address: Yup.string(),
+  directions: Yup.string(),
+  email: Yup.string().email(),
+  instagram_url: Yup.string(),
+  // Description
   description: Yup.object()
 })
 
@@ -235,6 +309,14 @@ PlaceForm.mapPropsToValues = ({ model }) => ({
   about_prices: model?.about_prices || '',
   // Additional Services
   additional_services: model?.additional_services || [],
+  // Contacts
+  phone: model?.contacts?.phone || '',
+  website_url: model?.contacts?.website_url || '',
+  map_url: model?.contacts?.map_url || '',
+  address: model?.contacts?.address || '',
+  directions: model?.contacts?.directions || '',
+  email: model?.contacts?.email || '',
+  instagram_url: model?.contacts?.instagram_url || '',
   // Description
   description: model?.description
     ? EditorState.createWithContent(stateFromHTML(model?.description))

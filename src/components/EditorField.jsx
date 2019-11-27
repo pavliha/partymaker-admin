@@ -1,9 +1,11 @@
 import React from 'react'
 import { Editor } from 'draft-js'
+import 'draft-js/dist/Draft.css'
 import { bool, func, object, oneOfType, string } from 'prop-types'
 import { FormControl, FormHelperText, FormLabel, withStyles } from '@material-ui/core'
 
 const styles = () => ({
+
   root: {
     boxSizing: 'border-box',
     padding: 15,
@@ -19,6 +21,7 @@ const styles = () => ({
     display: 'block',
     borderRadius: 8,
   },
+
   label: {},
 })
 

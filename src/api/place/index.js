@@ -5,16 +5,33 @@ import contacts from './contacts'
 import clean from 'clean-object'
 import { stateToHTML } from 'draft-js-export-html'
 
-const createFormRequest = (form) => clean({
-  ...form,
-  requirements: clean({
+const createFormRequest = form => clean({
+  title: form.title,
+  picture_url: form.picture_url,
+  price: form.price,
+  working_hours: form.working_hours,
+  entertainment_id: form.entertainment_id || null,
+  prices: form.prices,
+  about_prices: form.about_prices,
+  photos: form.photos,
+  additional_services: form.additional_services,
+  description: stateToHTML(form.description.getCurrentContent()),
+  requirements: {
     min_order_amount: form.min_order_amount,
     age_min: form.age_min,
     age_max: form.age_max,
     players_min: form.players_min,
     players_max: form.players_max,
-  }),
-  description: stateToHTML(form.description.getCurrentContent())
+  },
+  contacts: {
+    phone: form.phone,
+    website_url: form.website_url,
+    map_url: form.map_url,
+    address: form.address,
+    directions: form.directions,
+    email: form.email,
+    instagram_url: form.instagram_url,
+  },
 })
 
 const place = {
