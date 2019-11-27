@@ -1,8 +1,8 @@
 import React from 'react'
 import { object, func, bool, string, any, oneOf, shape, arrayOf } from 'prop-types'
 import { withStyles } from '@material-ui/core'
-import { DropdownField, Loader } from 'components'
-import { select, connect, actions } from 'src/redux'
+import { DropdownField, EntertainmentsLoader } from 'components'
+import { select, connect } from 'src/redux'
 import entertainmentShape from 'shapes/entertainment'
 
 const styles = {
@@ -18,9 +18,9 @@ const EntertainmentsField = ({
   error,
   helperText,
   onChange,
-  redux: { entertainments, loadEntertainments }
+  redux: { entertainments }
 }) =>
-  <Loader load={loadEntertainments}>
+  <EntertainmentsLoader>
     <DropdownField
       nonEmpty
       classes={classes}
@@ -33,7 +33,7 @@ const EntertainmentsField = ({
       helperText={helperText}
       onChange={onChange}
     />
-  </Loader>
+  </EntertainmentsLoader>
 
 EntertainmentsField.propTypes = {
   classes: object,
@@ -51,7 +51,6 @@ EntertainmentsField.propTypes = {
 
 const redux = state => ({
   entertainments: select.entertainments.all(state),
-  loadEntertainments: actions.entertainments.loadMany
 })
 
 export default withStyles(styles)(connect(redux)(EntertainmentsField))

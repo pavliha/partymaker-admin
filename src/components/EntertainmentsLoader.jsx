@@ -3,10 +3,13 @@ import { node, object } from 'prop-types'
 import { Loader } from 'components'
 import { actions, connect } from 'src/redux'
 
-const EntertainmentsLoader = ({ redux, children }) =>
-  <Loader load={redux.loadEntertainments}>
-    {children}
-  </Loader>
+const EntertainmentsLoader = ({ redux, children }) => {
+  return (
+    <Loader load={redux.loadEntertainments}>
+      {children}
+    </Loader>
+  )
+}
 
 EntertainmentsLoader.propTypes = {
   redux: object.isRequired,

@@ -25,6 +25,7 @@ export ServerMessage from './ServerMessage'
 // Forms
 export EntertainmentForm from './EntertainmentForm'
 export PlaceForm from './PlaceForm'
+export PhotosForm from './PhotosForm'
 
 // Fields
 export DropdownField from './DropdownField'

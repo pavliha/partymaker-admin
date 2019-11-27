@@ -1,4 +1,5 @@
 import Http from 'services/Http'
+import { basename } from 'path'
 
 import picture from './picture'
 
@@ -6,8 +7,8 @@ const uploads = {
 
   picture,
 
-  destroy(filename) {
-    return Http.delete(`/uploads/${filename}`)
+  destroy(url) {
+    return Http.delete(`/uploads/${basename(url)}`)
   },
 }
 

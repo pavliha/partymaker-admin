@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
-import { Editor } from 'react-draft-wysiwyg'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import { func, object, bool, string, oneOfType } from 'prop-types'
+import React from 'react'
+import { Editor } from 'draft-js'
+import { bool, func, object, oneOfType, string } from 'prop-types'
 import { FormControl, FormHelperText, FormLabel, withStyles } from '@material-ui/core'
 
 const styles = () => ({
   root: {
+    boxSizing: 'border-box',
+    padding: 15,
     flex: 1,
     width: '100%',
     overflow: 'hidden',
     display: 'inherit',
     border: ' 1px solid rgba(0,0,0,0.1)',
+    borderRadius: 5,
   },
 
   input: {
@@ -20,28 +22,15 @@ const styles = () => ({
   label: {},
 })
 
-class EditorField extends Component {
-
-  onEditorStateChange = (editorState) => {
-    const { name, onChange } = this.props
-    onChange(name, editorState)
-  }
-
-  render() {
-    const { classes, value, label, error, helperText } = this.props
-
-    return (
-      <FormControl className={classes.root}>
-        <FormLabel className={classes.label} component="legend">{label}</FormLabel>
-        <Editor
-          editorState={value}
-          onEditorStateChange={this.onEditorStateChange}
-        />
-        {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
-      </FormControl>
-    )
-  }
-}
+const EditorField = ({ classes, name, value, label, error, helperText, onChange }) =>
+  <FormControl className={classes.root}>
+    <FormLabel className={classes.label} component="legend">{label}</FormLabel>
+    <Editor
+      editorState={value}
+      onChange={(state) => onChange(name, state)}
+    />
+    {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
+  </FormControl>
 
 EditorField.propTypes = {
   classes: object.isRequired,

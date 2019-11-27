@@ -65,7 +65,7 @@ class UploadField extends Component {
   uploadFile = async file => {
     const { type } = this.props
     const uploadFile = api.uploads.picture.file.create
-    return this.upload(() => uploadFile({ file, type }, this.watchProgress))
+    return this.upload(() => uploadFile({ file, type, progress: this.watchProgress }))
   }
 
   uploadLink = async () => {

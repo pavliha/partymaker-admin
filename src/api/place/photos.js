@@ -6,8 +6,8 @@ const photos = {
     return Http.get(`/places/${place_id}/photos`)
   },
 
-  load(place_id, photo_id) {
-    return Http.get(`/places/${place_id}/photos/${photo_id}`)
+  load(photo_id) {
+    return Http.get(`/places/photos/${photo_id}`)
   },
 
   create(place_id, form, config) {
@@ -15,11 +15,11 @@ const photos = {
   },
 
   update(place_id, photo_id, form) {
-    return Http.put(`/places/${place_id}/photos/${photo_id}`, form)
+    return Http.put(`/places/photos/${photo_id}`, form)
   },
 
-  destroy(place_id, photo_id) {
-    return Http.delete(`places/${place_id}/photos/${photo_id}`)
+  destroy(photo_id) {
+    return Http.delete(`places/photos/${photo_id}`)
   },
 }
 

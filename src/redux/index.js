@@ -7,6 +7,8 @@ import saga from './saga'
 import actions from './action'
 import select from './select'
 import reducers from './reducer'
+import c from './constants'
+import normalizeMiddleware from './_middleware/normalizeMiddleware'
 
 const initialState = {}
 
@@ -16,7 +18,7 @@ const store = createStore(
   reducers,
   initialState,
   composeWithDevTools(
-    applyMiddleware(promise, sagaMiddleware),
+    applyMiddleware(normalizeMiddleware, promise, sagaMiddleware),
   ),
 )
 
@@ -28,4 +30,4 @@ if (module.hot) {
     store.replaceReducer(nextRootReducer)
   })
 }
-export { store, reducers, actions, select, connect }
+export { store, reducers, actions, select, connect, c }

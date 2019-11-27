@@ -56,6 +56,7 @@ class Loader extends Component {
   async shouldComponentUpdate(next) {
     const prev = this.props
     if (isEqual(prev.params, next.params)) return
+    debugger
     await this.load(next.params)
   }
 

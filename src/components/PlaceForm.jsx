@@ -52,14 +52,14 @@ const styles = {
 
 }
 
-const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
+const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
   <Form className={classes.root}>
     <Typography className={classes.subtitle}>Основная информация</Typography>
     <div className={classes.card}>
       <Field
         label="Название"
         name="title"
-        placeholder={'Например: Пейнтбольный клуб "БЛОК-ПОСТ"'}
+        placeholder='Например: Пейнтбольный клуб "БЛОК-ПОСТ"'
         margin="normal"
         component={TextField}
       />
@@ -106,8 +106,17 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       />
       <Field
         label="Минимальный возраст участников"
-        name="age"
-        placeholder="16 лет"
+        name="age_min"
+        placeholder="10 лет"
+        suffix=" лет"
+        margin="normal"
+        component={NumberField}
+        InputProps={{ startAdornment: <InputAdornment position="start">от</InputAdornment> }}
+      />
+      <Field
+        label="Максимальный возраст участников"
+        name="age_max"
+        placeholder="14 лет"
         suffix=" лет"
         margin="normal"
         component={NumberField}
@@ -116,7 +125,6 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       <Field
         label="Минимальное количество участников"
         name="players_min"
-        type="number"
         placeholder="2 чел"
         suffix=" чел"
         margin="normal"
@@ -126,7 +134,6 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       <Field
         label="Максимальное количество участников"
         name="players_max"
-        type="number"
         margin="normal"
         suffix=" чел"
         placeholder="10 чел"
@@ -162,14 +169,12 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       <Field name="additional_services" component={AdditionalServicesField} />
     </div>
     <Typography className={classes.subtitle}>Описание</Typography>
-    <div className={classes.card}>
-      <Field
-        name="description"
-        placeholder="Please type description here .."
-        margin="normal"
-        component={EditorField}
-      />
-    </div>
+    <Field
+      name="description"
+      placeholder="Please type description here .."
+      margin="normal"
+      component={EditorField}
+    />
     <DialogActions className={classes.actions}>
       <Button
         onClick={onCancel}
@@ -188,7 +193,6 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting }, }) => (
       </Button>
     </DialogActions>
   </Form>
-)
 
 PlaceForm.propTypes = {
   classes: object.isRequired,
@@ -212,16 +216,26 @@ PlaceForm.validationSchema = Yup.object().shape({
 })
 
 PlaceForm.mapPropsToValues = ({ model }) => ({
+  // General
   title: model?.title || '',
   picture_url: model?.picture_url || '',
   price: model?.price || '',
-  age: model?.age || '',
-  players_min: model?.players_min || '',
-  players_max: model?.players_max || '',
   working_hours: model?.working_hours || '',
   entertainment_id: model?.entertainment_id || null,
+  // Requirements
+  min_order_amount: model?.requirements?.min_order_amount || null,
+  age_min: model?.requirements?.age_min || null,
+  age_max: model?.requirements?.age_max || null,
+  players_min: model?.requirements?.players_min || null,
+  players_max: model?.requirements?.players_max || null,
+  // Photos
+  photos: model?.photos || [],
+  // Prices
   prices: model?.prices || [],
+  about_prices: model?.about_prices || '',
+  // Additional Services
   additional_services: model?.additional_services || [],
+  // Description
   description: model?.description
     ? EditorState.createWithContent(stateFromHTML(model?.description))
     : EditorState.createEmpty()

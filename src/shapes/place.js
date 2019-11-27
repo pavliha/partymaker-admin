@@ -7,8 +7,8 @@ const placeShape = shape({
   picture_url: string,
   price: string,
   working_hours: string,
-  created_at: string.isRequired,
-  updated_at: string.isRequired,
+  created_at: string,
+  updated_at: string,
   entertainment_id: number.isRequired,
   photos: arrayOf(photoShape)
 })

@@ -1,20 +1,10 @@
 import { fromJWT } from 'utils'
 import Storage from 'services/Storage'
-
-import {
-  LOGIN_USER_FULFILLED,
-  LOGOUT_USER,
-  REGISTER_USER_FULFILLED,
-  SET_AUTH_USER,
-} from './action'
-
-const token = Storage.get('token')
-
-const user_id = fromJWT(token)?.id
+import c from 'src/redux/constants'
 
 const initialState = {
-  user_id,
-  token,
+  user_id: fromJWT(Storage.get('token'))?.id,
+  token: Storage.get('token'),
   isLoading: false,
   email: null,
 }
@@ -22,21 +12,21 @@ const initialState = {
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
-    case REGISTER_USER_FULFILLED:
-    case LOGIN_USER_FULFILLED:
+    case c.REGISTER_USER_FULFILLED:
+    case c.LOGIN_USER_FULFILLED:
       return {
         ...state,
         token: payload.token,
         user_id: fromJWT(payload.token)?.id,
       }
 
-    case LOGOUT_USER:
+    case c.LOGOUT_USER:
       return {
         ...state,
         user_id: null,
       }
 
-    case SET_AUTH_USER:
+    case c.SET_AUTH_USER:
       return {
         ...state,
         user_id: payload.id,

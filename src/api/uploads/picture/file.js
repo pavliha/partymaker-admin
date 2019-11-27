@@ -9,11 +9,11 @@ const defineConfig = ({ progress }) => ({
 
 const file = {
 
-  create(file, progress) {
+  create({ type, file, progress }) {
     const form = new FormData()
     form.append('file', file)
     const config = defineConfig({ progress })
-    return Http.post('/uploads/picture/file', form, config)
+    return Http.post(`/uploads/picture/file?type=${type}`, form, config)
   },
 
 }

@@ -1,39 +1,23 @@
 import auth from 'api/auth'
-
-export const REGISTER_USER = 'REGISTER_USER'
-export const REGISTER_USER_FULFILLED = 'REGISTER_USER_FULFILLED'
-
-export const LOGIN_USER = 'LOGIN_USER'
-export const LOGIN_USER_FULFILLED = 'LOGIN_USER_FULFILLED'
-
-export const LOGOUT_USER = 'LOGOUT_USER'
-export const SET_AUTH_USER = 'SET_AUTH_USER'
-
-/**
- * Async actions. Making API requests
- */
+import c from 'src/redux/constants'
 
 const register = form => ({
-  type: REGISTER_USER,
+  type: c.REGISTER_USER,
   payload: auth.register(form),
 })
 
 const login = form => ({
-  type: LOGIN_USER,
+  type: c.LOGIN_USER,
   payload: auth.login(form),
 })
 
 const logout = () => ({
-  type: LOGOUT_USER,
+  type: c.LOGOUT_USER,
   payload: auth.logout(),
 })
 
-/**
- * Sync actions. Updating store
- */
-
 const set = (user) => ({
-  type: SET_AUTH_USER,
+  type: c.SET_AUTH_USER,
   payload: user,
 })
 

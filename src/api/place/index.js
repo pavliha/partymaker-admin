@@ -5,9 +5,16 @@ import contacts from './contacts'
 import clean from 'clean-object'
 import { stateToHTML } from 'draft-js-export-html'
 
-const createForm = (values) => clean({
-  ...values,
-  description: stateToHTML(values.description.getCurrentContent())
+const createFormRequest = (form) => clean({
+  ...form,
+  requirements: clean({
+    min_order_amount: form.min_order_amount,
+    age_min: form.age_min,
+    age_max: form.age_max,
+    players_min: form.players_min,
+    players_max: form.players_max,
+  }),
+  description: stateToHTML(form.description.getCurrentContent())
 })
 
 const place = {
@@ -25,11 +32,11 @@ const place = {
   },
 
   create(form) {
-    return Http.post(`/places`, createForm(form))
+    return Http.post(`/places`, createFormRequest(form))
   },
 
   update(place_id, form) {
-    return Http.put(`/places/${place_id}`, createForm(form))
+    return Http.put(`/places/${place_id}`, createFormRequest(form))
   },
 
   destroy(place_id) {

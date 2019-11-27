@@ -8,13 +8,13 @@ const styles = {
   root: {
     position: 'relative',
     height: 100,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRadius: 10,
     margin: 5,
   },
 
   picture: {
+    overflow: 'hidden',
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderRadius: 10,
     height: '100%',
   },
 
@@ -34,22 +34,32 @@ const styles = {
       color: 'white',
     }
   },
+
+  deleteIconButton: {
+    padding: 5,
+    position: 'absolute',
+    top: -10,
+    right: -10,
+  },
+
+  deleteIcon: {
+    width: 15,
+    height: 15,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 100,
+  }
 }
 
 const PhotoListItem = ({ classes, photo, onDelete }) =>
   <div className={classes.root}>
+    <IconButton
+      color="secondary"
+      className={classes.deleteIconButton}
+      onClick={() => onDelete(photo)}
+    >
+      <CloseCircleIcon className={classes.deleteIcon} />
+    </IconButton>
     <img alt="broken" src={photo.url} className={classes.picture} />
-    <div className={classes.cover}>
-      <div>
-        <IconButton
-          color="white"
-          className={classes.closeButton}
-          onClick={() => onDelete(photo)}
-        >
-          <CloseCircleIcon />
-        </IconButton>
-      </div>
-    </div>
   </div>
 
 PhotoListItem.propTypes = {
