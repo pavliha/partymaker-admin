@@ -42,7 +42,7 @@ const sort = (sorted_ids) => ({
 })
 
 const set = (models) => ({
-  type: c.SET_MODELS,
+  type: c.SET_ENTITIES,
   payload: models
 })
 

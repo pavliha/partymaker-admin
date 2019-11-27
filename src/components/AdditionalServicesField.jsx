@@ -7,6 +7,7 @@ import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import { NumberField } from 'components'
 import uniqId from 'uniqid'
+import { actions, connect } from 'src/redux'
 
 const styles = theme => ({
   root: {
@@ -94,7 +95,8 @@ class AdditionalServicesField extends Component {
   }
 
   remove = (index) => () => {
-    const { name, value: services, onChange } = this.props
+    const { name, value: services, onChange, redux } = this.props
+    redux.remove(services[index].id)
     services.splice(index, 1)
     onChange(name, [...services])
   }
@@ -208,6 +210,10 @@ AdditionalServicesField.propTypes = {
   helperText: string,
   error: bool,
   onChange: func.isRequired,
+  redux: object,
 }
 
-export default withStyles(styles)(AdditionalServicesField)
+const redux = () => ({
+  remove: actions.places.additional_services.remove
+})
+export default withStyles(styles)(connect(redux)(AdditionalServicesField))

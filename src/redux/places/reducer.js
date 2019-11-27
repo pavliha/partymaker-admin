@@ -4,11 +4,12 @@ import c from 'src/redux/constants'
 import contacts from './contacts/reducer'
 import photos from './photos/reducer'
 import requirements from './requirements/reducer'
+import additional_services from './additional_services/reducer'
 
 const entities = (state = {}, { type, payload, meta }) => {
   switch (type) {
 
-    case c.SET_MODELS:
+    case c.SET_ENTITIES:
       return {
         ...state,
         ...arrayToObject(payload.place || payload.places)
@@ -27,6 +28,7 @@ const entities = (state = {}, { type, payload, meta }) => {
 }
 
 export default combineReducers({
+  additional_services,
   photos,
   contacts,
   entities,

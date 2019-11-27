@@ -8,7 +8,7 @@ const initialState = user ? { [user.id]: user } : {}
 
 const entities = (state = initialState, { type, payload }) => {
   switch (type) {
-    case c.SET_MODELS:
+    case c.SET_ENTITIES:
       return {
         ...state,
         ...arrayToObject(payload.user)

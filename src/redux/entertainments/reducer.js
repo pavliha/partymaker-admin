@@ -5,7 +5,7 @@ import arrayToObject from 'utils/arrayToObject'
 const entities = (state = {}, { type, payload, meta }) => {
   switch (type) {
 
-    case c.SET_MODELS:
+    case c.SET_ENTITIES:
       return {
         ...state,
         ...arrayToObject(payload.entertainment)

@@ -4,7 +4,7 @@ import entertainments from './entertainments/action'
 import { c } from 'src/redux'
 
 const setModels = models => ({
-  type: c.SET_MODELS,
+  type: c.SET_ENTITIES,
   payload: models,
 })
 
