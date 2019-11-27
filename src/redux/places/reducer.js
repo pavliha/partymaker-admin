@@ -11,7 +11,7 @@ const entities = (state = {}, { type, payload, meta }) => {
     case c.SET_MODELS:
       return {
         ...state,
-        ...arrayToObject(payload.place || payload.prices)
+        ...arrayToObject(payload.place || payload.places)
       }
 
     case c.DESTROY_PLACE_FULFILLED: {

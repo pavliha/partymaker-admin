@@ -70,6 +70,7 @@ module.exports = () => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
+    chunkFilename: '[name].[hash:3]js',
     filename: `[name].[hash:3].js`,
   },
 
