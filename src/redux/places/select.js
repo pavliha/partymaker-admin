@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import photos from './photos/select'
 
 const all = createSelector(
   state => Object.values(state.places.entities),
@@ -17,7 +18,7 @@ const all = createSelector(
 const current = (state, place_id) => createSelector(
   state => state.places.entities,
   state => state.entertainments.entities,
-  state => Object.values(state.places.photos.entities),
+  state => photos.all(state),
   state => Object.values(state.places.contacts.entities),
   state => Object.values(state.places.requirements.entities),
   state => Object.values(state.places.additional_services.entities),
@@ -49,6 +50,7 @@ const current = (state, place_id) => createSelector(
 )(state)
 
 export default {
+  photos,
   all,
   current
 }

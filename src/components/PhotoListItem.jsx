@@ -3,6 +3,7 @@ import { func, object } from 'prop-types'
 import { IconButton, withStyles } from '@material-ui/core'
 import photoShape from 'shapes/photo'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
+import { SortableElement } from 'react-sortable-hoc'
 
 const styles = {
   root: {
@@ -68,4 +69,4 @@ PhotoListItem.propTypes = {
   onDelete: func.isRequired
 }
 
-export default withStyles(styles)(PhotoListItem)
+export default withStyles(styles)(SortableElement(PhotoListItem))

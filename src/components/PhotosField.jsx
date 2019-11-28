@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import { arrayOf, bool, object, string, func } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { UploadField, PhotoListItem } from 'components'
+import { UploadField, PhotosList, PhotoListItem } from 'components'
 import uniqId from 'uniqid'
 import photoShape from 'shapes/photo'
 import { actions, connect } from 'src/redux'
+import arrayMove from 'array-move'
 
 const styles = {
   root: {},
 
   photos: {
     marginTop: 10,
-    display: 'flex',
-    flexWrap: 'wrap'
   }
 }
 
@@ -38,6 +37,13 @@ class PhotosField extends Component {
     onChange(name, photos.filter(({ url }) => url !== photo.url))
   }
 
+  sortPhotos = ({ oldIndex, newIndex }) => {
+    const { name, value, onChange } = this.props
+    const photos = arrayMove(value, oldIndex, newIndex)
+    const orderedPhotos = photos.map((photo, order) => ({ ...photo, order }))
+    onChange(name, orderedPhotos)
+  }
+
   render() {
     const { classes, name, value: photos, placeholder, error, helperText, } = this.props
 
@@ -55,15 +61,13 @@ class PhotosField extends Component {
           onError={this.setError}
           onChange={this.createTempPhoto}
         />
-        <div className={classes.photos}>
-          {photos?.map(photo =>
-            <PhotoListItem
-              key={photo.id}
-              photo={photo}
-              onDelete={this.deletePhoto}
-            />
-          )}
-        </div>
+        <PhotosList
+          axis="x"
+          photos={photos}
+          className={classes.photos}
+          onDelete={this.deletePhoto}
+          onSortEnd={this.sortPhotos}
+        />
       </Fragment>
     )
   }
