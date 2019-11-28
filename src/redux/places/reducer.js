@@ -5,6 +5,8 @@ import contacts from './contacts/reducer'
 import photos from './photos/reducer'
 import requirements from './requirements/reducer'
 import additional_services from './additional_services/reducer'
+import prices from './prices/reducer'
+import omit from 'lodash/omit'
 
 const entities = (state = {}, { type, payload, meta }) => {
   switch (type) {
@@ -15,12 +17,8 @@ const entities = (state = {}, { type, payload, meta }) => {
         ...arrayToObject(payload.place || payload.places)
       }
 
-    case c.DESTROY_PLACE_FULFILLED: {
-      const places = { ...state }
-      delete places[meta.place_id]
-
-      return places
-    }
+    case c.DESTROY_PLACE_FULFILLED:
+      return omit(state, meta.place_id)
 
     default:
       return state
@@ -28,6 +26,7 @@ const entities = (state = {}, { type, payload, meta }) => {
 }
 
 export default combineReducers({
+  prices,
   additional_services,
   photos,
   contacts,

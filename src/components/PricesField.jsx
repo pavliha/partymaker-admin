@@ -7,6 +7,7 @@ import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import { NumberField } from 'components'
 import uniqId from 'uniqid'
+import { actions, connect } from 'src/redux'
 
 const styles = {
   root: {
@@ -64,7 +65,8 @@ class PricesField extends Component {
   }
 
   remove = (index) => () => {
-    const { name, value: prices, onChange } = this.props
+    const { name, value: prices, onChange, redux } = this.props
+    redux.remove(prices[index].id)
     prices.splice(index, 1)
     onChange(name, [...prices])
   }
@@ -159,6 +161,11 @@ PricesField.propTypes = {
   helperText: string,
   error: bool,
   onChange: func.isRequired,
+  redux: object.isRequired,
 }
 
-export default withStyles(styles)(PricesField)
+const redux = () => ({
+  remove: actions.places.prices.remove
+})
+
+export default withStyles(styles)(connect(redux)(PricesField))

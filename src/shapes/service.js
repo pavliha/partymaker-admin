@@ -1,12 +1,12 @@
-import { number, shape, string } from 'prop-types'
+import { number, oneOfType, shape, string } from 'prop-types'
 
 const serviceShape = shape({
-  id: number.isRequired,
+  id: oneOfType([number, string]).isRequired,
   title: string.isRequired,
   description: string,
   price: number,
-  created_at: string.isRequired,
-  updated_at: string.isRequired,
+  created_at: string,
+  updated_at: string,
 })
 
 export default serviceShape
