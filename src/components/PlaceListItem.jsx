@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { bool, func, object } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { IconButton, Typography } from '@material-ui/core'
@@ -82,6 +82,7 @@ const styles = theme => ({
     position: 'absolute',
     top: -10,
     right: -10,
+    zIndex: 10,
   },
 
   deleteIcon: {
@@ -96,11 +97,7 @@ const PlaceListItem = ({ classes, place, inline, onDelete }) => {
   const containerStyle = classNames({ [classes.container]: true, [classes.inlineContainer]: inline })
 
   return (
-    <Link
-      component="div"
-      to={`/home/places/${place.id}`}
-      className={rootStyle}
-    >
+    <div className={rootStyle}>
       <IconButton
         color="secondary"
         className={classes.deleteIconButton}
@@ -108,16 +105,18 @@ const PlaceListItem = ({ classes, place, inline, onDelete }) => {
       >
         <CloseCircleIcon className={classes.deleteIcon} />
       </IconButton>
-      <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
-      <div className={containerStyle}>
-        <Typography className={classes.title}>{place?.title}</Typography>
-        <Typography className={classes.subtitle} color="textSecondary">{place?.price}</Typography>
-        {inline && <Typography className={classes.subtitle} color="textSecondary">
-          {place?.contacts?.directions}
-        </Typography>
-        }
-      </div>
-    </Link>
+      <Link component="div" to={`/home/places/${place.id}`}>
+        <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
+        <div className={containerStyle}>
+          <Typography className={classes.title}>{place?.title}</Typography>
+          <Typography className={classes.subtitle} color="textSecondary">{place?.price}</Typography>
+          {inline && <Typography className={classes.subtitle} color="textSecondary">
+            {place?.contacts?.directions}
+          </Typography>
+          }
+        </div>
+      </Link>
+    </div>
   )
 }
 

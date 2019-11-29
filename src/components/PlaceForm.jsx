@@ -98,7 +98,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
     <div className={classes.card}>
       <Field
         label="Минимальная сумма заказа"
-        name="min_order_amount"
+        name="requirements.min_order_amount"
         placeholder="100 грн"
         suffix=" грн"
         component={NumberField}
@@ -106,7 +106,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       />
       <Field
         label="Минимальный возраст участников"
-        name="age_min"
+        name="requirements.age_min"
         placeholder="10 лет"
         suffix=" лет"
         margin="normal"
@@ -115,7 +115,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       />
       <Field
         label="Максимальный возраст участников"
-        name="age_max"
+        name="requirements.age_max"
         placeholder="14 лет"
         suffix=" лет"
         margin="normal"
@@ -124,7 +124,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       />
       <Field
         label="Минимальное количество участников"
-        name="players_min"
+        name="requirements.players_min"
         placeholder="2 чел"
         suffix=" чел"
         margin="normal"
@@ -133,7 +133,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       />
       <Field
         label="Максимальное количество участников"
-        name="players_max"
+        name="requirements.players_max"
         margin="normal"
         suffix=" чел"
         placeholder="10 чел"
@@ -172,35 +172,35 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
     <div className={classes.card}>
       <Field
         label="Номер телефона"
-        name="phone"
+        name="contacts.phone"
         placeholder="+380683188515"
         margin="dense"
         component={TextField}
       />
       <Field
         label="Веб-сайт"
-        name="website_url"
+        name="contacts.website_url"
         placeholder="http://example.com"
         margin="dense"
         component={TextField}
       />
       <Field
         label="Карта"
-        name="map_url"
+        name="contacts.map_url"
         placeholder="map url"
         margin="dense"
         component={TextField}
       />
       <Field
         label="Адрес"
-        name="address"
+        name="contacts.address"
         placeholder="Address"
         margin="dense"
         component={TextField}
       />
       <Field
         label="Как добраться"
-        name="directions"
+        name="contacts.directions"
         placeholder="Directions"
         margin="dense"
         component={TextField}
@@ -208,7 +208,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       <Field
         label="Email"
         type="email"
-        name="email"
+        name="contacts.email"
         placeholder="Email"
         margin="dense"
         component={TextField}
@@ -216,7 +216,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       <Field
         label="Инстаграм"
         type="url"
-        name="instagram_url"
+        name="contacts.instagram_url"
         placeholder="Instagram url"
         margin="dense"
         component={TextField}
@@ -258,69 +258,63 @@ PlaceForm.propTypes = {
 }
 
 PlaceForm.validationSchema = Yup.object().shape({
-  // General
   title: Yup.string().required(),
   picture_url: Yup.string(),
   price: Yup.string(),
   working_hours: Yup.string(),
   entertainment_id: Yup.number().required().nullable(),
-  // Requirements
-  min_order_amount: Yup.string().nullable(),
-  age_min: Yup.number().nullable(),
-  age_max: Yup.number().nullable(),
-  players_min: Yup.number().nullable(),
-  players_max: Yup.number().nullable(),
-  // Photos
+  requirements: Yup.object({
+    min_order_amount: Yup.string().nullable(),
+    age_min: Yup.number().nullable(),
+    age_max: Yup.number().nullable(),
+    players_min: Yup.number().nullable(),
+    players_max: Yup.number().nullable(),
+  }),
   photos: Yup.array(),
-  // Prices
   prices: Yup.array(),
   about_prices: Yup.string(),
-  // Services
   additional_services: Yup.array(),
-  // Contacts
-  phone: Yup.string().required(),
-  website_url: Yup.string(),
-  map_url: Yup.string(),
-  address: Yup.string(),
-  directions: Yup.string(),
-  email: Yup.string().email(),
-  instagram_url: Yup.string(),
-  // Description
+  contacts: Yup.object({
+    phone: Yup.string(),
+    website_url: Yup.string(),
+    map_url: Yup.string(),
+    address: Yup.string(),
+    directions: Yup.string(),
+    email: Yup.string().email(),
+    instagram_url: Yup.string()
+  }),
   description: Yup.object()
 })
 
 PlaceForm.mapPropsToValues = ({ model }) => ({
-  // General
   title: model?.title || '',
   picture_url: model?.picture_url || '',
   price: model?.price || '',
   working_hours: model?.working_hours || '',
   entertainment_id: model?.entertainment_id || null,
-  // Requirements
-  min_order_amount: model?.requirements?.min_order_amount || null,
-  age_min: model?.requirements?.age_min || null,
-  age_max: model?.requirements?.age_max || null,
-  players_min: model?.requirements?.players_min || null,
-  players_max: model?.requirements?.players_max || null,
-  // Photos
   photos: model?.photos || [],
-  // Prices
   prices: model?.prices || [],
   about_prices: model?.about_prices || '',
-  // Additional Services
   additional_services: model?.additional_services || [],
-  // Contacts
-  phone: model?.contacts?.phone || '',
-  website_url: model?.contacts?.website_url || '',
-  map_url: model?.contacts?.map_url || '',
-  address: model?.contacts?.address || '',
-  directions: model?.contacts?.directions || '',
-  email: model?.contacts?.email || '',
-  instagram_url: model?.contacts?.instagram_url || '',
-  // Description
   description: model?.description
     ? EditorState.createWithContent(stateFromHTML(model?.description))
-    : EditorState.createEmpty()
+    : EditorState.createEmpty(),
+  requirements: {
+    min_order_amount: model?.requirements?.min_order_amount || null,
+    age_min: model?.requirements?.age_min || null,
+    age_max: model?.requirements?.age_max || null,
+    players_min: model?.requirements?.players_min || null,
+    players_max: model?.requirements?.players_max || null,
+  },
+  contacts: {
+    phone: model?.contacts?.phone || '',
+    website_url: model?.contacts?.website_url || '',
+    map_url: model?.contacts?.map_url || '',
+    address: model?.contacts?.address || '',
+    directions: model?.contacts?.directions || '',
+    email: model?.contacts?.email || '',
+    instagram_url: model?.contacts?.instagram_url || '',
+  },
 })
 
 export default withStyles(styles)(PlaceForm)

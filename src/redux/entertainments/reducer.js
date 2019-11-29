@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import c from 'src/redux/constants'
 import arrayToObject from 'utils/arrayToObject'
+import omit from 'lodash/omit'
 
 const entities = (state = {}, { type, payload, meta }) => {
   switch (type) {
@@ -11,12 +12,8 @@ const entities = (state = {}, { type, payload, meta }) => {
         ...arrayToObject(payload.entertainment)
       }
 
-    case c.DESTROY_ENTERTAINMENT_FULFILLED: {
-      const entertainments = { ...state }
-      delete entertainments[meta.entertainment_id]
-
-      return entertainments
-    }
+    case c.DESTROY_ENTERTAINMENT_FULFILLED:
+      return omit(state, meta.entertainment_id)
 
     default:
       return state

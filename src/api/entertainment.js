@@ -1,24 +1,29 @@
 import Http from 'services/Http'
+import normalize from 'normalize-api'
 
 const entertainment = {
 
-  loadMany() {
-    return Http.get(`/entertainments`)
+  async loadMany() {
+    const entertainments = await Http.get(`/entertainments`)
+    return normalize(entertainments, 'entertainment')
   },
 
-  load(entertainment_id) {
-    return Http.get(`/entertainments/${entertainment_id}`)
+  async load(entertainment_id) {
+    const entertainment = await Http.get(`/entertainments/${entertainment_id}`)
+    return normalize(entertainment, 'entertainment')
   },
 
-  create(form) {
-    return Http.post(`/entertainments`, form)
+  async create(form) {
+    const entertainment = await Http.post(`/entertainments`, form)
+    return normalize(entertainment, 'entertainment')
   },
 
-  update(entertainment_id, form) {
-    return Http.put(`/entertainments/${entertainment_id}`, form)
+  async update(entertainment_id, form) {
+    const entertainment = await Http.put(`/entertainments/${entertainment_id}`, form)
+    return normalize(entertainment, 'entertainment')
   },
 
-  destroy(entertainment_id) {
+  async destroy(entertainment_id) {
     return Http.delete(`entertainments/${entertainment_id}`)
   },
 

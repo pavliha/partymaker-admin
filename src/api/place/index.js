@@ -1,59 +1,37 @@
 import Http from 'services/Http'
-
 import photos from './photos'
 import contacts from './contacts'
-import clean from 'clean-object'
 import { stateToHTML } from 'draft-js-export-html'
+import normalize from 'normalize-api'
 
-const createFormRequest = form => clean({
-  title: form.title,
-  picture_url: form.picture_url,
-  price: form.price,
-  working_hours: form.working_hours,
-  entertainment_id: form.entertainment_id || null,
-  prices: form.prices,
-  about_prices: form.about_prices,
-  photos: form.photos,
-  additional_services: form.additional_services,
+const createForm = form => ({
+  ...form,
   description: stateToHTML(form.description.getCurrentContent()),
-  requirements: {
-    min_order_amount: form.min_order_amount,
-    age_min: form.age_min,
-    age_max: form.age_max,
-    players_min: form.players_min,
-    players_max: form.players_max,
-  },
-  contacts: {
-    phone: form.phone,
-    website_url: form.website_url,
-    map_url: form.map_url,
-    address: form.address,
-    directions: form.directions,
-    email: form.email,
-    instagram_url: form.instagram_url,
-  },
 })
 
 const place = {
 
   photos,
-
   contacts,
 
-  loadMany() {
-    return Http.get(`/places`)
+  async loadMany() {
+    const places = await Http.get(`/places`)
+    return normalize(places, 'place')
   },
 
-  load(place_id) {
-    return Http.get(`/places/${place_id}`)
+  async load(place_id) {
+    const place = await Http.get(`/places/${place_id}`)
+    return normalize(place, 'place')
   },
 
-  create(form) {
-    return Http.post(`/places`, createFormRequest(form))
+  async create(form) {
+    const place = await Http.post(`/places`, createForm(form))
+    return normalize(place, 'place')
   },
 
-  update(place_id, form) {
-    return Http.put(`/places/${place_id}`, createFormRequest(form))
+  async update(place_id, form) {
+    const place = Http.put(`/places/${place_id}`, createForm(form))
+    return normalize(place, 'place')
   },
 
   destroy(place_id) {

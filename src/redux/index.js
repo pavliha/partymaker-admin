@@ -8,7 +8,6 @@ import actions from './action'
 import select from './select'
 import reducers from './reducer'
 import c from './constants'
-import normalizeMiddleware from './_middleware/normalizeMiddleware'
 
 const initialState = {}
 
@@ -18,7 +17,7 @@ const store = createStore(
   reducers,
   initialState,
   composeWithDevTools(
-    applyMiddleware(normalizeMiddleware, promise, sagaMiddleware),
+    applyMiddleware(promise, sagaMiddleware),
   ),
 )
 

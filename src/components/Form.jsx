@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 import { object, func, elementType } from 'prop-types'
 import transformValidationApi from 'utils/transformValidationApi'
+import isPromise from 'is-promise'
 
 class Form extends Component {
 
@@ -9,9 +10,15 @@ class Form extends Component {
     const { setSubmitting, setErrors } = formikBag
     const { onSubmit } = this.props
 
+    const submit = onSubmit(form)
+
+    if (!isPromise(onSubmit)) {
+      throw new Error('onSubmit should return promise with result and errors')
+    }
+
     try {
       setSubmitting(true)
-      return await onSubmit(form)
+      return await submit
     } catch (error) {
       setErrors(transformValidationApi(error))
     } finally {
