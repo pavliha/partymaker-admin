@@ -7,14 +7,14 @@ import { stateFromHTML } from 'draft-js-import-html'
 import { Button, DialogActions, withStyles, TextField, Typography, InputAdornment } from '@material-ui/core'
 import { Form } from 'formik'
 import {
-  ServerMessage,
   Field,
-  EntertainmentsField,
   UploadField,
   EditorField,
   NumberField,
   PhotosField,
   PricesField,
+  ServerMessage,
+  EntertainmentsField,
   AdditionalServicesField,
 } from 'components'
 

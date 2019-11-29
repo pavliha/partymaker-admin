@@ -7,7 +7,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(config => {
-  config.headers.Authorization = store.getState().auth?.token
+  config.headers.Authorization = `Bearer ${store.getState().auth?.token}`
   return config
 })
 

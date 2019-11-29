@@ -27,6 +27,7 @@ const update = (place_id, form) => ({
 const destroy = place_id => ({
   type: c.DESTROY_PLACE,
   payload: place.destroy(place_id),
+  meta: { place_id }
 })
 
 export default {
