@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { bool, func, object } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { IconButton, Typography } from '@material-ui/core'
 import placeShape from 'shapes/place'
-import { Thumbnail } from 'components'
+import { Thumbnail, PlaceListItemHandle } from 'components'
 import classNames from 'classnames'
 import { appendFileNameSuffix } from 'utils'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
 import { Link } from 'react-router-dom'
+import { SortableElement } from 'react-sortable-hoc'
 
 const styles = theme => ({
   root: {
@@ -88,6 +89,21 @@ const styles = theme => ({
   deleteIcon: {
     backgroundColor: 'rgba(255,255,255,0.9)',
     borderRadius: 100,
+  },
+
+  moveIconButton: {
+    padding: 5,
+    position: 'absolute',
+    top: -5,
+    right: 17,
+    zIndex: 10,
+  },
+
+  moveIcon: {
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 100,
+    width: 15,
+    height: 15,
   }
 })
 
@@ -104,6 +120,9 @@ const PlaceListItem = ({ classes, place, inline, onDelete }) => {
         onClick={() => onDelete(place)}
       >
         <CloseCircleIcon className={classes.deleteIcon} />
+      </IconButton>
+      <IconButton color="secondary" className={classes.moveIconButton}>
+        <PlaceListItemHandle className={classes.moveIcon} />
       </IconButton>
       <Link component="div" to={`/home/places/${place.id}`}>
         <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
@@ -131,4 +150,4 @@ PlaceListItem.defaultProps = {
   onDelete: () => {},
 }
 
-export default withStyles(styles)(PlaceListItem)
+export default withStyles(styles)(SortableElement(PlaceListItem))

@@ -27,10 +27,10 @@ const destroy = (entertainment_id) => ({
   meta: { entertainment_id }
 })
 
-const sort = (sorted_ids) => ({
+const sort = (entertainments) => ({
   type: c.SORT_ENTERTAINMENTS,
-  payload: entertainment.sort(sorted_ids),
-  meta: { sorted_ids }
+  payload: entertainment.sort(entertainments),
+  meta: { entertainments }
 })
 
 export default {

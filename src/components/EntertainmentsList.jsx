@@ -3,6 +3,9 @@ import { object, arrayOf, func } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { DeleteDialog, EntertainmentsListItem, PlacesList } from 'components'
 import { entertainmentShape } from 'shapes'
+import { SortableContainer } from 'react-sortable-hoc'
+import arrayMove from 'array-move'
+import { actions, connect } from 'src/redux'
 
 const styles = theme => ({
   root: {},
@@ -20,19 +23,31 @@ const styles = theme => ({
 
 })
 
-const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy }) => {
+const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy, redux }) => {
   const [entertainment, setEntertainment] = useState(null)
+
+  const sortPlaces = (places) => ({ oldIndex, newIndex }) => {
+    const movedPlaces = arrayMove(places, oldIndex, newIndex)
+    const toSort = movedPlaces.map((place, order) => ({ ...place, order }))
+    redux.sortPlaces(toSort)
+  }
 
   return (
     <div className={classes.root}>
-      {entertainments.map(entertainment => (
+      {entertainments.map((entertainment, index) => (
         <EntertainmentsListItem
-          key={entertainment.id}
+          index={index}
+          key={index}
           entertainment={entertainment}
           onDelete={setEntertainment}
           onEdit={onEdit}
         >
-          <PlacesList places={entertainment.places} />
+          <PlacesList
+            useDragHandle
+            axis="x"
+            places={entertainment.places}
+            onSortEnd={sortPlaces(entertainment.places)}
+          />
         </EntertainmentsListItem>
       ))}
 
@@ -51,6 +66,11 @@ EntertainmentsList.propTypes = {
   entertainments: arrayOf(entertainmentShape),
   onEdit: func.isRequired,
   onDestroy: func.isRequired,
+  redux: object.isRequired,
 }
 
-export default withStyles(styles)(EntertainmentsList)
+const redux = () => ({
+  sortPlaces: actions.places.sort
+})
+
+export default withStyles(styles)(connect(redux)(SortableContainer(EntertainmentsList)))

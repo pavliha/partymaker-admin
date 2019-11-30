@@ -3,7 +3,6 @@ export Logo from './Logo'
 export Header from './Header'
 export Loading from './Loading'
 export Thumbnail from './Thumbnail'
-export PhotoListItem from './PhotoListItem'
 
 // Auth
 export LoginForm from './LoginForm'
@@ -50,6 +49,11 @@ export PhotosList from './PhotosList'
 // List Items
 export EntertainmentsListItem from './EntertainmentsListItem'
 export PlaceListItem from './PlaceListItem'
+export PhotoListItem from './PhotoListItem'
+
+// List Item Handles
+export EntertainmentListItemHandle from './EntertainmentListItemHandle'
+export PlaceListItemHandle from './PlaceListItemHandle'
 
 // Dialogs
 export DeleteDialog from './DeleteDialog'

@@ -12,6 +12,9 @@ const entities = (state = {}, { type, payload, meta }) => {
         ...arrayToObject(payload.entertainment)
       }
 
+    case c.SORT_ENTERTAINMENTS_PENDING:
+      return arrayToObject(meta.entertainments)
+
     case c.DESTROY_ENTERTAINMENT_FULFILLED:
       return omit(state, meta.entertainment_id)
 

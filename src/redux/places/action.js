@@ -30,6 +30,12 @@ const destroy = place_id => ({
   meta: { place_id }
 })
 
+const sort = places => ({
+  type: c.SORT_PLACES,
+  payload: place.sort(places),
+  meta: { places }
+})
+
 export default {
   additional_services,
   prices,
@@ -39,4 +45,5 @@ export default {
   create,
   update,
   destroy,
+  sort,
 }

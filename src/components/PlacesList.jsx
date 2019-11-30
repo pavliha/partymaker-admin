@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/styles'
 import placeShape from 'shapes/place'
 import { DeleteDialog, PlaceListItem } from 'components'
 import classNames from 'classnames'
+import { SortableContainer } from 'react-sortable-hoc'
 import { actions, connect } from 'src/redux'
 
 const styles = () => ({
@@ -15,14 +16,14 @@ const PlacesList = ({ classes, className, places, redux }) => {
 
   return (
     <div className={classNames([classes.root, className])}>
-      {places.map(place =>
+      {places.map((place, index) =>
         <PlaceListItem
           key={place.id}
+          index={index}
           place={place}
           onDelete={setPlace}
         />
       )}
-
       <DeleteDialog
         model={place}
         onClose={setPlace}
@@ -43,4 +44,4 @@ const redux = () => ({
   destroyPlace: place => actions.places.destroy(place.id),
 })
 
-export default withStyles(styles)(connect(redux)(PlacesList))
+export default withStyles(styles)(connect(redux)(SortableContainer(PlacesList)))

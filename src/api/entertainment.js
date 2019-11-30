@@ -27,8 +27,9 @@ const entertainment = {
     return Http.delete(`entertainments/${entertainment_id}`)
   },
 
-  sort(sorted_ids) {
-    return Http.post(`entertainments/sort`, { sorted_ids })
+  sort(entertainments) {
+    const toSort = entertainments.map(e => ({ id: e.id, order: e.order }))
+    return Http.patch(`entertainments/sort`, toSort)
   }
 }
 

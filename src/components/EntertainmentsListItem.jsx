@@ -1,12 +1,14 @@
 import React from 'react'
 import { object, func, node } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { Typography, IconButton } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
 import CloseIcon from 'mdi-react/CloseIcon'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import EditIcon from 'mdi-react/EditIcon'
 import { entertainmentShape } from 'shapes'
 import { Link } from 'react-router-dom'
+import { SortableElement } from 'react-sortable-hoc'
+import { EntertainmentListItemHandle } from 'components'
 
 const styles = theme => ({
   root: {
@@ -23,16 +25,6 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       paddingLeft: 10,
     }
-  },
-
-  title: {
-    marginLeft: 5,
-    marginRight: 5,
-    fontSize: 18,
-    fontFamily: 'Google Sans, Arial, sans-serif',
-    [theme.breakpoints.up('md')]: {
-      fontSize: 20,
-    },
   },
 
   icon: {
@@ -62,12 +54,7 @@ const EntertainmentsListItem = ({ classes, entertainment, children, onEdit, onDe
       >
         <EditIcon className={classes.icon} />
       </IconButton>
-      <Typography
-        component="div"
-        className={classes.title}
-      >
-        {entertainment.title}
-      </Typography>
+      <EntertainmentListItemHandle>{entertainment.title}</EntertainmentListItemHandle>
       <Link to="/home/places/create">
         <IconButton className={classes.iconButton} color="secondary">
           <AddCircleOutlineIcon className={classes.icon} />
@@ -85,4 +72,4 @@ EntertainmentsListItem.propTypes = {
   onEdit: func,
 }
 
-export default withStyles(styles)(EntertainmentsListItem)
+export default withStyles(styles)(SortableElement(EntertainmentsListItem))

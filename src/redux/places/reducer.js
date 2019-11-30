@@ -20,6 +20,13 @@ const entities = (state = {}, { type, payload, meta }) => {
     case c.DESTROY_PLACE_FULFILLED:
       return omit(state, meta.place_id)
 
+    case c.SORT_PLACES_PENDING: {
+      return {
+        ...state,
+        ...arrayToObject(meta.places),
+      }
+    }
+
     default:
       return state
   }

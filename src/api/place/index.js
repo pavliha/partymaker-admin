@@ -35,8 +35,13 @@ const place = {
   },
 
   destroy(place_id) {
-    return Http.delete(`places/${place_id}`)
+    return Http.delete(`/places/${place_id}`)
   },
+
+  sort(places) {
+    const toSort = places.map(e => ({ id: e.id, order: e.order }))
+    return Http.patch(`/places/sort`, toSort)
+  }
 }
 
 export default place
