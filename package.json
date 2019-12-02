@@ -99,6 +99,6 @@
     "yup": "^0.27.0"
   },
   "optionalDependencies": {
-    "fsevents": "^1.0.0"
+    "fsevents": "^2.1.2"
   }
 }

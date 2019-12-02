@@ -5,7 +5,6 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { Loading } from 'components'
 
 const LoginScene = lazy(() => import('./@login/LoginScene'))
-const LogoutScene = lazy(() => import('./@logout/LogoutScene'))
 
 const styles = () => ({
   root: {
@@ -48,7 +47,6 @@ const AuthLayout = (props) => {
             <Suspense fallback={<Loading center />}>
               <Switch>
                 <Route exact path="/auth/login" component={LoginScene} />
-                <Route exact path="/auth/logout" component={LogoutScene} />
                 <Redirect to="/auth/login" />
               </Switch>
             </Suspense>

@@ -7,7 +7,7 @@ import c from 'src/redux/constants'
 function * setAuthUser({ payload: { token } }) {
   const user = fromJWT(token)
   Storage.put({ token })
-  yield put(actions.users.set(user))
+  yield put(actions.setModels({ users: [user] }))
 }
 
 export default function * saga() {

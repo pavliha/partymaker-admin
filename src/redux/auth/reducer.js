@@ -20,10 +20,11 @@ const authReducer = (state = initialState, { type, payload }) => {
         user_id: fromJWT(payload.token)?.id,
       }
 
-    case c.LOGOUT_USER:
+    case c.LOGOUT_USER_FULFILLED:
       return {
         ...state,
         user_id: null,
+        token: null,
       }
 
     case c.SET_AUTH_USER:
