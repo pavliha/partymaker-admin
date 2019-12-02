@@ -12,7 +12,7 @@ class Form extends Component {
 
     const submit = onSubmit(form)
 
-    if (!isPromise(onSubmit)) {
+    if (!isPromise(submit)) {
       throw new Error('onSubmit should return promise with result and errors')
     }
 
