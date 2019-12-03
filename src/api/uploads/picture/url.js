@@ -5,7 +5,7 @@ const url = {
 
   create(url, type) {
     const query = qs.stringify({ type })
-    return Http.post(`/uploads/picture/url?${query}`, { url })
+    return Http.post(`/upload/picture/url?${query}`, { url })
   },
 
 }

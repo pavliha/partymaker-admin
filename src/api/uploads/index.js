@@ -8,7 +8,7 @@ const uploads = {
   picture,
 
   destroy(url) {
-    return Http.delete(`/uploads/${basename(url)}`)
+    return Http.delete(`/upload/${basename(url)}`)
   },
 }
 

@@ -13,7 +13,7 @@ const file = {
     const form = new FormData()
     form.append('file', file)
     const config = defineConfig({ progress })
-    return Http.post(`/uploads/picture/file?type=${type}`, form, config)
+    return Http.post(`/upload/picture/file?type=${type}`, form, config)
   },
 
 }
