@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -16,7 +17,7 @@ module.exports = () => ({
 
   devServer: {
     hot: true,
-    port: process.env.PORT || 2000,
+    port: process.env.PORT,
     historyApiFallback: true,
     disableHostCheck: true,
   },

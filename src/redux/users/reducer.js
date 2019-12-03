@@ -11,7 +11,7 @@ const entities = (state = initialState, { type, payload }) => {
     case c.SET_ENTITIES:
       return {
         ...state,
-        ...arrayToObject(payload.user)
+        ...arrayToObject(payload.users)
       }
 
     default:
