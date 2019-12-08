@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { object, func, bool, string, arrayOf } from 'prop-types'
+import { object, func, bool, string, arrayOf, shape } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import serviceShape from 'shapes/service'
 import { IconButton, FormHelperText, Input } from '@material-ui/core'
@@ -206,7 +206,7 @@ class AdditionalServicesField extends Component {
 AdditionalServicesField.propTypes = {
   classes: object.isRequired,
   name: string,
-  value: arrayOf(serviceShape),
+  value: arrayOf(shape(serviceShape)),
   helperText: string,
   error: bool,
   onChange: func.isRequired,

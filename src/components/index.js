@@ -34,7 +34,7 @@ export EditorField from './EditorField'
 export NumberField from './NumberField'
 export PhotosField from './PhotosField'
 export PricesField from './PricesField'
-export AdditionalServicesField from './AdditionalServicesField'
+export AdditionalServicesField from './AdditionalServicesField/AdditionalServicesField'
 
 // Loaders
 export Loader from './Loader'

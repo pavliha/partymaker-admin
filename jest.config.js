@@ -89,7 +89,9 @@ module.exports = {
     '^services(.*)$': '<rootDir>/src/services$1',
     '^config(.*)$': '<rootDir>/src/config',
     '^shapes(.*)$': '<rootDir>/src/shapes',
-    '^utils(.*)$': '<rootDir>/src/utils'
+    '^utils(.*)$': '<rootDir>/src/utils',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
   }
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
