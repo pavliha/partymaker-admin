@@ -5,22 +5,22 @@ const entertainment = {
 
   async loadMany() {
     const entertainments = await Http.get(`/entertainments`)
-    return normalize(entertainments, 'entertainment')
+    return normalize(entertainments, 'entertainments')
   },
 
   async load(entertainment_id) {
     const entertainment = await Http.get(`/entertainments/${entertainment_id}`)
-    return normalize(entertainment, 'entertainment')
+    return normalize(entertainment, 'entertainments')
   },
 
   async create(form) {
     const entertainment = await Http.post(`/entertainments`, form)
-    return normalize(entertainment, 'entertainment')
+    return normalize(entertainment, 'entertainments')
   },
 
   async update(entertainment_id, form) {
     const entertainment = await Http.put(`/entertainments/${entertainment_id}`, form)
-    return normalize(entertainment, 'entertainment')
+    return normalize(entertainment, 'entertainments')
   },
 
   async destroy(entertainment_id) {

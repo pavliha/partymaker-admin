@@ -35,7 +35,6 @@ const styles = (theme) => ({
 
 const NavigationItem = ({ location, classes, icon: Icon, url, children }) =>
   <Link
-    component="div"
     to={`/home${url}`}
     className={classNames({
       [classes.root]: true,

@@ -7,7 +7,6 @@ import c from 'src/redux/constants'
 function * setAuthUser({ payload: { token } }) {
   const user = fromJWT(token)
   Storage.put({ token })
-  debugger
   yield put(actions.setModels({ users: [user] }))
 }
 

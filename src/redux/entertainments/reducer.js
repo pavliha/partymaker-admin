@@ -9,7 +9,7 @@ const entities = (state = {}, { type, payload, meta }) => {
     case c.SET_ENTITIES:
       return {
         ...state,
-        ...arrayToObject(payload.entertainment)
+        ...arrayToObject(payload.entertainments)
       }
 
     case c.SORT_ENTERTAINMENTS_PENDING:

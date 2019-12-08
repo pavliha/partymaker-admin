@@ -16,22 +16,22 @@ const place = {
 
   async loadMany() {
     const places = await Http.get(`/places`)
-    return normalize(places, 'place')
+    return normalize(places, 'places')
   },
 
   async load(place_id) {
     const place = await Http.get(`/places/${place_id}`)
-    return normalize(place, 'place')
+    return normalize(place, 'places')
   },
 
   async create(form) {
     const place = await Http.post(`/places`, createForm(form))
-    return normalize(place, 'place')
+    return normalize(place, 'places')
   },
 
   async update(place_id, form) {
-    const place = Http.put(`/places/${place_id}`, createForm(form))
-    return normalize(place, 'place')
+    const place = await Http.put(`/places/${place_id}`, createForm(form))
+    return normalize(place, 'places')
   },
 
   destroy(place_id) {

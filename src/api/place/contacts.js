@@ -1,21 +1,26 @@
 import Http from 'services/Http'
+import normalize from 'normalize-api'
 
 const contacts = {
 
-  loadMany(place_id) {
-    return Http.get(`/places/${place_id}/contacts`)
+  async loadMany(place_id) {
+    const contacts = await Http.get(`/places/${place_id}/contacts`)
+    return normalize(contacts, 'contacts')
   },
 
-  load(place_id, contact_id) {
-    return Http.get(`/places/${place_id}/contacts/${contact_id}`)
+  async load(place_id, contact_id) {
+    const contact = await Http.get(`/places/${place_id}/contacts/${contact_id}`)
+    return normalize(contact, 'contacts')
   },
 
-  create(place_id, form, config) {
-    return Http.post(`/places/${place_id}/contacts`, form, config)
+  async create(place_id, form, config) {
+    const contact = await Http.post(`/places/${place_id}/contacts`, form, config)
+    return normalize(contact, 'contacts')
   },
 
-  update(place_id, contact_id, form) {
-    return Http.put(`/places/${place_id}/contacts/${contact_id}`, form)
+  async update(place_id, contact_id, form) {
+    const contact = await Http.put(`/places/${place_id}/contacts/${contact_id}`, form)
+    return normalize(contact, 'contacts')
   },
 
   destroy(place_id, contact_id) {

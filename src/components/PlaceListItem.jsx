@@ -124,7 +124,7 @@ const PlaceListItem = ({ classes, place, inline, onDelete }) => {
       <IconButton color="secondary" className={classes.moveIconButton}>
         <PlaceListItemHandle className={classes.moveIcon} />
       </IconButton>
-      <Link component="div" to={`/home/places/${place.id}`}>
+      <Link to={`/home/places/${place.id}`}>
         <Thumbnail src={appendFileNameSuffix(place?.picture_url, '-thumbnail')} className={pictureStyle} />
         <div className={containerStyle}>
           <Typography className={classes.title}>{place?.title}</Typography>
