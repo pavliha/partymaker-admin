@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthGate renders /home route when logged in 1`] = `
+<div>
+  route 1
+</div>
+`;
+
+exports[`AuthGate renders redirect to /auth/login when logged out 1`] = `null`;

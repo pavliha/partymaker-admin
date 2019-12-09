@@ -1,12 +1,10 @@
 import React from 'react'
-import { string } from 'prop-types'
+import { string, elementType, shape } from 'prop-types'
 import { Redirect, Route } from 'react-router-dom'
 import { connect, select } from 'src/redux'
-import Storage from 'services/Storage'
+import userShape from 'shapes/user'
 
-const AuthGate = ({ redux: { user }, location, ...props }) => {
-
-  Storage.put({ previous_user_location: props.path })
+const AuthGate = ({ redux: { user }, ...props }) => {
 
   if (!user) return <Redirect to="/auth/login" />
 
@@ -15,6 +13,10 @@ const AuthGate = ({ redux: { user }, location, ...props }) => {
 
 AuthGate.propTypes = {
   path: string,
+  component: elementType,
+  redux: shape({
+    user: userShape,
+  })
 }
 
 const redux = (state) => ({

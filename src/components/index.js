@@ -6,9 +6,8 @@ export Thumbnail from './Thumbnail'
 
 // Auth
 export LoginForm from './LoginForm'
-export AuthCard from './AuthCard'
-export AuthCardActions from './AuthCardActions'
-export AuthGate from './AuthGate'
+export AuthCard from './AuthCard/AuthCard'
+export AuthGate from './AuthGate/AuthGate'
 export Account from './Account'
 
 // Navigation

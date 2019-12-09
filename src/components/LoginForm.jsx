@@ -1,21 +1,35 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { bool, object, shape } from 'prop-types'
 import { Form } from 'formik'
-import { CardContent, withStyles, TextField } from '@material-ui/core'
-import { AuthCardActions, Field, ServerMessage } from 'components'
+import { CardContent, withStyles, TextField, Button } from '@material-ui/core'
+import { Field, ServerMessage } from 'components'
 import * as Yup from 'yup'
 
 const styles = {
+
   root: {
     color: '#0083bc'
   },
+
   link: {
     marginTop: 10,
     marginLeft: 20,
   },
+
+  actions: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 15px',
+    marginBottom: 20,
+  },
+
+  button: {
+    minWidth: 130,
+    marginRight: 40,
+  }
 }
 
-const LoginForm = ({ classes }) =>
+const LoginForm = ({ classes, formik }) =>
   <div className={classes.root} id="login-form">
     <Form>
       <CardContent>
@@ -44,12 +58,26 @@ const LoginForm = ({ classes }) =>
         />
       </CardContent>
       <ServerMessage color="error" name="non_field_error" />
-      <AuthCardActions textButton="Войти" />
+      <div className={classes.actions}>
+        <Button
+          disabled={formik.isSubmitting}
+          className={classes.button}
+          type="submit"
+          size="large"
+          variant="outlined"
+          color="primary"
+        >
+          {formik.isSubmitting ? 'Загрузка...' : 'Войти'}
+        </Button>
+      </div>
     </Form>
   </div>
 
 LoginForm.propTypes = {
   classes: object.isRequired,
+  formik: shape({
+    isSubmitting: bool,
+  })
 }
 
 LoginForm.mapPropsToValues = () => ({
