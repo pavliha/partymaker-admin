@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseButton displays close icon 1`] = `
+<WithStyles(CloseButton)>
+  <CloseButton
+    classes={
+      Object {
+        "icon": "CloseButton-icon-2",
+        "root": "CloseButton-root-1",
+      }
+    }
+  >
+    <div>
+      <WithStyles(ForwardRef(IconButton))>
+        <ForwardRef(IconButton)
+          classes={
+            Object {
+              "colorInherit": "MuiIconButton-colorInherit",
+              "colorPrimary": "MuiIconButton-colorPrimary",
+              "colorSecondary": "MuiIconButton-colorSecondary",
+              "disabled": "Mui-disabled",
+              "edgeEnd": "MuiIconButton-edgeEnd",
+              "edgeStart": "MuiIconButton-edgeStart",
+              "label": "MuiIconButton-label",
+              "root": "MuiIconButton-root",
+              "sizeSmall": "MuiIconButton-sizeSmall",
+            }
+          }
+        >
+          <WithStyles(ForwardRef(ButtonBase))
+            centerRipple={true}
+            className="MuiIconButton-root"
+            disabled={false}
+            focusRipple={true}
+          >
+            <ForwardRef(ButtonBase)
+              centerRipple={true}
+              className="MuiIconButton-root"
+              classes={
+                Object {
+                  "disabled": "Mui-disabled",
+                  "focusVisible": "Mui-focusVisible",
+                  "root": "MuiButtonBase-root",
+                }
+              }
+              disabled={false}
+              focusRipple={true}
+            >
+              <button
+                className="MuiButtonBase-root MuiIconButton-root"
+                disabled={false}
+                onBlur={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <span
+                  className="MuiIconButton-label"
+                >
+                  <Memo(CloseIcon)
+                    className="CloseButton-icon-2"
+                    style={
+                      Object {
+                        "color": undefined,
+                        "height": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  >
+                    <svg
+                      className="mdi-icon CloseButton-icon-2"
+                      fill="currentColor"
+                      height={24}
+                      style={
+                        Object {
+                          "color": undefined,
+                          "height": undefined,
+                          "width": undefined,
+                        }
+                      }
+                      viewBox="0 0 24 24"
+                      width={24}
+                    >
+                      <path
+                        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                      />
+                    </svg>
+                  </Memo(CloseIcon)>
+                </span>
+                <NoSsr>
+                  <WithStyles(undefined)
+                    center={true}
+                  >
+                    <ForwardRef(TouchRipple)
+                      center={true}
+                      classes={
+                        Object {
+                          "child": "MuiTouchRipple-child",
+                          "childLeaving": "MuiTouchRipple-childLeaving",
+                          "childPulsate": "MuiTouchRipple-childPulsate",
+                          "ripple": "MuiTouchRipple-ripple",
+                          "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                          "rippleVisible": "MuiTouchRipple-rippleVisible",
+                          "root": "MuiTouchRipple-root",
+                        }
+                      }
+                    >
+                      <span
+                        className="MuiTouchRipple-root"
+                      >
+                        <TransitionGroup
+                          childFactory={[Function]}
+                          component={null}
+                          exit={true}
+                        />
+                      </span>
+                    </ForwardRef(TouchRipple)>
+                  </WithStyles(undefined)>
+                </NoSsr>
+              </button>
+            </ForwardRef(ButtonBase)>
+          </WithStyles(ForwardRef(ButtonBase))>
+        </ForwardRef(IconButton)>
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </CloseButton>
+</WithStyles(CloseButton)>
+`;
