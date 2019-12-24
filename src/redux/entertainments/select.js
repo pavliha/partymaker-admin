@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
+import { sortBy } from 'lodash'
 
 const all = createSelector(
   state => Object.values(state.entertainments.entities),
-  state => Object.values(state.places.entities),
+  state => sortBy(Object.values(state.places.entities), 'order'),
 
   (entertainments, places) =>
     entertainments
