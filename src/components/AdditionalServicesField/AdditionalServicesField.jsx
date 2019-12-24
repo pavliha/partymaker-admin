@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { object, func, bool, string, arrayOf, shape } from 'prop-types'
+import { object, func, bool, string, arrayOf, oneOfType, number, shape } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import serviceShape from 'shapes/service'
 import { IconButton, FormHelperText, Input } from '@material-ui/core'
 import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
@@ -206,7 +205,14 @@ class AdditionalServicesField extends Component {
 AdditionalServicesField.propTypes = {
   classes: object.isRequired,
   name: string,
-  value: arrayOf(shape(serviceShape)),
+  value: arrayOf(shape({
+    id: oneOfType([number, string]).isRequired,
+    title: string.isRequired,
+    description: string,
+    price: number,
+    created_at: string,
+    updated_at: string,
+  })),
   helperText: string,
   error: bool,
   onChange: func.isRequired,
