@@ -53,13 +53,14 @@ const PlacesScene = ({ classes, redux }) => {
       </EntertainmentsLoader>
       <FormDialog
         isOpen={isFormDialogOpen}
-        title={entertainment?.title}
+        title={entertainment?.title || 'Добавить тип заведения'}
         onClose={closeEditor}
       >
         <Form
           model={entertainment}
           component={EntertainmentForm}
           onSubmit={form => redux.submitEntertainment(entertainment?.id, form)}
+          onCancel={() => setFormDialogOpen(false)}
         />
       </FormDialog>
     </div>
