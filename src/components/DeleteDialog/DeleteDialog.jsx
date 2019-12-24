@@ -35,18 +35,19 @@ class DeleteDialog extends Component {
 
     return (
       <Dialog open={!!model} onClose={this.close}>
-        <DialogTitle id="alert-dialog-title">Вы действительно хотите удалить "{model.title}"?</DialogTitle>
+        <DialogTitle id="DeleteDialog-title">Вы действительно хотите удалить "{model.title}"?</DialogTitle>
         <DialogContent>
           <DialogContentText color={error ? 'error' : 'inherit'} id="alert-dialog-description">
             {error || `Это безвозвратно удалит "${model.title}" из нашей базы данных`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.close} color="secondary">
+          <Button id="DeleteDialog-cancel" onClick={this.close} color="secondary">
             Отменить
           </Button>
           {!error && (
             <Button
+              id="DeleteDialog-confirm"
               onClick={this.confirm}
               disabled={isLoading}
               variant="outlined"
@@ -63,7 +64,7 @@ class DeleteDialog extends Component {
 }
 
 DeleteDialog.propTypes = {
-  model: shape({ id: number, title: string }),
+  model: shape({ id: number.isRequired, title: string.isRequired }),
   onClose: func.isRequired,
   onConfirm: func.isRequired,
 }

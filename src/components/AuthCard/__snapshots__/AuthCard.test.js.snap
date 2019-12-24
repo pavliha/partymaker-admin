@@ -1,44 +1,316 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AuthCard it displays children and title 1`] = `
-<div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+<WithStyles(AuthCard)
+  title="Some title"
 >
-  <div
-    className="MuiCardHeader-root AuthCard-title-2"
+  <AuthCard
+    classes={
+      Object {
+        "root": "AuthCard-root-1",
+        "title": "AuthCard-title-2",
+      }
+    }
+    title="Some title"
   >
-    <div
-      className="MuiCardHeader-content"
+    <WithStyles(ForwardRef(Card))
+      className="AuthCard-root-1"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+      <ForwardRef(Card)
+        className="AuthCard-root-1"
+        classes={
+          Object {
+            "root": "MuiCard-root",
+          }
+        }
       >
-        Some title
-      </span>
-    </div>
-  </div>
-  <div>
-    any react node
-  </div>
-</div>
+        <WithStyles(ForwardRef(Paper))
+          className="MuiCard-root AuthCard-root-1"
+          elevation={1}
+        >
+          <ForwardRef(Paper)
+            className="MuiCard-root AuthCard-root-1"
+            classes={
+              Object {
+                "elevation0": "MuiPaper-elevation0",
+                "elevation1": "MuiPaper-elevation1",
+                "elevation10": "MuiPaper-elevation10",
+                "elevation11": "MuiPaper-elevation11",
+                "elevation12": "MuiPaper-elevation12",
+                "elevation13": "MuiPaper-elevation13",
+                "elevation14": "MuiPaper-elevation14",
+                "elevation15": "MuiPaper-elevation15",
+                "elevation16": "MuiPaper-elevation16",
+                "elevation17": "MuiPaper-elevation17",
+                "elevation18": "MuiPaper-elevation18",
+                "elevation19": "MuiPaper-elevation19",
+                "elevation2": "MuiPaper-elevation2",
+                "elevation20": "MuiPaper-elevation20",
+                "elevation21": "MuiPaper-elevation21",
+                "elevation22": "MuiPaper-elevation22",
+                "elevation23": "MuiPaper-elevation23",
+                "elevation24": "MuiPaper-elevation24",
+                "elevation3": "MuiPaper-elevation3",
+                "elevation4": "MuiPaper-elevation4",
+                "elevation5": "MuiPaper-elevation5",
+                "elevation6": "MuiPaper-elevation6",
+                "elevation7": "MuiPaper-elevation7",
+                "elevation8": "MuiPaper-elevation8",
+                "elevation9": "MuiPaper-elevation9",
+                "root": "MuiPaper-root",
+                "rounded": "MuiPaper-rounded",
+              }
+            }
+            elevation={1}
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+            >
+              <WithStyles(ForwardRef(CardHeader))
+                className="AuthCard-title-2"
+                title="Some title"
+              >
+                <ForwardRef(CardHeader)
+                  className="AuthCard-title-2"
+                  classes={
+                    Object {
+                      "action": "MuiCardHeader-action",
+                      "avatar": "MuiCardHeader-avatar",
+                      "content": "MuiCardHeader-content",
+                      "root": "MuiCardHeader-root",
+                      "subheader": "MuiCardHeader-subheader",
+                      "title": "MuiCardHeader-title",
+                    }
+                  }
+                  title="Some title"
+                >
+                  <div
+                    className="MuiCardHeader-root AuthCard-title-2"
+                  >
+                    <div
+                      className="MuiCardHeader-content"
+                    >
+                      <WithStyles(ForwardRef(Typography))
+                        className="MuiCardHeader-title"
+                        component="span"
+                        display="block"
+                        variant="h5"
+                      >
+                        <ForwardRef(Typography)
+                          className="MuiCardHeader-title"
+                          classes={
+                            Object {
+                              "alignCenter": "MuiTypography-alignCenter",
+                              "alignJustify": "MuiTypography-alignJustify",
+                              "alignLeft": "MuiTypography-alignLeft",
+                              "alignRight": "MuiTypography-alignRight",
+                              "body1": "MuiTypography-body1",
+                              "body2": "MuiTypography-body2",
+                              "button": "MuiTypography-button",
+                              "caption": "MuiTypography-caption",
+                              "colorError": "MuiTypography-colorError",
+                              "colorInherit": "MuiTypography-colorInherit",
+                              "colorPrimary": "MuiTypography-colorPrimary",
+                              "colorSecondary": "MuiTypography-colorSecondary",
+                              "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                              "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                              "displayBlock": "MuiTypography-displayBlock",
+                              "displayInline": "MuiTypography-displayInline",
+                              "gutterBottom": "MuiTypography-gutterBottom",
+                              "h1": "MuiTypography-h1",
+                              "h2": "MuiTypography-h2",
+                              "h3": "MuiTypography-h3",
+                              "h4": "MuiTypography-h4",
+                              "h5": "MuiTypography-h5",
+                              "h6": "MuiTypography-h6",
+                              "noWrap": "MuiTypography-noWrap",
+                              "overline": "MuiTypography-overline",
+                              "paragraph": "MuiTypography-paragraph",
+                              "root": "MuiTypography-root",
+                              "srOnly": "MuiTypography-srOnly",
+                              "subtitle1": "MuiTypography-subtitle1",
+                              "subtitle2": "MuiTypography-subtitle2",
+                            }
+                          }
+                          component="span"
+                          display="block"
+                          variant="h5"
+                        >
+                          <span
+                            className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+                          >
+                            Some title
+                          </span>
+                        </ForwardRef(Typography)>
+                      </WithStyles(ForwardRef(Typography))>
+                    </div>
+                  </div>
+                </ForwardRef(CardHeader)>
+              </WithStyles(ForwardRef(CardHeader))>
+              <div>
+                any react node
+              </div>
+            </div>
+          </ForwardRef(Paper)>
+        </WithStyles(ForwardRef(Paper))>
+      </ForwardRef(Card)>
+    </WithStyles(ForwardRef(Card))>
+  </AuthCard>
+</WithStyles(AuthCard)>
 `;
 
 exports[`AuthCard it displays title 1`] = `
-<div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+<WithStyles(AuthCard)
+  title="Some title"
 >
-  <div
-    className="MuiCardHeader-root AuthCard-title-2"
+  <AuthCard
+    classes={
+      Object {
+        "root": "AuthCard-root-1",
+        "title": "AuthCard-title-2",
+      }
+    }
+    title="Some title"
   >
-    <div
-      className="MuiCardHeader-content"
+    <WithStyles(ForwardRef(Card))
+      className="AuthCard-root-1"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+      <ForwardRef(Card)
+        className="AuthCard-root-1"
+        classes={
+          Object {
+            "root": "MuiCard-root",
+          }
+        }
       >
-        Some title
-      </span>
-    </div>
-  </div>
-</div>
+        <WithStyles(ForwardRef(Paper))
+          className="MuiCard-root AuthCard-root-1"
+          elevation={1}
+        >
+          <ForwardRef(Paper)
+            className="MuiCard-root AuthCard-root-1"
+            classes={
+              Object {
+                "elevation0": "MuiPaper-elevation0",
+                "elevation1": "MuiPaper-elevation1",
+                "elevation10": "MuiPaper-elevation10",
+                "elevation11": "MuiPaper-elevation11",
+                "elevation12": "MuiPaper-elevation12",
+                "elevation13": "MuiPaper-elevation13",
+                "elevation14": "MuiPaper-elevation14",
+                "elevation15": "MuiPaper-elevation15",
+                "elevation16": "MuiPaper-elevation16",
+                "elevation17": "MuiPaper-elevation17",
+                "elevation18": "MuiPaper-elevation18",
+                "elevation19": "MuiPaper-elevation19",
+                "elevation2": "MuiPaper-elevation2",
+                "elevation20": "MuiPaper-elevation20",
+                "elevation21": "MuiPaper-elevation21",
+                "elevation22": "MuiPaper-elevation22",
+                "elevation23": "MuiPaper-elevation23",
+                "elevation24": "MuiPaper-elevation24",
+                "elevation3": "MuiPaper-elevation3",
+                "elevation4": "MuiPaper-elevation4",
+                "elevation5": "MuiPaper-elevation5",
+                "elevation6": "MuiPaper-elevation6",
+                "elevation7": "MuiPaper-elevation7",
+                "elevation8": "MuiPaper-elevation8",
+                "elevation9": "MuiPaper-elevation9",
+                "root": "MuiPaper-root",
+                "rounded": "MuiPaper-rounded",
+              }
+            }
+            elevation={1}
+          >
+            <div
+              className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+            >
+              <WithStyles(ForwardRef(CardHeader))
+                className="AuthCard-title-2"
+                title="Some title"
+              >
+                <ForwardRef(CardHeader)
+                  className="AuthCard-title-2"
+                  classes={
+                    Object {
+                      "action": "MuiCardHeader-action",
+                      "avatar": "MuiCardHeader-avatar",
+                      "content": "MuiCardHeader-content",
+                      "root": "MuiCardHeader-root",
+                      "subheader": "MuiCardHeader-subheader",
+                      "title": "MuiCardHeader-title",
+                    }
+                  }
+                  title="Some title"
+                >
+                  <div
+                    className="MuiCardHeader-root AuthCard-title-2"
+                  >
+                    <div
+                      className="MuiCardHeader-content"
+                    >
+                      <WithStyles(ForwardRef(Typography))
+                        className="MuiCardHeader-title"
+                        component="span"
+                        display="block"
+                        variant="h5"
+                      >
+                        <ForwardRef(Typography)
+                          className="MuiCardHeader-title"
+                          classes={
+                            Object {
+                              "alignCenter": "MuiTypography-alignCenter",
+                              "alignJustify": "MuiTypography-alignJustify",
+                              "alignLeft": "MuiTypography-alignLeft",
+                              "alignRight": "MuiTypography-alignRight",
+                              "body1": "MuiTypography-body1",
+                              "body2": "MuiTypography-body2",
+                              "button": "MuiTypography-button",
+                              "caption": "MuiTypography-caption",
+                              "colorError": "MuiTypography-colorError",
+                              "colorInherit": "MuiTypography-colorInherit",
+                              "colorPrimary": "MuiTypography-colorPrimary",
+                              "colorSecondary": "MuiTypography-colorSecondary",
+                              "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                              "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                              "displayBlock": "MuiTypography-displayBlock",
+                              "displayInline": "MuiTypography-displayInline",
+                              "gutterBottom": "MuiTypography-gutterBottom",
+                              "h1": "MuiTypography-h1",
+                              "h2": "MuiTypography-h2",
+                              "h3": "MuiTypography-h3",
+                              "h4": "MuiTypography-h4",
+                              "h5": "MuiTypography-h5",
+                              "h6": "MuiTypography-h6",
+                              "noWrap": "MuiTypography-noWrap",
+                              "overline": "MuiTypography-overline",
+                              "paragraph": "MuiTypography-paragraph",
+                              "root": "MuiTypography-root",
+                              "srOnly": "MuiTypography-srOnly",
+                              "subtitle1": "MuiTypography-subtitle1",
+                              "subtitle2": "MuiTypography-subtitle2",
+                            }
+                          }
+                          component="span"
+                          display="block"
+                          variant="h5"
+                        >
+                          <span
+                            className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+                          >
+                            Some title
+                          </span>
+                        </ForwardRef(Typography)>
+                      </WithStyles(ForwardRef(Typography))>
+                    </div>
+                  </div>
+                </ForwardRef(CardHeader)>
+              </WithStyles(ForwardRef(CardHeader))>
+            </div>
+          </ForwardRef(Paper)>
+        </WithStyles(ForwardRef(Paper))>
+      </ForwardRef(Card)>
+    </WithStyles(ForwardRef(Card))>
+  </AuthCard>
+</WithStyles(AuthCard)>
 `;

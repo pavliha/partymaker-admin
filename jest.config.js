@@ -52,7 +52,7 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: './tests/setup/setup.js',
+  // globalSetup: './jest.setup.js',
 
   // A path to a module which exports an async function that is triggered once after all test suites
   //  globalTeardown: './tests/setup/teardown.js',
@@ -92,13 +92,13 @@ module.exports = {
     '^utils(.*)$': '<rootDir>/src/utils',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
-  }
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
   // Activates notifications for test results
-  // notify: false,
+  notify: false,
 
   // An enum that specifies notification mode. Requires { notify: true }
   // notifyMode: "failure-change",
@@ -136,13 +136,13 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: ['<rootDir>/jest.init.js'],
+  setupFiles: ['<rootDir>/jest.init.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  // snapshotSerializers: [],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 
   // The test environment that will be used for testing
   // testEnvironment: './tests/setup/puppeteer_environment.js',

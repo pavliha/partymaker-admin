@@ -1,20 +1,19 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import AuthCard from './AuthCard'
 
 describe('AuthCard', () => {
   it('it displays title', () => {
-    const tree = renderer.create(<AuthCard title="Some title" />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const tree = mount(<AuthCard title="Some title" />)
+    expect(toJson(tree)).toMatchSnapshot()
   })
 
   it('it displays children and title', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <AuthCard title="Some title">
         <div>any react node</div>
       </AuthCard>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(toJson(tree)).toMatchSnapshot()
   })
 
 })

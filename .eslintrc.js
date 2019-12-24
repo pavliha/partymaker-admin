@@ -18,6 +18,9 @@ module.exports = {
     'isServer': true,
     'isClient': true,
     'store': true,
+    'shallow': true,
+    'toJson': true,
+    'mount': true,
   },
   'env': {
     'jasmine': true,
