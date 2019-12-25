@@ -5,7 +5,7 @@ import { object, string, func, bool, oneOf } from 'prop-types'
 import { TextField, withStyles } from '@material-ui/core'
 import { transformValidationApi } from 'utils'
 import classNames from 'classnames'
-import UploadFieldAdornment from './UploadFieldAdornment'
+import UploadFieldAdornment from '../UploadFieldAdornment'
 
 const styles = {
   root: {
