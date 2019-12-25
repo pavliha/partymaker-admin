@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { arrayOf, bool, object, string, func } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { UploadField, PhotosList, PhotoListItem } from 'components'
+import { UploadField, PhotosList } from 'components'
 import uniqId from 'uniqid'
 import photoShape from 'shapes/photo'
 import { actions, connect } from 'src/redux'
 import arrayMove from 'array-move'
+import api from 'api'
 
 const styles = {
   root: {},
@@ -60,6 +61,11 @@ class PhotosField extends Component {
           value={this.state.value}
           onError={this.setError}
           onChange={this.createTempPhoto}
+          api={{
+            uploadUrl: api.uploads.picture.url.create,
+            uploadFile: api.uploads.picture.file.create,
+            destroy: api.uploads.destroy,
+          }}
         />
         <PhotosList
           axis="x"

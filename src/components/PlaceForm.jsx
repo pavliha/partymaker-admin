@@ -6,6 +6,7 @@ import { EditorState } from 'draft-js'
 import { stateFromHTML } from 'draft-js-import-html'
 import { Button, DialogActions, withStyles, TextField, Typography, InputAdornment } from '@material-ui/core'
 import { Form } from 'formik'
+import api from 'api'
 import {
   Field,
   UploadField,
@@ -70,6 +71,11 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
         margin="normal"
         type="thumbnail"
         component={UploadField}
+        api={{
+          uploadFile: api.uploads.picture.file.create,
+          uploadUrl: api.uploads.picture.url.create,
+          destroy: api.uploads.destroy,
+        }}
       />
       <Field
         label="Цена"

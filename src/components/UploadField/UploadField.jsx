@@ -1,7 +1,6 @@
-import api from 'api'
 import React, { Component } from 'react'
 import { basename } from 'path'
-import { object, string, func, bool, oneOf } from 'prop-types'
+import { object, string, func, bool, oneOf, shape } from 'prop-types'
 import { TextField, withStyles } from '@material-ui/core'
 import { transformValidationApi } from 'utils'
 import classNames from 'classnames'
@@ -63,17 +62,16 @@ class UploadField extends Component {
     this.setState({ loading: progress === 100 ? 0 : progress })
 
   uploadFile = async file => {
-    const { type } = this.props
-    const uploadFile = api.uploads.picture.file.create
+    const { type, api: { uploadFile } } = this.props
     return this.upload(() => uploadFile({ file, type, progress: this.watchProgress }))
   }
 
   uploadLink = async () => {
+    const { api: { uploadUrl } } = this.props
     const params = {
       url: this.state.url,
       type: this.props.type
     }
-    const uploadUrl = api.uploads.picture.url.create
     return this.upload(() => uploadUrl(params))
   }
 
@@ -89,9 +87,9 @@ class UploadField extends Component {
   }
 
   destroyAsset = async () => {
-    const { name, value, onChange } = this.props
+    const { name, value, onChange, api: { destroy } } = this.props
     try {
-      await api.uploads.destroy(basename(value))
+      await destroy(basename(value))
       this.setState({ url: '' })
       onChange(name, '')
     } catch (error) {
@@ -134,7 +132,6 @@ class UploadField extends Component {
           ref={this.fileInput}
           accept="image/*"
           className={classes.fileInput}
-          id="upload"
           multiple
           type="file"
           onChange={this.handleFileInput}
@@ -155,6 +152,11 @@ UploadField.propTypes = {
   helperText: string,
   onChange: func.isRequired,
   onError: func.isRequired,
+  api: shape({
+    uploadFile: func.isRequired,
+    uploadUrl: func.isRequired,
+    destroy: func.isRequired,
+  })
 }
 
 export default withStyles(styles)(UploadField)

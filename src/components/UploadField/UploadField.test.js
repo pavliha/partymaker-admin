@@ -14,6 +14,11 @@ describe('EditorField', () => {
         error
         label="Label"
         onError={() => {}}
+        api={{
+          uploadFile: () => {},
+          uploadUrl: () => {},
+          destroy: () => {}
+        }}
       />
     )
 
