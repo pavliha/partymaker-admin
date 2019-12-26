@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { object, func, bool, string, arrayOf } from 'prop-types'
+import { object, func, bool, string, arrayOf, shape, oneOfType, number } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import priceShape from 'shapes/price'
-import { IconButton, FormControl, FormHelperText, TextField } from '@material-ui/core'
-import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
+import { IconButton, FormControl, FormHelperText, TextField, Typography } from '@material-ui/core'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import { NumberField } from 'components'
 import uniqId from 'uniqid'
 import { actions, connect } from 'src/redux'
+import PricesFieldRow from './PricesFieldRow'
 
 const styles = {
   root: {
@@ -27,6 +26,7 @@ const styles = {
   iconButton: {
     padding: 5,
   },
+
 }
 
 class PricesField extends Component {
@@ -36,25 +36,11 @@ class PricesField extends Component {
     cost: null,
   }
 
-  handleTitle = e => {
+  handleTitle = e =>
     this.setState({ title: e.target.value })
-  }
 
-  handleCost = (name, value) => {
+  handleCost = (name, value) =>
     this.setState({ cost: value })
-  }
-
-  changeTitle = index => e => {
-    const { name, value: prices, onChange } = this.props
-    prices[index] = { ...prices[index], title: e.target.value }
-    onChange(name, [...prices])
-  }
-
-  changeCost = index => (field, value) => {
-    const { name, value: prices, onChange } = this.props
-    prices[index] = { ...prices[index], price: value }
-    onChange(name, [...prices])
-  }
 
   add = () => {
     const { name, value: prices, onChange } = this.props
@@ -64,19 +50,26 @@ class PricesField extends Component {
     onChange(name, [...prices, price])
   }
 
-  remove = (index) => () => {
+  remove = (price) => {
     const { name, value: prices, onChange, redux } = this.props
-    redux.remove(prices[index].id)
-    prices.splice(index, 1)
-    onChange(name, [...prices])
+    redux.remove(price.id)
+    onChange(name, prices.filter(p => p.id !== price.id))
+  }
+
+  change = price => {
+    const { name, value, onChange } = this.props
+    const prices = [...value]
+    prices[prices.findIndex(p => p.id === price.id)] = price
+    onChange(name, prices)
   }
 
   render() {
-    const { classes, value: prices, error, helperText } = this.props
+    const { classes, label, value: prices, error, helperText } = this.props
     const { title, cost } = this.state
 
     return (
-      <FormControl fullWidth error={error} className={classes.root}>
+      <FormControl data-testid="PricesField-root" fullWidth error={error} className={classes.root}>
+        <Typography>{label}</Typography>
         <table className={classes.table}>
           <thead>
             <tr>
@@ -85,49 +78,28 @@ class PricesField extends Component {
             </tr>
           </thead>
           <tbody>
-            {prices.map((price, index) => (
-              <tr key={price.id}>
-                <td>
-                  <TextField
-                    margin="normal"
-                    fullWidth
-                    value={price.title}
-                    placeholder="Назавание услуги"
-                    onChange={this.changeTitle(index)}
-                  />
-                </td>
-                <td>
-                  <NumberField
-                    margin="normal"
-                    value={price.cost}
-                    suffix=" грн"
-                    placeholder="100 грн"
-                    onChange={this.changeCost(index)}
-                  />
-                </td>
-                <td>
-                  <IconButton
-                    color="secondary"
-                    className={classes.iconButton}
-                    onClick={this.remove(index)}
-                  >
-                    <MinusCircleOutlineIcon />
-                  </IconButton>
-                </td>
-              </tr>
-            ))}
+            {prices.map(price =>
+              <PricesFieldRow
+                key={price.id}
+                price={price}
+                onChange={this.change}
+                onDelete={this.remove}
+              />
+            )}
             <tr>
               <td>
                 <TextField
                   margin="normal"
                   fullWidth
+                  data-testid="PricesField-add-title"
                   value={title}
-                  placeholder="Назавание услуги"
+                  placeholder="Название услуги"
                   onChange={this.handleTitle}
                 />
               </td>
               <td width="100px">
                 <NumberField
+                  data-testid="PricesField-add-cost"
                   margin="normal"
                   value={cost}
                   suffix=" грн"
@@ -137,9 +109,9 @@ class PricesField extends Component {
               </td>
               <td width="25px" align="right">
                 <IconButton
+                  data-testid="PricesField-add"
                   color="secondary"
                   className={classes.iconButton}
-                  disabled={!title}
                   onClick={this.add}
                 >
                   <AddCircleOutlineIcon />
@@ -157,7 +129,12 @@ class PricesField extends Component {
 PricesField.propTypes = {
   classes: object.isRequired,
   name: string,
-  value: arrayOf(priceShape),
+  label: string,
+  value: arrayOf(shape({
+    id: oneOfType([number, string]),
+    title: string,
+    price: number,
+  })),
   helperText: string,
   error: bool,
   onChange: func.isRequired,

@@ -6,7 +6,7 @@
     "build": "webpack --mode=production",
     "serve": "node server.js",
     "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "test:inspect": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
