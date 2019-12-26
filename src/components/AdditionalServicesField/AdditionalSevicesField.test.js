@@ -1,5 +1,4 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import AdditionalServicesField from './AdditionalServicesField'
@@ -27,20 +26,19 @@ describe('AdditionalServicesField', () => {
       }
     ]
 
-    const tree = renderer
-      .create(
-        <ThemeProvider theme={createMuiTheme(theme)}>
-          <Provider store={store}>
-            <AdditionalServicesField
-              name="additional_services"
-              value={additional_services}
-              onChange={() => {}}
-            />
-          </Provider>
-        </ThemeProvider>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const tree = mount(
+      <ThemeProvider theme={createMuiTheme(theme)}>
+        <Provider store={store}>
+          <AdditionalServicesField
+            name="additional_services"
+            value={additional_services}
+            onChange={() => {}}
+          />
+        </Provider>
+      </ThemeProvider>
+    )
+
+    expect(toJson(tree)).toMatchSnapshot()
   })
 
 })

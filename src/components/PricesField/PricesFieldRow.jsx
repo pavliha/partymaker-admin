@@ -1,5 +1,5 @@
 import React from 'react'
-import { object, func, string, shape, number, oneOfType } from 'prop-types'
+import { func, number, object, oneOfType, shape, string } from 'prop-types'
 import { IconButton, TextField, withStyles } from '@material-ui/core'
 import { NumberField } from 'components'
 import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
@@ -10,58 +10,39 @@ const styles = {
   },
 }
 
-class PricesFieldRow extends React.Component {
-
-  changeTitle = e => {
-    const { price, onChange } = this.props
-    onChange({ ...price, title: e.target.value })
-  }
-
-  changeCost = (name, value) => {
-    const { price, onChange } = this.props
-    console.log('called', name, value)
-    onChange({ ...price, cost: value })
-  }
-
-  render() {
-    const { classes, price, onDelete } = this.props
-
-    return (
-      <tr data-testid="PricesField-tr">
-        <td>
-          <TextField
-            margin="normal"
-            fullWidth
-            data-testid="PricesField-title"
-            value={price.title}
-            placeholder="Назавание услуги"
-            onChange={this.changeTitle}
-          />
-        </td>
-        <td>
-          <NumberField
-            data-testid="PricesField-cost"
-            margin="normal"
-            value={price.cost}
-            suffix=" грн"
-            placeholder="100 грн"
-            onChange={this.changeCost}
-          />
-        </td>
-        <td>
-          <IconButton
-            data-testid="PricesField-remove"
-            color="secondary"
-            className={classes.iconButton}
-            onClick={() => onDelete(price)}
-          >
-            <MinusCircleOutlineIcon />
-          </IconButton>
-        </td>
-      </tr>
-    )
-  }
-}
+const PricesFieldRow = ({ classes, price, onChange, onDelete }) =>
+  <tr data-testid="PricesField-tr">
+    <td>
+      <TextField
+        margin="normal"
+        fullWidth
+        data-testid="PricesField-title"
+        value={price.title}
+        placeholder="Назавание услуги"
+        onChange={e => onChange({ ...price, title: e.target.value })}
+      />
+    </td>
+    <td>
+      <NumberField
+        data-testid="PricesField-cost"
+        margin="normal"
+        value={price.cost}
+        suffix=" грн"
+        placeholder="100 грн"
+        onChange={(name, value) => onChange({ ...price, cost: value })}
+      />
+    </td>
+    <td>
+      <IconButton
+        data-testid="PricesField-remove"
+        color="secondary"
+        className={classes.iconButton}
+        onClick={() => onDelete(price)}
+      >
+        <MinusCircleOutlineIcon />
+      </IconButton>
+    </td>
+  </tr>
 
 PricesFieldRow.propTypes = {
   classes: object.isRequired,
