@@ -20,7 +20,7 @@ describe('transformValidationApi.js', () => {
       'message': 'Not found',
       'name': 'ModelNotFoundException',
       'status': 404,
-    }
+  }
   }
 
   it('should covert InternalServerError to compatible format', () => {
