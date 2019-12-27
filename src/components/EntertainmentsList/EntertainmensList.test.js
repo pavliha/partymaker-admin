@@ -6,8 +6,8 @@ import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import { createMuiTheme } from '@material-ui/core'
 import theme from 'config/theme'
 import { MemoryRouter } from 'react-router-dom'
-import DeleteDialog from 'components/DeleteDialog/DeleteDialog'
-import EntertainmentsListItem from 'components/EntertainmentsListItem'
+import DeleteDialog from '../DeleteDialog'
+import EntertainmentsListItem from '../EntertainmentsListItem'
 
 describe('<EntertainmentsList />', () => {
 

@@ -42,7 +42,7 @@ export PlaceLoader from './PlaceLoader'
 
 // Lists
 export PlacesList from './PlacesList'
-export EntertainmentsList from './EntertainmentsList/EntertainmentsList'
+export EntertainmentsList from './EntertainmentsList'
 export PhotosList from './PhotosList'
 
 // List Items
@@ -51,7 +51,7 @@ export PlaceListItem from './PlaceListItem'
 export PhotoListItem from './PhotoListItem'
 
 // List Item Handles
-export EntertainmentListItemHandle from './EntertainmentListItemHandle'
+export EntertainmentListItemHandle from './EntertainmentsListItemHandle'
 export PlaceListItemHandle from './PlaceListItemHandle'
 
 // Dialogs

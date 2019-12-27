@@ -1,14 +1,13 @@
 import React from 'react'
-import { object, func, node } from 'prop-types'
+import { object, func, node, shape, oneOfType, number, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { IconButton } from '@material-ui/core'
 import CloseIcon from 'mdi-react/CloseIcon'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import EditIcon from 'mdi-react/EditIcon'
-import { entertainmentShape } from 'shapes'
 import { Link } from 'react-router-dom'
 import { SortableElement } from 'react-sortable-hoc'
-import { EntertainmentListItemHandle } from 'components'
+import EntertainmentListItemHandle from '../EntertainmentsListItemHandle'
 
 const styles = theme => ({
   root: {
@@ -41,6 +40,7 @@ const EntertainmentsListItem = ({ classes, entertainment, children, onEdit, onDe
   <div className={classes.root}>
     <div className={classes.expand}>
       <IconButton
+        data-testid="EntertainmentsListItem-delete"
         className={classes.iconButton}
         color="secondary"
         onClick={() => onDelete(entertainment)}
@@ -48,6 +48,7 @@ const EntertainmentsListItem = ({ classes, entertainment, children, onEdit, onDe
         <CloseIcon className={classes.icon} />
       </IconButton>
       <IconButton
+        data-testid="EntertainmentsListItem-edit"
         className={classes.iconButton}
         color="secondary"
         onClick={() => onEdit(entertainment)}
@@ -66,7 +67,10 @@ const EntertainmentsListItem = ({ classes, entertainment, children, onEdit, onDe
 
 EntertainmentsListItem.propTypes = {
   classes: object.isRequired,
-  entertainment: entertainmentShape,
+  entertainment: shape({
+    id: oneOfType([number, string]),
+    title: string.isRequired,
+  }),
   children: node,
   onDelete: func,
   onEdit: func,
