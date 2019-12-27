@@ -5,6 +5,7 @@ const appendFileNameSuffix = (fileName, suffix) => {
   const extension = extname(baseName)
   const name = baseName.replace(extension, '')
   const dir = dirname(fileName)
+  if (baseName === fileName) return `${name}${suffix}${extension}`
   return `${dir}/${name}${suffix}${extension}`
 }
 

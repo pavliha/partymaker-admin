@@ -1,9 +1,5 @@
 import JWT from 'jwt-decode'
 
-const fromJWT = (token) => {
-  if (!token) return null
-
-  return JWT(token).data
-}
+const fromJWT = (token) => token ? JWT(token).data : null
 
 export default fromJWT
