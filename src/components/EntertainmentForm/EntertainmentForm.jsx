@@ -1,6 +1,5 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
-import entertainmentShape from 'shapes/entertainment'
 import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
 import { Form } from 'formik'
 import { Field, Label, ServerMessage } from 'components'
@@ -46,7 +45,7 @@ const EntertainmentForm = ({ classes, model, formik: { isSubmitting }, onCancel 
 
 EntertainmentForm.propTypes = {
   classes: object.isRequired,
-  model: entertainmentShape,
+  model: object,
   onCancel: func.isRequired,
   formik: shape({
     isSubmitting: bool.isRequired,

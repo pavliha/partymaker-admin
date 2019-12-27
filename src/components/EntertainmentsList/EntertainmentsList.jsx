@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { object, arrayOf, func } from 'prop-types'
+import { object, arrayOf, func, shape, number, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { DeleteDialog, EntertainmentsListItem, PlacesList } from 'components'
-import { entertainmentShape } from 'shapes'
+import { DeleteDialog, EntertainmentsListItem } from 'components'
 import { SortableContainer } from 'react-sortable-hoc'
-import arrayMove from 'array-move'
-import { actions, connect } from 'src/redux'
 
 const styles = theme => ({
   root: {},
@@ -23,14 +20,8 @@ const styles = theme => ({
 
 })
 
-const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy, redux }) => {
+const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy, children }) => {
   const [entertainment, setEntertainment] = useState(null)
-
-  const sortPlaces = (places) => ({ oldIndex, newIndex }) => {
-    const movedPlaces = arrayMove(places, oldIndex, newIndex)
-    const toSort = movedPlaces.map((place, order) => ({ ...place, order }))
-    redux.sortPlaces(toSort)
-  }
 
   return (
     <div className={classes.root}>
@@ -42,35 +33,31 @@ const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy, redux 
           onDelete={setEntertainment}
           onEdit={onEdit}
         >
-          <PlacesList
-            useDragHandle
-            axis="x"
-            places={entertainment.places}
-            onSortEnd={sortPlaces(entertainment.places)}
-          />
+          {children(entertainment)}
         </EntertainmentsListItem>
       ))}
-
       <DeleteDialog
         model={entertainment}
         onClose={setEntertainment}
         onConfirm={onDestroy}
       />
-
     </div>
   )
 }
 
 EntertainmentsList.propTypes = {
   classes: object.isRequired,
-  entertainments: arrayOf(entertainmentShape),
+  entertainments: arrayOf(shape({
+    id: number.isRequired,
+    title: string,
+  })),
   onEdit: func.isRequired,
   onDestroy: func.isRequired,
-  redux: object.isRequired,
+  children: func,
 }
 
-const redux = () => ({
-  sortPlaces: actions.places.sort
-})
+EntertainmentsList.defaultProps = {
+  children: () => {}
+}
 
-export default withStyles(styles)(connect(redux)(SortableContainer(EntertainmentsList)))
+export default withStyles(styles)(SortableContainer(EntertainmentsList))

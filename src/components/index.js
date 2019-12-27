@@ -42,7 +42,7 @@ export PlaceLoader from './PlaceLoader'
 
 // Lists
 export PlacesList from './PlacesList'
-export EntertainmentsList from './EntertainmentsList'
+export EntertainmentsList from './EntertainmentsList/EntertainmentsList'
 export PhotosList from './PhotosList'
 
 // List Items

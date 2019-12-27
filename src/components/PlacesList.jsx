@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { arrayOf, object, string } from 'prop-types'
+import { array, object, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import placeShape from 'shapes/place'
 import { DeleteDialog, PlaceListItem } from 'components'
 import classNames from 'classnames'
 import { SortableContainer } from 'react-sortable-hoc'
@@ -36,7 +35,7 @@ const PlacesList = ({ classes, className, places, redux }) => {
 PlacesList.propTypes = {
   classes: object.isRequired,
   className: string,
-  places: arrayOf(placeShape).isRequired,
+  places: array.isRequired,
   redux: object.isRequired,
 }
 

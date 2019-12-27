@@ -4,7 +4,7 @@ import { object } from 'prop-types'
 import { IconButton, withStyles } from '@material-ui/core'
 import { actions, connect, select } from 'src/redux'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
-import { Form, EntertainmentsList, EntertainmentsLoader, Header, EntertainmentForm, FormDialog } from 'components'
+import { Form, EntertainmentsList, EntertainmentsLoader, Header, EntertainmentForm, FormDialog, PlacesList } from 'components'
 import arrayMove from 'array-move'
 
 const styles = {
@@ -32,6 +32,9 @@ const PlacesScene = ({ classes, redux }) => {
     redux.sort(toSort)
   }
 
+  const sortPlaces = (places) => ({ oldIndex, newIndex }) =>
+    redux.sortPlaces(arrayMove(places, oldIndex, newIndex).map((place, order) => ({ ...place, order })))
+
   return (
     <div className={classes.root}>
       <Header
@@ -49,7 +52,16 @@ const PlacesScene = ({ classes, redux }) => {
           onEdit={openEditor}
           onDestroy={redux.destroyEntertainment}
           onSortEnd={sortEntertainments}
-        />
+        >
+          {entertainment =>
+            <PlacesList
+              useDragHandle
+              axis="x"
+              places={entertainment.places}
+              onSortEnd={sortPlaces(entertainment.places)}
+            />
+          }
+        </EntertainmentsList>
       </EntertainmentsLoader>
       <FormDialog
         isOpen={isFormDialogOpen}
@@ -79,6 +91,7 @@ const redux = (state) => ({
     ? actions.entertainments.update(id, form)
     : actions.entertainments.create(form),
   sort: actions.entertainments.sort,
+  sortPlaces: actions.places.sort
 })
 
 export default withStyles(styles)(connect(redux)(PlacesScene))

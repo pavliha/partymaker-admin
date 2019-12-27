@@ -3,7 +3,7 @@ import UploadField from './UploadField'
 import { FormControl, TextField } from '@material-ui/core'
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import UploadFieldAdornment from 'components/UploadFieldAdornment'
+import UploadFieldAdornment from 'components/UploadField/UploadFieldAdornment'
 import { basename } from 'path'
 
 describe('<UploadField />', () => {
