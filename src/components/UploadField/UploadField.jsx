@@ -103,7 +103,7 @@ class UploadField extends Component {
     const { url, loading } = this.state
 
     return (
-      <div className={classNames([classes.root, className])}>
+      <div className={classNames([classes.root, className])} data-testid="UploadField-root">
         <div className={classes.field}>
           <TextField
             {...props}
@@ -129,6 +129,7 @@ class UploadField extends Component {
           />
         </div>
         <input
+          data-testid="UploadField-file"
           ref={this.fileInput}
           accept="image/*"
           className={classes.fileInput}
