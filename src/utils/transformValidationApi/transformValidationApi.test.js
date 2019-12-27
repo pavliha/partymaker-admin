@@ -15,6 +15,14 @@ describe('transformValidationApi.js', () => {
     'validation': 'required'
   }]
 
+  const notFoundError = {
+    'error': {
+      'message': 'Not found',
+      'name': 'ModelNotFoundException',
+      'status': 404,
+    }
+  }
+
   it('should covert InternalServerError to compatible format', () => {
     const response = transformValidationApi(internalServerError)
     expect(response).toStrictEqual({ 'non_field_errors': 'Внутренння ошибка сервера!' })
@@ -23,5 +31,10 @@ describe('transformValidationApi.js', () => {
   it('should covert ValidationError to compatible format', () => {
     const response = transformValidationApi(validationError)
     expect(response).toStrictEqual({ 'email': 'required validation failed on email' })
+  })
+
+  it('should covert NotFoundError to compatible format', () => {
+    const response = transformValidationApi(notFoundError)
+    expect(response).toStrictEqual({ 'non_field_errors': 'Неизвестная ошибка!' })
   })
 })
