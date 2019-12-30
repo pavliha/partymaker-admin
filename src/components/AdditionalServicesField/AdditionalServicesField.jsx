@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { object, func, bool, string, arrayOf, oneOfType, number, shape } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
-import { IconButton, FormHelperText, Input } from '@material-ui/core'
-import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
+import { IconButton, FormHelperText, Input, Typography } from '@material-ui/core'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import { NumberField } from 'components'
 import uniqId from 'uniqid'
 import { actions, connect } from 'src/redux'
+import AdditionalServicesFieldTableRow from './AdditionalSevicesFieldTableRow'
 
 const styles = theme => ({
   root: {
@@ -55,35 +55,14 @@ class AdditionalServicesField extends Component {
     description: '',
   }
 
-  handleTitle = e => {
+  handleTitle = e =>
     this.setState({ title: e.target.value })
-  }
 
-  handleDescription = e => {
+  handleDescription = e =>
     this.setState({ description: e.target.value })
-  }
 
-  handlePrice = (name, value) => {
+  handlePrice = (name, value) =>
     this.setState({ price: value })
-  }
-
-  changeTitle = index => e => {
-    const { name, value: services, onChange } = this.props
-    services[index] = { ...services[index], title: e.target.value }
-    onChange(name, [...services])
-  }
-
-  changeDescription = index => e => {
-    const { name, value: services, onChange } = this.props
-    services[index] = { ...services[index], description: e.target.value }
-    onChange(name, [...services])
-  }
-
-  changePrice = index => (field, value) => {
-    const { name, value: services, onChange } = this.props
-    services[index] = { ...services[index], price: value }
-    onChange(name, [...services])
-  }
 
   add = () => {
     const { name, value: services, onChange } = this.props
@@ -93,19 +72,26 @@ class AdditionalServicesField extends Component {
     this.setState({ title: '', price: '', description: '' })
   }
 
-  remove = (index) => () => {
+  remove = service => {
     const { name, value: services, onChange, redux } = this.props
-    redux.remove(services[index].id)
-    services.splice(index, 1)
-    onChange(name, [...services])
+    redux.remove(service.id)
+    onChange(name, services.filter(p => p.id !== service.id))
+  }
+
+  change = service => {
+    const { name, value, onChange } = this.props
+    const services = [...value]
+    services[services.findIndex(p => p.id === service.id)] = service
+    onChange(name, services)
   }
 
   render() {
-    const { classes, value: services, error, helperText } = this.props
+    const { classes, label, value: services, error, helperText } = this.props
     const { title, price, description } = this.state
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} data-testid="AdditionalServicesField-root">
+        <Typography>{label}</Typography>
         <table className={classes.table}>
           <thead>
             <tr>
@@ -114,46 +100,13 @@ class AdditionalServicesField extends Component {
             </tr>
           </thead>
           <tbody>
-            {services.map((service, index) => (
-              <tr key={service.id}>
-                <td>
-                  <Input
-                    className={classes.titleInput}
-                    fullWidth
-                    disableUnderline
-                    value={service.title}
-                    placeholder="Назавание услуги"
-                    onChange={this.changeTitle(index)}
-                  />
-                  <Input
-                    className={classes.descriptionInput}
-                    fullWidth
-                    disableUnderline
-                    value={service.description}
-                    placeholder="Описание услуги"
-                    onChange={this.changeDescription(index)}
-                  />
-                </td>
-                <td>
-                  <NumberField
-                    InputProps={{ disableUnderline: true }}
-                    margin="normal"
-                    value={service.price}
-                    suffix=" грн"
-                    placeholder="100 грн"
-                    onChange={this.changePrice(index)}
-                  />
-                </td>
-                <td>
-                  <IconButton
-                    color="secondary"
-                    className={classes.iconButton}
-                    onClick={this.remove(index)}
-                  >
-                    <MinusCircleOutlineIcon />
-                  </IconButton>
-                </td>
-              </tr>
+            {services.map(service => (
+              <AdditionalServicesFieldTableRow
+                key={service.id}
+                service={service}
+                onChange={this.change}
+                onDelete={this.remove}
+              />
             ))}
             <tr>
               <td>
@@ -164,6 +117,7 @@ class AdditionalServicesField extends Component {
                   disableUnderline
                   placeholder="Назавание услуги"
                   onChange={this.handleTitle}
+                  data-testid="AdditionalServicesField-add-title"
                 />
                 <Input
                   className={classes.descriptionInput}
@@ -172,6 +126,7 @@ class AdditionalServicesField extends Component {
                   disableUnderline
                   placeholder="Описание услуги"
                   onChange={this.handleDescription}
+                  data-testid="AdditionalServicesField-add-description"
                 />
               </td>
               <td width="100px">
@@ -181,14 +136,15 @@ class AdditionalServicesField extends Component {
                   InputProps={{ disableUnderline: true }}
                   placeholder="100 грн"
                   onChange={this.handlePrice}
+                  data-testid="AdditionalServicesField-add-price"
                 />
               </td>
               <td width="25px">
                 <IconButton
                   color="secondary"
                   className={classes.iconButton}
-                  disabled={!title}
                   onClick={this.add}
+                  data-testid="AdditionalServicesField-add"
                 >
                   <AddCircleOutlineIcon />
                 </IconButton>
@@ -213,6 +169,7 @@ AdditionalServicesField.propTypes = {
     created_at: string,
     updated_at: string,
   })),
+  label: string,
   helperText: string,
   error: bool,
   onChange: func.isRequired,
