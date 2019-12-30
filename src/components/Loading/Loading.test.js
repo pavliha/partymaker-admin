@@ -4,7 +4,7 @@ import Loading from './Loading'
 describe('<Loading />', () => {
 
   it('should render properly', () => {
-    const tree = shallow(<Loading />).dive()
+    const tree = mount(<Loading />)
     expect(toJson(tree)).toMatchSnapshot()
   })
 
