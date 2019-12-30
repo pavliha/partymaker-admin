@@ -72,7 +72,7 @@ describe('<PricesField />', () => {
     addButton.simulate('click')
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('prices', expect.arrayContaining([
+    expect(changeFn).toHaveBeenCalledWith(expect.arrayContaining([
       priceSchema
     ]))
   })
@@ -90,7 +90,7 @@ describe('<PricesField />', () => {
     removeIcon.simulate('click')
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('prices', [])
+    expect(changeFn).toHaveBeenCalledWith([])
   })
 
   it('should edit price item title', () => {
@@ -106,7 +106,7 @@ describe('<PricesField />', () => {
     titleInput.simulate('change', titleEvent)
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('prices', [{ cost: 240, id: 1, title: 'new service' }])
+    expect(changeFn).toHaveBeenCalledWith([{ cost: 240, id: 1, title: 'new service' }])
   })
 
   it('should edit price item cost', () => {
@@ -121,7 +121,7 @@ describe('<PricesField />', () => {
     costInput.props().onChange('cost', 300)
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('prices', [{ cost: 300, id: 1, title: '200 шаров' }])
+    expect(changeFn).toHaveBeenCalledWith([{ cost: 300, id: 1, title: '200 шаров' }])
   })
 
 })

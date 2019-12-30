@@ -43,24 +43,24 @@ class PricesField extends Component {
     this.setState({ cost: value })
 
   add = () => {
-    const { name, value: prices, onChange } = this.props
+    const { value: prices, onChange } = this.props
     const { title, cost } = this.state
     const price = { id: uniqId(), title, cost, }
     this.setState({ title: '', cost: '' })
-    onChange(name, [...prices, price])
+    onChange([...prices, price])
   }
 
   remove = (price) => {
-    const { name, value: prices, onChange, redux } = this.props
+    const { value: prices, onChange, redux } = this.props
     redux.remove(price.id)
-    onChange(name, prices.filter(p => p.id !== price.id))
+    onChange(prices.filter(p => p.id !== price.id))
   }
 
   change = price => {
-    const { name, value, onChange } = this.props
+    const { value, onChange } = this.props
     const prices = [...value]
     prices[prices.findIndex(p => p.id === price.id)] = price
-    onChange(name, prices)
+    onChange(prices)
   }
 
   render() {
@@ -128,7 +128,6 @@ class PricesField extends Component {
 
 PricesField.propTypes = {
   classes: object.isRequired,
-  name: string,
   label: string,
   value: arrayOf(shape({
     id: oneOfType([number, string]),

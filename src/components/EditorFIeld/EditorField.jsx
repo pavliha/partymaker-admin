@@ -25,19 +25,18 @@ const styles = () => ({
   label: {},
 })
 
-const EditorField = ({ classes, name, value, label, error, helperText, onChange }) =>
+const EditorField = ({ classes, value, label, error, helperText, onChange }) =>
   <FormControl className={classes.root}>
     <FormLabel className={classes.label} component="legend">{label}</FormLabel>
     <Editor
       editorState={value}
-      onChange={(state) => onChange(name, state)}
+      onChange={onChange}
     />
     {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
   </FormControl>
 
 EditorField.propTypes = {
   classes: object.isRequired,
-  name: string.isRequired,
   value: object.isRequired,
   onChange: func.isRequired,
   label: string,

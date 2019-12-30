@@ -76,25 +76,25 @@ class UploadField extends Component {
   }
 
   upload = async (callback) => {
-    const { name, onChange } = this.props
+    const { onChange } = this.props
     try {
       const { url } = await callback()
       this.setState({ url: '' })
-      onChange(name, url)
+      onChange(url)
     } catch (error) {
       this.setError(error)
     }
   }
 
   destroyAsset = async () => {
-    const { name, value, onChange, api: { destroy } } = this.props
+    const { value, onChange, api: { destroy } } = this.props
     try {
       await destroy(basename(value))
       this.setState({ url: '' })
-      onChange(name, '')
+      onChange('')
     } catch (error) {
       this.setError(error)
-      onChange(name, '')
+      onChange('')
     }
   }
 
@@ -147,7 +147,6 @@ UploadField.propTypes = {
   type: oneOf(['thumbnail', 'slide']),
   className: string,
   value: string,
-  name: string.isRequired,
   label: string,
   error: bool,
   helperText: string,

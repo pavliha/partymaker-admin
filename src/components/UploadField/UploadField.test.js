@@ -65,7 +65,7 @@ describe('<UploadField />', () => {
 
     // check if file was uploaded
     await Promise.resolve()
-    expect(changeFn).toHaveBeenCalledWith('upload', 'https://example.com/uploads/picture.jpg')
+    expect(changeFn).toHaveBeenCalledWith('https://example.com/uploads/picture.jpg')
   })
 
   it('should upload url', async () => {
@@ -82,7 +82,7 @@ describe('<UploadField />', () => {
 
     // check if file was uploaded
     await Promise.resolve()
-    expect(changeFn).toHaveBeenCalledWith('upload', 'https://example.com/uploads/from-url.jpg')
+    expect(changeFn).toHaveBeenCalledWith('https://example.com/uploads/from-url.jpg')
   })
 
   it('should upload from clipboard', async () => {
@@ -100,7 +100,7 @@ describe('<UploadField />', () => {
 
     // check if file was uploaded
     await Promise.resolve()
-    expect(changeFn).toHaveBeenCalledWith('upload', 'https://example.com/uploads/from-clipboard.jpg')
+    expect(changeFn).toHaveBeenCalledWith('https://example.com/uploads/from-clipboard.jpg')
   })
 
   it('should show selected upload', async () => {
@@ -125,7 +125,7 @@ describe('<UploadField />', () => {
 
     // check if file was uploaded
     await Promise.resolve()
-    expect(changeFn).toHaveBeenCalledWith('upload', '')
+    expect(changeFn).toHaveBeenCalledWith('')
   })
 
 })

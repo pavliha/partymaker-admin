@@ -81,7 +81,7 @@ describe('<AdditionalServicesField />', () => {
     addButton.simulate('click')
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('services', expect.arrayContaining([
+    expect(changeFn).toHaveBeenCalledWith(expect.arrayContaining([
       serviceschema
     ]))
   })
@@ -99,7 +99,7 @@ describe('<AdditionalServicesField />', () => {
     removeIcon.simulate('click')
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('services', [])
+    expect(changeFn).toHaveBeenCalledWith([])
   })
 
   it('should edit price item title', () => {
@@ -115,7 +115,7 @@ describe('<AdditionalServicesField />', () => {
     titleInput.simulate('change', titleEvent)
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('services', [{ price: 240, id: 1, title: 'new service' }])
+    expect(changeFn).toHaveBeenCalledWith([{ price: 240, id: 1, title: 'new service' }])
   })
 
   it('should edit service item price', () => {
@@ -130,7 +130,7 @@ describe('<AdditionalServicesField />', () => {
     costInput.props().onChange('price', 300)
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('services', [{ price: 300, id: 1, title: '200 шаров' }])
+    expect(changeFn).toHaveBeenCalledWith([{ price: 300, id: 1, title: '200 шаров' }])
   })
 
   it('should edit service item description', () => {
@@ -146,7 +146,7 @@ describe('<AdditionalServicesField />', () => {
     descriptionInput.simulate('change', descriptionEvent)
 
     // see onChange response
-    expect(changeFn).toHaveBeenCalledWith('services', [{
+    expect(changeFn).toHaveBeenCalledWith([{
       id: 1,
       price: 240,
       title: '200 шаров',

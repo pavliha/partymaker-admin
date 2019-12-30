@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { any, arrayOf, bool, func, oneOf, shape, string } from 'prop-types'
 import { FormHelperText, MenuItem, Select, FormControl, InputLabel } from '@material-ui/core'
 
 const DropdownField = ({
   items,
   label,
-  name,
   value,
   variant,
   nonEmpty,
@@ -18,7 +17,7 @@ const DropdownField = ({
     <Select
       value={value || ''}
       displayEmpty
-      onChange={useCallback((e) => onChange(name, e.target.value))}
+      onChange={onChange}
     >
       {!nonEmpty && <MenuItem value="" />}
       {items.map((item, index) => (
@@ -31,7 +30,6 @@ const DropdownField = ({
   </FormControl>
 
 DropdownField.propTypes = {
-  name: string.isRequired,
   value: any,
   nonEmpty: bool,
   label: string,

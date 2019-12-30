@@ -330,7 +330,6 @@ exports[`<EntertainmentForm /> should render properly 1`] = `
           "useStyles": [Function],
         }
       }
-      fullWidth={true}
       margin="dense"
       name="title"
       onChange={[Function]}

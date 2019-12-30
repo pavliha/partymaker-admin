@@ -16,7 +16,7 @@ export NavigationItem from './NavigationItem'
 
 // Form
 export Form from './Form'
-export Field from './Field'
+export Field from './Field/Field'
 export Label from './Label'
 export ServerMessage from './ServerMessage'
 

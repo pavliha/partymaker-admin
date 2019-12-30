@@ -65,24 +65,24 @@ class AdditionalServicesField extends Component {
     this.setState({ price: value })
 
   add = () => {
-    const { name, value: services, onChange } = this.props
+    const { value: services, onChange } = this.props
     const { title, price, description } = this.state
     const service = { id: uniqId(), title, price, description }
-    onChange(name, [...services, service])
+    onChange([...services, service])
     this.setState({ title: '', price: '', description: '' })
   }
 
   remove = service => {
-    const { name, value: services, onChange, redux } = this.props
+    const { value: services, onChange, redux } = this.props
     redux.remove(service.id)
-    onChange(name, services.filter(p => p.id !== service.id))
+    onChange(services.filter(p => p.id !== service.id))
   }
 
   change = service => {
-    const { name, value, onChange } = this.props
+    const { value, onChange } = this.props
     const services = [...value]
     services[services.findIndex(p => p.id === service.id)] = service
-    onChange(name, services)
+    onChange(services)
   }
 
   render() {
@@ -160,7 +160,6 @@ class AdditionalServicesField extends Component {
 
 AdditionalServicesField.propTypes = {
   classes: object.isRequired,
-  name: string,
   value: arrayOf(shape({
     id: oneOfType([number, string]).isRequired,
     title: string.isRequired,
