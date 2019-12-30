@@ -53,6 +53,12 @@ const styles = {
 
 }
 
+const photosAPI = {
+  uploadUrl: api.uploads.picture.url.create,
+  uploadFile: api.uploads.picture.file.create,
+  destroy: api.uploads.destroy,
+}
+
 const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
   <Form className={classes.root}>
     <Typography className={classes.subtitle}>Основная информация</Typography>
@@ -71,11 +77,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
         margin="normal"
         type="thumbnail"
         component={UploadField}
-        api={{
-          uploadFile: api.uploads.picture.file.create,
-          uploadUrl: api.uploads.picture.url.create,
-          destroy: api.uploads.destroy,
-        }}
+        api={photosAPI}
       />
       <Field
         label="Цена"
@@ -155,6 +157,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
         placeholder="Вставьте фото для загрузки"
         name="photos"
         component={PhotosField}
+        api={photosAPI}
       />
     </div>
     <Typography className={classes.subtitle}>Цены</Typography>

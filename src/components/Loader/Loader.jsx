@@ -56,23 +56,18 @@ class Loader extends Component {
   async shouldComponentUpdate(next) {
     const prev = this.props
     if (isEqual(prev.params, next.params)) return
-    debugger
     await this.load(next.params)
   }
 
   load = async (params) => {
-    const { cancel, load, onError, onLoad } = this.props
-
+    const { cancel, load } = this.props
     if (cancel) return
-
     try {
       this.safeSetState({ error: null, isLoading: true })
-      const result = await load(params)
+      await load(params)
       this.safeSetState({ isLoading: false })
-      onLoad(result)
     } catch (error) {
       this.safeSetState({ error, isLoading: false })
-      onError(error)
     }
   }
 
@@ -110,13 +105,6 @@ Loader.propTypes = {
   params: any,
   load: func.isRequired,
   children: node,
-  onLoad: func.isRequired,
-  onError: func.isRequired,
-}
-
-Loader.defaultProps = {
-  onLoad: () => {},
-  onError: () => {}
 }
 
 export default withStyles(styles)(Loader)

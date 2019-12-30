@@ -1,10 +1,9 @@
 import React from 'react'
-import { arrayOf, func, object, string } from 'prop-types'
+import { arrayOf, func, number, object, oneOfType, shape, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { SortableContainer } from 'react-sortable-hoc'
 import classNames from 'classnames'
 import { PhotoListItem } from 'components'
-import photoShape from 'shapes/photo'
 
 const styles = {
   root: {
@@ -28,7 +27,11 @@ const PhotosList = ({ classes, className, photos, onDelete }) =>
 PhotosList.propTypes = {
   classes: object.isRequired,
   className: string,
-  photos: arrayOf(photoShape),
+  photos: arrayOf(shape({
+    id: oneOfType([number, string]),
+    url: string,
+    place_id: oneOfType([number, string]),
+  })),
   onDelete: func,
 }
 

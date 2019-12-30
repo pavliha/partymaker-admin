@@ -4,7 +4,7 @@ exports[`<EntertainmentForm /> should render properly 1`] = `
 <Form
   className="EntertainmentForm-root-1"
 >
-  <WithStyles(FieldLabel)
+  <WithStyles(Label)
     title="Title"
   >
     <Field
@@ -335,7 +335,7 @@ exports[`<EntertainmentForm /> should render properly 1`] = `
       onChange={[Function]}
       placeholder="Вид развлечения"
     />
-  </WithStyles(FieldLabel)>
+  </WithStyles(Label)>
   <WithStyles(FormikConnect(ServerMessage))
     name="message"
   />

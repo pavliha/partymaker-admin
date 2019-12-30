@@ -1,7 +1,6 @@
 import React from 'react'
-import { func, object } from 'prop-types'
+import { func, number, object, oneOfType, shape, string } from 'prop-types'
 import { IconButton, withStyles } from '@material-ui/core'
-import photoShape from 'shapes/photo'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
 import { SortableElement } from 'react-sortable-hoc'
 
@@ -53,11 +52,7 @@ const styles = {
 
 const PhotoListItem = ({ classes, photo, onDelete }) =>
   <div className={classes.root}>
-    <IconButton
-      color="secondary"
-      className={classes.deleteIconButton}
-      onClick={() => onDelete(photo)}
-    >
+    <IconButton color="secondary" className={classes.deleteIconButton} onClick={() => onDelete(photo)}>
       <CloseCircleIcon className={classes.deleteIcon} />
     </IconButton>
     <img alt="broken" src={photo.url} className={classes.picture} />
@@ -65,7 +60,11 @@ const PhotoListItem = ({ classes, photo, onDelete }) =>
 
 PhotoListItem.propTypes = {
   classes: object.isRequired,
-  photo: photoShape,
+  photo: shape({
+    id: oneOfType([number, string]),
+    url: string,
+    place_id: oneOfType([number, string]),
+  }),
   onDelete: func.isRequired
 }
 

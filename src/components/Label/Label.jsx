@@ -1,7 +1,6 @@
 import React from 'react'
 import { object, string, node, oneOf } from 'prop-types'
-import { Typography } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
+import { Typography, withStyles } from '@material-ui/core'
 import classNames from 'classnames'
 
 const styles = {
@@ -23,7 +22,7 @@ const styles = {
   },
 }
 
-const FieldLabel = ({ classes, title, children, margin }) =>
+const Label = ({ classes, title, children, margin }) =>
   <div className={classNames({ [classes.root]: true, [classes.normalMargin]: margin === 'normal' })}>
     <Typography className={classes.label}>{title}:</Typography>
     <div className={classes.control}>
@@ -31,11 +30,11 @@ const FieldLabel = ({ classes, title, children, margin }) =>
     </div>
   </div>
 
-FieldLabel.propTypes = {
+Label.propTypes = {
   title: string.isRequired,
   children: node.isRequired,
   classes: object.isRequired,
   margin: oneOf(['none', 'normal']),
 }
 
-export default withStyles(styles)(FieldLabel)
+export default withStyles(styles)(Label)

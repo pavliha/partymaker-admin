@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { arrayOf, bool, object, string, func } from 'prop-types'
+import { arrayOf, bool, object, string, func, shape, oneOfType, number } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { UploadField, PhotosList } from 'components'
 import uniqId from 'uniqid'
-import photoShape from 'shapes/photo'
 import { actions, connect } from 'src/redux'
 import arrayMove from 'array-move'
-import api from 'api'
 
 const styles = {
   root: {},
@@ -26,48 +24,46 @@ class PhotosField extends Component {
   setError = (error) =>
     this.setState({ error })
 
-  createTempPhoto = (name, value) => {
+  createTempPhoto = (value) => {
     const { value: photos, onChange } = this.props
     const photo = { id: uniqId(), url: value }
-    onChange(name, [...photos, photo])
+    onChange([...photos, photo])
   }
 
   deletePhoto = async photo => {
-    const { name, value: photos, onChange, redux } = this.props
+    const { value: photos, onChange, redux } = this.props
     redux.removePhoto(photo.id)
-    onChange(name, photos.filter(({ url }) => url !== photo.url))
+    onChange(photos.filter(({ url }) => url !== photo.url))
   }
 
   sortPhotos = ({ oldIndex, newIndex }) => {
-    const { name, value, onChange } = this.props
+    const { value, onChange } = this.props
     const photos = arrayMove(value, oldIndex, newIndex)
-    const orderedPhotos = photos.map((photo, order) => ({ ...photo, order }))
-    onChange(name, orderedPhotos)
+    onChange(photos.map((photo, order) => ({ ...photo, order })))
   }
 
   render() {
-    const { classes, name, value: photos, placeholder, error, helperText, } = this.props
+    const { classes, label, value: photos, placeholder, error, helperText, api } = this.props
 
     return (
       <Fragment>
         <UploadField
+          label={label}
+          data-testid="PhotosField-uploadField"
           type="slide"
           placeholder={placeholder}
           className={classes.field}
-          name={name}
+          name="upload"
           fullWidth
           helperText={helperText}
           error={error}
           value={this.state.value}
           onError={this.setError}
           onChange={this.createTempPhoto}
-          api={{
-            uploadUrl: api.uploads.picture.url.create,
-            uploadFile: api.uploads.picture.file.create,
-            destroy: api.uploads.destroy,
-          }}
+          api={api}
         />
         <PhotosList
+          data-testid="PhotosField-photosList"
           axis="x"
           photos={photos}
           className={classes.photos}
@@ -81,13 +77,22 @@ class PhotosField extends Component {
 
 PhotosField.propTypes = {
   classes: object.isRequired,
-  name: string,
-  value: arrayOf(photoShape),
+  label: string,
+  value: arrayOf(shape({
+    id: oneOfType([number, string]),
+    url: string,
+    place_id: oneOfType([number, string]),
+  })),
   placeholder: string,
   error: bool,
   helperText: string,
   onChange: func.isRequired,
-  redux: object.isRequired
+  redux: object.isRequired,
+  api: shape({
+    uploadFile: func.isRequired,
+    uploadUrl: func.isRequired,
+    destroy: func.isRequired,
+  })
 }
 
 const redux = () => ({
