@@ -271,74 +271,65 @@ exports[`<EntertainmentForm /> should render properly 1`] = `
     }
   }
 >
-  <WithStyles(sortableHandle(EntertainmentListItemHandle))>
-    <sortableHandle(EntertainmentListItemHandle)
+  <WithStyles(EntertainmentListItemHandle)>
+    <EntertainmentListItemHandle
       classes={
         Object {
-          "root": "sortableHandle(EntertainmentListItemHandle)-root-1",
-          "title": "sortableHandle(EntertainmentListItemHandle)-title-2",
+          "root": "EntertainmentListItemHandle-root-1",
+          "title": "EntertainmentListItemHandle-title-2",
         }
       }
     >
-      <EntertainmentListItemHandle
-        classes={
-          Object {
-            "root": "sortableHandle(EntertainmentListItemHandle)-root-1",
-            "title": "sortableHandle(EntertainmentListItemHandle)-title-2",
-          }
-        }
+      <WithStyles(ForwardRef(Typography))
+        className="EntertainmentListItemHandle-root-1"
+        component="div"
       >
-        <WithStyles(ForwardRef(Typography))
-          className="sortableHandle(EntertainmentListItemHandle)-root-1"
+        <ForwardRef(Typography)
+          className="EntertainmentListItemHandle-root-1"
+          classes={
+            Object {
+              "alignCenter": "MuiTypography-alignCenter",
+              "alignJustify": "MuiTypography-alignJustify",
+              "alignLeft": "MuiTypography-alignLeft",
+              "alignRight": "MuiTypography-alignRight",
+              "body1": "MuiTypography-body1",
+              "body2": "MuiTypography-body2",
+              "button": "MuiTypography-button",
+              "caption": "MuiTypography-caption",
+              "colorError": "MuiTypography-colorError",
+              "colorInherit": "MuiTypography-colorInherit",
+              "colorPrimary": "MuiTypography-colorPrimary",
+              "colorSecondary": "MuiTypography-colorSecondary",
+              "colorTextPrimary": "MuiTypography-colorTextPrimary",
+              "colorTextSecondary": "MuiTypography-colorTextSecondary",
+              "displayBlock": "MuiTypography-displayBlock",
+              "displayInline": "MuiTypography-displayInline",
+              "gutterBottom": "MuiTypography-gutterBottom",
+              "h1": "MuiTypography-h1",
+              "h2": "MuiTypography-h2",
+              "h3": "MuiTypography-h3",
+              "h4": "MuiTypography-h4",
+              "h5": "MuiTypography-h5",
+              "h6": "MuiTypography-h6",
+              "noWrap": "MuiTypography-noWrap",
+              "overline": "MuiTypography-overline",
+              "paragraph": "MuiTypography-paragraph",
+              "root": "MuiTypography-root",
+              "srOnly": "MuiTypography-srOnly",
+              "subtitle1": "MuiTypography-subtitle1",
+              "subtitle2": "MuiTypography-subtitle2",
+            }
+          }
           component="div"
         >
-          <ForwardRef(Typography)
-            className="sortableHandle(EntertainmentListItemHandle)-root-1"
-            classes={
-              Object {
-                "alignCenter": "MuiTypography-alignCenter",
-                "alignJustify": "MuiTypography-alignJustify",
-                "alignLeft": "MuiTypography-alignLeft",
-                "alignRight": "MuiTypography-alignRight",
-                "body1": "MuiTypography-body1",
-                "body2": "MuiTypography-body2",
-                "button": "MuiTypography-button",
-                "caption": "MuiTypography-caption",
-                "colorError": "MuiTypography-colorError",
-                "colorInherit": "MuiTypography-colorInherit",
-                "colorPrimary": "MuiTypography-colorPrimary",
-                "colorSecondary": "MuiTypography-colorSecondary",
-                "colorTextPrimary": "MuiTypography-colorTextPrimary",
-                "colorTextSecondary": "MuiTypography-colorTextSecondary",
-                "displayBlock": "MuiTypography-displayBlock",
-                "displayInline": "MuiTypography-displayInline",
-                "gutterBottom": "MuiTypography-gutterBottom",
-                "h1": "MuiTypography-h1",
-                "h2": "MuiTypography-h2",
-                "h3": "MuiTypography-h3",
-                "h4": "MuiTypography-h4",
-                "h5": "MuiTypography-h5",
-                "h6": "MuiTypography-h6",
-                "noWrap": "MuiTypography-noWrap",
-                "overline": "MuiTypography-overline",
-                "paragraph": "MuiTypography-paragraph",
-                "root": "MuiTypography-root",
-                "srOnly": "MuiTypography-srOnly",
-                "subtitle1": "MuiTypography-subtitle1",
-                "subtitle2": "MuiTypography-subtitle2",
-              }
-            }
-            component="div"
+          <div
+            className="MuiTypography-root EntertainmentListItemHandle-root-1 MuiTypography-body1"
           >
-            <div
-              className="MuiTypography-root sortableHandle(EntertainmentListItemHandle)-root-1 MuiTypography-body1"
-            >
-              children
-            </div>
-          </ForwardRef(Typography)>
-        </WithStyles(ForwardRef(Typography))>
-      </EntertainmentListItemHandle>
-    </sortableHandle(EntertainmentListItemHandle)>
-  </WithStyles(sortableHandle(EntertainmentListItemHandle))>
+            children
+          </div>
+        </ForwardRef(Typography)>
+      </WithStyles(ForwardRef(Typography))>
+    </EntertainmentListItemHandle>
+  </WithStyles(EntertainmentListItemHandle)>
 </ThemeProvider>
 `;
