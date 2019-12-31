@@ -57,6 +57,7 @@ exports[`AuthCard it displays children and title 1`] = `
                 "elevation7": "MuiPaper-elevation7",
                 "elevation8": "MuiPaper-elevation8",
                 "elevation9": "MuiPaper-elevation9",
+                "outlined": "MuiPaper-outlined",
                 "root": "MuiPaper-root",
                 "rounded": "MuiPaper-rounded",
               }
@@ -64,7 +65,7 @@ exports[`AuthCard it displays children and title 1`] = `
             elevation={1}
           >
             <div
-              className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+              className="MuiPaper-root MuiCard-root AuthCard-root-1 MuiPaper-elevation1 MuiPaper-rounded"
             >
               <WithStyles(ForwardRef(CardHeader))
                 className="AuthCard-title-2"
@@ -216,6 +217,7 @@ exports[`AuthCard it displays title 1`] = `
                 "elevation7": "MuiPaper-elevation7",
                 "elevation8": "MuiPaper-elevation8",
                 "elevation9": "MuiPaper-elevation9",
+                "outlined": "MuiPaper-outlined",
                 "root": "MuiPaper-root",
                 "rounded": "MuiPaper-rounded",
               }
@@ -223,7 +225,7 @@ exports[`AuthCard it displays title 1`] = `
             elevation={1}
           >
             <div
-              className="MuiPaper-root MuiPaper-elevation1 MuiCard-root AuthCard-root-1 MuiPaper-rounded"
+              className="MuiPaper-root MuiCard-root AuthCard-root-1 MuiPaper-elevation1 MuiPaper-rounded"
             >
               <WithStyles(ForwardRef(CardHeader))
                 className="AuthCard-title-2"

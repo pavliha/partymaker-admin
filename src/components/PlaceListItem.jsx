@@ -1,8 +1,7 @@
 import React from 'react'
-import { bool, func, object } from 'prop-types'
+import { bool, func, number, object, oneOfType, shape, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { IconButton, Typography } from '@material-ui/core'
-import { placeShape } from 'shapes'
 import { Thumbnail, PlaceListItemHandle } from 'components'
 import classNames from 'classnames'
 import { appendFileNameSuffix } from 'utils'
@@ -141,7 +140,14 @@ const PlaceListItem = ({ classes, place, inline, onDelete }) => {
 
 PlaceListItem.propTypes = {
   classes: object.isRequired,
-  place: placeShape.isRequired,
+  place: shape({
+    id: oneOfType([string, number]).isRequired,
+    title: string.isRequired,
+    picture_url: string,
+    contacts: shape({
+      directions: string,
+    })
+  }).isRequired,
   inline: bool,
   onDelete: func,
 }

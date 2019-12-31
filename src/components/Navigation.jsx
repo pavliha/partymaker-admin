@@ -9,7 +9,7 @@ const styles = theme => ({
   root: {
     display: 'none',
     flexDirection: 'column',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'flex',
     },
   },

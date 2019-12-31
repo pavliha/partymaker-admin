@@ -2,6 +2,7 @@ import React from 'react'
 import Account from './Account'
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
+import { IconButton } from '@material-ui/core'
 
 describe('<Account />', () => {
 
@@ -9,13 +10,11 @@ describe('<Account />', () => {
     const mockStore = configureStore([])
     const store = mockStore(state)
 
-    const tree = mount(
+    return mount(
       <Provider store={store}>
         {Component}
       </Provider>
     )
-
-    return tree
   }
 
   it('renders null when unauthorized', () => {
@@ -24,7 +23,7 @@ describe('<Account />', () => {
       users: { entities: {} }
     }
     const tree = setup(<Account />, state)
-    expect(toJson(tree)).toMatchSnapshot()
+    expect(tree.find(IconButton).exists()).toBe(false)
   })
 
   it('renders username when authorized ', () => {
@@ -33,7 +32,7 @@ describe('<Account />', () => {
       users: { entities: { 1: { id: 1, name: 'Test User' } } }
     }
     const tree = setup(<Account />, state)
-    expect(toJson(tree)).toMatchSnapshot()
+    expect(tree.find(IconButton).exists()).toBe(true)
   })
 
 })
