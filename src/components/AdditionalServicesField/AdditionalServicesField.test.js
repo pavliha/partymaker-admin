@@ -127,7 +127,7 @@ describe('<AdditionalServicesField />', () => {
 
     // edit price field
     const costInput = tr.find(NumberField)
-    costInput.props().onChange('price', 300)
+    costInput.props().onChange(300)
 
     // see onChange response
     expect(changeFn).toHaveBeenCalledWith([{ price: 300, id: 1, title: '200 шаров' }])

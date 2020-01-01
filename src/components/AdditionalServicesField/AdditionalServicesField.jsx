@@ -61,7 +61,7 @@ class AdditionalServicesField extends Component {
   handleDescription = e =>
     this.setState({ description: e.target.value })
 
-  handlePrice = (name, value) =>
+  handlePrice = (value) =>
     this.setState({ price: value })
 
   add = () => {

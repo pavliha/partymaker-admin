@@ -48,7 +48,7 @@ describe('<PricesField />', () => {
     expect(field.text()).toContain('Label')
   })
 
-  it('should add new price item', () => {
+  it('should add new item', () => {
     // setup
     const changeFn = jest.fn()
     const priceField = setup(<PricesField {...testProps} value={[]} onChange={changeFn} />)
@@ -118,7 +118,7 @@ describe('<PricesField />', () => {
 
     // edit cost field
     const costInput = tr.find(NumberField)
-    costInput.props().onChange('cost', 300)
+    costInput.props().onChange(300)
 
     // see onChange response
     expect(changeFn).toHaveBeenCalledWith([{ cost: 300, id: 1, title: '200 шаров' }])

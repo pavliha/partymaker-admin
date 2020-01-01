@@ -39,7 +39,7 @@ class PricesField extends Component {
   handleTitle = e =>
     this.setState({ title: e.target.value })
 
-  handleCost = (name, value) =>
+  handleCost = (value) =>
     this.setState({ cost: value })
 
   add = () => {

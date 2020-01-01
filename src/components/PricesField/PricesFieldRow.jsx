@@ -29,7 +29,7 @@ const PricesFieldRow = ({ classes, price, onChange, onDelete }) =>
         value={price.cost}
         suffix=" грн"
         placeholder="100 грн"
-        onChange={(name, value) => onChange({ ...price, cost: value })}
+        onChange={value => onChange({ ...price, cost: value })}
       />
     </td>
     <td>

@@ -1,23 +1,15 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
-import placeShape from 'shapes/place'
 import * as Yup from 'yup'
 import { EditorState } from 'draft-js'
 import { stateFromHTML } from 'draft-js-import-html'
-import { Button, DialogActions, withStyles, TextField, Typography, InputAdornment } from '@material-ui/core'
+import { Button, DialogActions, withStyles, TextField, Typography } from '@material-ui/core'
 import { Form } from 'formik'
 import api from 'api'
-import {
-  Field,
-  UploadField,
-  EditorField,
-  NumberField,
-  PhotosField,
-  PricesField,
-  ServerMessage,
-  EntertainmentsField,
-  AdditionalServicesField,
-} from 'components'
+import { Field, EditorField, PhotosField, PricesField, AdditionalServicesField } from 'components'
+import GeneralFormGroup from './GeneralFormGroup'
+import RequirementsFormGroup from './RequirementsFormGroup'
+import ContactsFormGroup from './ContactsFormGroup'
 
 const styles = {
 
@@ -62,95 +54,15 @@ const photosAPI = {
 const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
   <Form className={classes.root}>
     <Typography className={classes.subtitle}>Основная информация</Typography>
-    <div className={classes.card}>
-      <Field
-        label="Название"
-        name="title"
-        placeholder='Например: Пейнтбольный клуб "БЛОК-ПОСТ"'
-        margin="normal"
-        component={TextField}
-      />
-      <Field
-        label="Логотип"
-        name="picture_url"
-        placeholder="http://example.com/picture.jpeg"
-        margin="normal"
-        type="thumbnail"
-        component={UploadField}
-        api={photosAPI}
-      />
-      <Field
-        label="Цена"
-        name="price"
-        placeholder="300 грн / чел"
-        margin="normal"
-        component={TextField}
-      />
-      <Field
-        label="Время работы"
-        name="working_hours"
-        placeholder="ПН-ПТ 10:00-19:30"
-        margin="normal"
-        component={TextField}
-      />
-      <div style={{ height: 10 }} />
-      <Field
-        label="Тип развлечения"
-        name="entertainment_id"
-        placeholder="Пейнтбол"
-        margin="normal"
-        component={EntertainmentsField}
-      />
-    </div>
+    <GeneralFormGroup
+      className={classes.card}
+      photosAPI={photosAPI}
+    />
     <Typography className={classes.subtitle}>Требования к заказу</Typography>
-    <div className={classes.card}>
-      <Field
-        label="Минимальная сумма заказа"
-        name="requirements.min_order_amount"
-        placeholder="100 грн"
-        suffix=" грн"
-        component={NumberField}
-        InputProps={{ startAdornment: <InputAdornment position="start">от</InputAdornment> }}
-      />
-      <Field
-        label="Минимальный возраст участников"
-        name="requirements.age_min"
-        placeholder="10 лет"
-        suffix=" лет"
-        margin="normal"
-        component={NumberField}
-        InputProps={{ startAdornment: <InputAdornment position="start">от</InputAdornment> }}
-      />
-      <Field
-        label="Максимальный возраст участников"
-        name="requirements.age_max"
-        placeholder="14 лет"
-        suffix=" лет"
-        margin="normal"
-        component={NumberField}
-        InputProps={{ startAdornment: <InputAdornment position="start">от</InputAdornment> }}
-      />
-      <Field
-        label="Минимальное количество участников"
-        name="requirements.players_min"
-        placeholder="2 чел"
-        suffix=" чел"
-        margin="normal"
-        InputProps={{ startAdornment: <InputAdornment position="start">от</InputAdornment> }}
-        component={NumberField}
-      />
-      <Field
-        label="Максимальное количество участников"
-        name="requirements.players_max"
-        margin="normal"
-        suffix=" чел"
-        placeholder="10 чел"
-        InputProps={{ startAdornment: <InputAdornment position="start">до</InputAdornment> }}
-        component={NumberField}
-      />
-      <ServerMessage name="message" />
-      <ServerMessage color="error" name="non_field_errors" />
-    </div>
+    <RequirementsFormGroup
+      className={classes.card}
+      photosAPI={photosAPI}
+    />
     <Typography className={classes.subtitle}>Фотографии</Typography>
     <div className={classes.card}>
       <Field
@@ -178,59 +90,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
       <Field name="additional_services" component={AdditionalServicesField} />
     </div>
     <Typography className={classes.subtitle}>Контакты</Typography>
-    <div className={classes.card}>
-      <Field
-        label="Номер телефона"
-        name="contacts.phone"
-        placeholder="+380683188515"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Веб-сайт"
-        name="contacts.website_url"
-        placeholder="http://example.com"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Карта"
-        name="contacts.map_url"
-        placeholder="map url"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Адрес"
-        name="contacts.address"
-        placeholder="Address"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Как добраться"
-        name="contacts.directions"
-        placeholder="Directions"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Email"
-        type="email"
-        name="contacts.email"
-        placeholder="Email"
-        margin="dense"
-        component={TextField}
-      />
-      <Field
-        label="Инстаграм"
-        type="url"
-        name="contacts.instagram_url"
-        placeholder="Instagram url"
-        margin="dense"
-        component={TextField}
-      />
-    </div>
+    <ContactsFormGroup className={classes.card} />
     <Typography className={classes.subtitle}>Описание</Typography>
     <Field
       name="description"
@@ -260,7 +120,7 @@ const PlaceForm = ({ classes, model, onCancel, formik: { isSubmitting } }) =>
 PlaceForm.propTypes = {
   classes: object.isRequired,
   onCancel: func.isRequired,
-  model: placeShape,
+  model: object,
   formik: shape({
     isSubmitting: bool.isRequired,
   }),

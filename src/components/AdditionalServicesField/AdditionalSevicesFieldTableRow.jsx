@@ -53,7 +53,7 @@ const AdditionalServicesFieldTableRow = ({ classes, service, onChange, onDelete 
         suffix=" грн"
         data-testid="AdditionalServicesField-price"
         placeholder="100 грн"
-        onChange={(name, value) => onChange({ ...service, price: value })}
+        onChange={value => onChange({ ...service, price: value })}
       />
     </td>
     <td>
