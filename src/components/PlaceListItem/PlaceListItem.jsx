@@ -2,11 +2,12 @@ import React from 'react'
 import { func, number, object, oneOfType, shape, string } from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import { IconButton, Typography } from '@material-ui/core'
-import { Thumbnail, PlaceListItemHandle } from 'components'
+import { Thumbnail } from 'components'
 import { appendFileNameSuffix } from 'utils'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
 import { Link } from 'react-router-dom'
 import { SortableElement } from 'react-sortable-hoc'
+import PlaceListItemHandle from './PlaceListItemHandle'
 
 const styles = theme => ({
   root: {

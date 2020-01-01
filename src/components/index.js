@@ -52,7 +52,6 @@ export PhotoListItem from './PhotoListItem'
 
 // List Item Handles
 export EntertainmentListItemHandle from './EntertainmentsListItemHandle'
-export PlaceListItemHandle from './PlaceListItemHandle'
 
 // Dialogs
 export DeleteDialog from './DeleteDialog'
