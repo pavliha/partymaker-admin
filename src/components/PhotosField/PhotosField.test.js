@@ -63,4 +63,12 @@ describe('<PhotosField />', () => {
     expect(changeFn).toBeCalledWith([])
   })
 
+  it('should sort photos', () => {
+    const changeFn = jest.fn()
+    const field = setup(<PhotosField {...testProps} value={photos} onChange={changeFn} />)
+    const photosList = field.find(PhotosList)
+    photosList.props().onSortEnd({ oldIndex: 1, newIndex: 2 })
+    expect(changeFn).toBeCalled()
+  })
+
 })

@@ -107,7 +107,6 @@ const PlaceListItem = ({ classes, place, onDelete }) =>
       <div className={classes.container}>
         <Typography className={classes.title}>{place?.title}</Typography>
         <Typography className={classes.subtitle} color="textSecondary">{place?.price}</Typography>
-        }
       </div>
     </Link>
   </div>
