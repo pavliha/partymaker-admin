@@ -21,11 +21,11 @@ const styles = {
 
 class PhotosForm extends Component {
 
-  submit = (name, value) => {
+  submit = (value) => {
     const { submitForm, setFieldValue } = this.props.formik
-    setFieldValue(name, value)
+    setFieldValue('url', value)
     setTimeout(submitForm)
-    setTimeout(() => setFieldValue(name, ''), 200)
+    setTimeout(() => setFieldValue('url', ''), 200)
   }
 
   render() {
