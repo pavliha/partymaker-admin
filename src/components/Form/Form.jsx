@@ -9,9 +9,7 @@ class Form extends Component {
   submit = async (form, formikBag) => {
     const { setSubmitting, setErrors } = formikBag
     const { onSubmit } = this.props
-
     const submit = onSubmit(form)
-
     if (!isPromise(submit)) {
       throw new Error('onSubmit should return promise with result and errors')
     }
