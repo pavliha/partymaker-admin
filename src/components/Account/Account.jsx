@@ -24,6 +24,7 @@ const styles = {
     fontWeight: 400,
     fontFamily: 'Google Sans',
   },
+
 }
 
 const Account = ({ classes, redux: { user, logout }, className }) => {
