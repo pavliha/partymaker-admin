@@ -38,7 +38,6 @@ export AdditionalServicesField from './AdditionalServicesField'
 // Loaders
 export Loader from './Loader'
 export EntertainmentsLoader from './EntertainmentsLoader'
-export PlaceLoader from './PlaceLoader'
 
 // Lists
 export PlacesList from './PlacesList'
