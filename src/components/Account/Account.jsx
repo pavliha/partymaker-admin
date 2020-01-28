@@ -28,7 +28,7 @@ const styles = {
 
 }
 
-const Account = ({ classes, redux: { user, logout }, className }) => {
+export const Account = ({ classes, redux: { user, logout }, className }) => {
 
   if (!user) return null
 
