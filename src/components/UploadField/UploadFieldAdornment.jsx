@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, func, string, number, bool } from 'prop-types'
-import { CircularProgress, IconButton, withStyles } from '@material-ui/core'
+import { CircularProgress, IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import PlusIcon from 'mdi-react/PlusIcon'
 import UploadIcon from 'mdi-react/UploadIcon'
 import ErrorIcon from 'mdi-react/ErrorIcon'

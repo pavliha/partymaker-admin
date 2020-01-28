@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, node, string, func } from 'prop-types'
-import { Typography, withStyles, IconButton } from '@material-ui/core'
+import { Typography, IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
 
 const styles = {

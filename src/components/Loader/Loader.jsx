@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { func, node, object, any, bool } from 'prop-types'
-import { Typography, withStyles } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Loading } from 'components'
 import ErrorIcon from 'mdi-react/ErrorIcon'
 import isEqual from 'lodash/isEqual'

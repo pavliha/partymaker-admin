@@ -1,6 +1,6 @@
 import React from 'react'
 import { object, func, bool, string, any, oneOf, shape, arrayOf, oneOfType, number } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { DropdownField, EntertainmentsLoader } from 'components'
 import { select, connect } from 'src/redux'
 

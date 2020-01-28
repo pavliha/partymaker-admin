@@ -1,7 +1,8 @@
 import React from 'react'
 import { bool, object, shape } from 'prop-types'
 import { Form } from 'formik'
-import { CardContent, withStyles, TextField, Button } from '@material-ui/core'
+import { CardContent, TextField, Button } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Field, ServerMessage } from 'components'
 import * as Yup from 'yup'
 

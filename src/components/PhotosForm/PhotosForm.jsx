@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { func, object, shape } from 'prop-types'
-import { Typography, withStyles } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { UploadField } from 'components'
 
 const styles = {

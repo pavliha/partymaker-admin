@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, func, number, string } from 'prop-types'
-import { IconButton, withStyles } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import CloseIcon from 'mdi-react/CloseIcon'
 
 const styles = {

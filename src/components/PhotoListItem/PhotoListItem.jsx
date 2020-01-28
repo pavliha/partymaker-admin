@@ -1,6 +1,7 @@
 import React from 'react'
 import { func, number, object, oneOfType, shape, string } from 'prop-types'
-import { IconButton, withStyles } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import CloseCircleIcon from 'mdi-react/CloseCircleIcon'
 import { SortableElement } from 'react-sortable-hoc'
 

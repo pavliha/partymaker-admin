@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
-import { Button, DialogActions, withStyles, TextField } from '@material-ui/core'
+import { Button, DialogActions, TextField } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Form } from 'formik'
 import { Field, Label, ServerMessage } from 'components'
 import * as Yup from 'yup'

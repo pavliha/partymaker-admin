@@ -1,6 +1,7 @@
 import React from 'react'
 import { node, object, shape, string } from 'prop-types'
-import { SvgIcon, withStyles } from '@material-ui/core'
+import { SvgIcon } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Link, withRouter } from 'react-router-dom'
 import classNames from 'classnames'
 

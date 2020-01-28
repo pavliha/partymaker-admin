@@ -1,7 +1,8 @@
 import React from 'react'
 import { object, string } from 'prop-types'
 import { Field } from 'components'
-import { TextField, withStyles } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import classNames from 'classnames'
 
 const styles = {

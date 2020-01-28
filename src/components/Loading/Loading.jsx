@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { object, number, string, bool, node } from 'prop-types'
-import { withStyles, CircularProgress } from '@material-ui/core'
+import { CircularProgress } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import classNames from 'classnames'
 
 const styles = {

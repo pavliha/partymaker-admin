@@ -1,6 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Logo, NavigationItem } from 'components'
 import MapIcon from 'mdi-react/MapIcon'
 

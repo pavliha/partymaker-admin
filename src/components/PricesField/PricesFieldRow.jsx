@@ -1,6 +1,7 @@
 import React from 'react'
 import { func, number, object, oneOfType, shape, string } from 'prop-types'
-import { IconButton, TextField, withStyles } from '@material-ui/core'
+import { IconButton, TextField } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { NumberField } from 'components'
 import MinusCircleOutlineIcon from 'mdi-react/MinusCircleOutlineIcon'
 

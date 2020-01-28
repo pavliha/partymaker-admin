@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react'
 import { bool, func, node, object, string } from 'prop-types'
-import { Dialog, DialogContent, DialogTitle, IconButton, withStyles } from '@material-ui/core'
+import { Dialog, DialogContent, DialogTitle, IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import CloseIcon from 'mdi-react/CloseIcon'
 
 const styles = {
