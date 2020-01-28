@@ -1,7 +1,8 @@
 /* eslint-disable no-return-await */
 import React, { useState } from 'react'
 import { object } from 'prop-types'
-import { IconButton, withStyles } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { actions, connect, select } from 'src/redux'
 import AddCircleOutlineIcon from 'mdi-react/AddCircleOutlineIcon'
 import { Form, EntertainmentsList, EntertainmentsLoader, Header, EntertainmentForm, FormDialog, PlacesList } from 'components'

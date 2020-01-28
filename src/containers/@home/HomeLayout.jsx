@@ -1,7 +1,7 @@
 /* eslint-disable simple-import-sort/sort */
 import React from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Navigation } from 'components'
 import PlacesLayout from './@places/PlacesLayout'

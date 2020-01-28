@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Header, Form, PlaceForm, Loader } from 'components'
 import { func, object, shape } from 'prop-types'
 import placeShape from 'shapes/place'

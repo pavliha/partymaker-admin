@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { Loading } from 'components'
 

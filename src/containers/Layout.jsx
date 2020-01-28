@@ -4,7 +4,7 @@ import { object, shape } from 'prop-types'
 import { AuthGate, Account } from 'components'
 import userShape from 'shapes/user'
 import { connect, select } from 'src/redux'
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 import AuthLayout from './@auth/AuthLayout'
 import HomeLayout from './@home/HomeLayout'
 
@@ -32,7 +32,7 @@ const Layout = ({ classes, redux }) =>
 Layout.propTypes = {
   classes: object.isRequired,
   redux: shape({
-    user: userShape.isRequired,
+    user: userShape,
   }).isRequired,
 }
 
