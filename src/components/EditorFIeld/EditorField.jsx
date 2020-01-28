@@ -2,7 +2,9 @@ import React from 'react'
 import { Editor } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import { bool, func, object, oneOfType, string } from 'prop-types'
-import { FormControl, FormHelperText, FormLabel, withStyles } from '@material-ui/core'
+import { FormControl, FormHelperText, FormLabel } from '@material-ui/core'
+import { useTheme, withStyles } from '@material-ui/styles'
+import EditorToolbar from './EditorToolbar'
 
 const styles = () => ({
 
@@ -25,15 +27,28 @@ const styles = () => ({
   label: {},
 })
 
-const EditorField = ({ classes, value, label, error, helperText, onChange }) =>
-  <FormControl className={classes.root}>
-    <FormLabel className={classes.label} component="legend">{label}</FormLabel>
-    <Editor
-      editorState={value}
-      onChange={onChange}
-    />
-    {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
-  </FormControl>
+const EditorField = ({ classes, value, label, error, helperText, onChange }) => {
+  const theme = useTheme()
+
+  const styleMap = {
+    'TITLE': theme.typography.h5,
+    'SUBTITLE': theme.typography.subtitle2,
+    'BODY': theme.typography.body1,
+  }
+
+  return (
+    <FormControl className={classes.root}>
+      <FormLabel className={classes.label} component="legend">{label}</FormLabel>
+      <EditorToolbar editorState={value} onChange={onChange} />
+      <Editor
+        customStyleMap={styleMap}
+        editorState={value}
+        onChange={onChange}
+      />
+      {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
+    </FormControl>
+  )
+}
 
 EditorField.propTypes = {
   classes: object.isRequired,
