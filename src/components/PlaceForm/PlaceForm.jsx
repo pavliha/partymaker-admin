@@ -1,7 +1,7 @@
 import React from 'react'
 import { object, func, bool, shape } from 'prop-types'
 import * as Yup from 'yup'
-import { EditorState } from 'draft-js'
+import { EditorState, convertFromRaw } from 'draft-js'
 import { stateFromHTML } from 'draft-js-import-html'
 import { Button, DialogActions, TextField, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
@@ -156,6 +156,14 @@ PlaceForm.validationSchema = Yup.object().shape({
   description: Yup.object()
 })
 
+const getDescription = (description) => {
+  try {
+    return convertFromRaw(JSON.parse(description))
+  } catch (e) {
+    return stateFromHTML(description)
+  }
+}
+
 PlaceForm.mapPropsToValues = ({ model }) => ({
   title: model?.title || '',
   picture_url: model?.picture_url || '',
@@ -167,7 +175,7 @@ PlaceForm.mapPropsToValues = ({ model }) => ({
   about_prices: model?.about_prices || '',
   additional_services: model?.additional_services || [],
   description: model?.description
-    ? EditorState.createWithContent(stateFromHTML(model?.description))
+    ? EditorState.createWithContent(getDescription(model?.description))
     : EditorState.createEmpty(),
   requirements: {
     min_order_amount: model?.requirements?.min_order_amount || null,

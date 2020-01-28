@@ -1,12 +1,21 @@
 import Http from 'services/Http'
 import photos from './photos'
 import contacts from './contacts'
+import { convertToRaw } from 'draft-js'
 import { stateToHTML } from 'draft-js-export-html'
 import normalize from 'normalize-api'
 
+const saveDescription = (description) => {
+  try {
+    return JSON.stringify(convertToRaw(description.getCurrentContent()))
+  } catch (e) {
+    return stateToHTML(description.getCurrentContent())
+  }
+}
+
 const createForm = form => ({
   ...form,
-  description: stateToHTML(form.description.getCurrentContent()),
+  description: saveDescription(form.description)
 })
 
 const place = {
