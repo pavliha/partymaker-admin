@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 })
 
-const Navigation = ({ classes }) =>
+export const Navigation = ({ classes }) =>
   <div className={classes.root}>
     <header className={classes.logo}>
       <Logo />

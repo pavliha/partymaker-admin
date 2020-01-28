@@ -12,7 +12,7 @@ const styles = {
   },
 }
 
-const PhotosList = ({ classes, className, photos, onDelete }) =>
+export const PhotosList = ({ classes, className, photos, onDelete }) =>
   <div className={classNames(classes.root, className)}>
     {photos?.map((photo, index) =>
       <PhotoListItem

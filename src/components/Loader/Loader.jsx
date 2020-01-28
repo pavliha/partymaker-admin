@@ -31,7 +31,7 @@ const styles = theme => ({
   }
 })
 
-class Loader extends Component {
+export class Loader extends Component {
 
   isMounted = false
 

@@ -47,7 +47,7 @@ const styles = theme => ({
   }
 })
 
-class AdditionalServicesField extends Component {
+export class AdditionalServicesField extends Component {
 
   state = {
     title: '',
