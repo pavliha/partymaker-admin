@@ -8,7 +8,7 @@ const styles = {
   root: {},
 }
 
-const EntertainmentsField = ({
+export const EntertainmentsField = ({
   classes,
   name,
   variant,
