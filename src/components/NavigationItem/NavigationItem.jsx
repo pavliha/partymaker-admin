@@ -34,7 +34,7 @@ const styles = (theme) => ({
   },
 })
 
-const NavigationItem = ({ location, classes, icon: Icon, url, children }) =>
+export const NavigationItem = ({ location, classes, icon: Icon, url, children }) =>
   <Link
     to={`/home${url}`}
     className={classNames({

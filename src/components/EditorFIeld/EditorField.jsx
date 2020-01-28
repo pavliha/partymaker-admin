@@ -3,7 +3,8 @@ import { Editor } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import { bool, func, object, oneOfType, string } from 'prop-types'
 import { FormControl, FormHelperText, FormLabel } from '@material-ui/core'
-import { useTheme, withStyles } from '@material-ui/styles'
+import { useTheme } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/styles'
 import EditorToolbar from './EditorToolbar'
 
 const styles = () => ({
@@ -27,7 +28,7 @@ const styles = () => ({
   label: {},
 })
 
-const EditorField = ({ classes, value, label, error, helperText, onChange }) => {
+export const EditorField = ({ classes, value, label, error, helperText, onChange }) => {
   const theme = useTheme()
 
   const styleMap = {

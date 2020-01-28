@@ -1,14 +1,18 @@
 import React from 'react'
-import NavigationItem from './NavigationItem'
-import { Link, MemoryRouter } from 'react-router-dom'
+import { NavigationItem } from './NavigationItem'
+import { Link } from 'react-router-dom'
 import DesktopMacDashboardIcon from 'mdi-react/DesktopMacDashboardIcon'
 
 describe('<NavigationItem />', () => {
 
-  const navItem = mount(
-    <MemoryRouter>
-      <NavigationItem icon={DesktopMacDashboardIcon} url="/dummy">child</NavigationItem>
-    </MemoryRouter>
+  const navItem = shallow(
+    <NavigationItem
+      location={{}}
+      classes={{}}
+      icon={DesktopMacDashboardIcon}
+      url="/dummy">
+      child
+    </NavigationItem>
   )
 
   it('should have link', () => {
