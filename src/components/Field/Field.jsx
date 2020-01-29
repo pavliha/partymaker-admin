@@ -6,7 +6,7 @@ class Field extends Component {
 
   handleChange = (field, form) => (e) => {
     const { onChange } = this.props
-    const value = e?.target?.value || e
+    const value = e?.target?.value ?? e
     form.setFieldValue(field.name, value)
     onChange(field.name, value, form)
   }
