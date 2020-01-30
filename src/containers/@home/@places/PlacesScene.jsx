@@ -73,8 +73,8 @@ const PlacesScene = ({ classes, redux }) => {
           model={entertainment}
           component={EntertainmentForm}
           onSubmit={form => {
-            redux.submitEntertainment(entertainment?.id, form)
             setFormDialogOpen(false)
+            return redux.submitEntertainment(entertainment?.id, form)
           }}
           onCancel={() => setFormDialogOpen(false)}
         />
