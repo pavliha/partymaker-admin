@@ -56,12 +56,12 @@ describe('<AdditionalServicesField />', () => {
 
   it('should add new price item', () => {
     const changeFn = jest.fn()
-    const priceField = setup(<AdditionalServicesField {...testProps} value={[]} onChange={changeFn} />)
-    const titleInput = priceField.findByTestId('AdditionalServicesField-add-title')
-    const costInput = priceField.find(NumberField)
-    const addButton = priceField.findByTestId('AdditionalServicesField-add')
-    titleInput.props().onChange({ target: { name: 'title', value: 'new service' } })
-    costInput.props().onChange(300)
+    const additionalServicesField = setup(<AdditionalServicesField {...testProps} value={[]} onChange={changeFn} />)
+    const titleField = additionalServicesField.findByTestId('AdditionalServicesField-add-title')
+    const priceField = additionalServicesField.find(NumberField)
+    const addButton = additionalServicesField.findByTestId('AdditionalServicesField-add')
+    titleField.props().onChange({ target: { name: 'title', value: 'new service' } })
+    priceField.props().onChange(300)
     addButton.simulate('click')
     expect(changeFn).toHaveBeenCalledWith(expect.arrayContaining([serviceschema]))
   })

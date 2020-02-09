@@ -50,26 +50,23 @@ const styles = theme => ({
 export class AdditionalServicesField extends Component {
 
   state = {
-    title: '',
-    price: null,
-    description: '',
+    additional_service: {
+      title: '',
+      price: null,
+      description: '',
+    }
   }
 
-  handleTitle = e =>
-    this.setState({ title: e.target.value })
-
-  handleDescription = e =>
-    this.setState({ description: e.target.value })
-
-  handlePrice = (value) =>
-    this.setState({ price: value })
+  update = (values) =>
+    this.setState(s => ({ ...s, values }))
 
   add = () => {
     const { value: services, onChange } = this.props
     const { title, price, description } = this.state
     const service = { id: uniqId(), title, price, description }
     onChange([...services, service])
-    this.setState({ title: '', price: '', description: '' })
+    const additional_service = { title: '', price: '', description: '' }
+    this.setState({ additional_service })
   }
 
   remove = service => {
@@ -116,7 +113,7 @@ export class AdditionalServicesField extends Component {
                   value={title}
                   disableUnderline
                   placeholder="Назавание услуги"
-                  onChange={this.handleTitle}
+                  onChange={e => this.update({ title: e.target.value })}
                   data-testid="AdditionalServicesField-add-title"
                 />
                 <Input
@@ -125,7 +122,7 @@ export class AdditionalServicesField extends Component {
                   value={description}
                   disableUnderline
                   placeholder="Описание услуги"
-                  onChange={this.handleDescription}
+                  onChange={e => this.update({ description: e.target.value })}
                   data-testid="AdditionalServicesField-add-description"
                 />
               </td>
@@ -135,7 +132,7 @@ export class AdditionalServicesField extends Component {
                   suffix=" грн"
                   InputProps={{ disableUnderline: true }}
                   placeholder="100 грн"
-                  onChange={this.handlePrice}
+                  onChange={value => this.update({ price: value })}
                   data-testid="AdditionalServicesField-add-price"
                 />
               </td>
