@@ -4,20 +4,8 @@ import { withStyles } from '@material-ui/styles'
 import { DeleteDialog, EntertainmentsListItem } from 'components'
 import { SortableContainer } from 'react-sortable-hoc'
 
-const styles = theme => ({
+const styles = () => ({
   root: {},
-
-  places: {
-    display: 'flex',
-    overflow: 'auto',
-    justifyContent: 'center',
-    padding: '0 10px',
-    [theme.breakpoints.up('xs')]: {
-      justifyContent: 'flex-start',
-      padding: 0,
-    }
-  }
-
 })
 
 const EntertainmentsList = ({ classes, entertainments, onEdit, onDestroy, children }) => {
